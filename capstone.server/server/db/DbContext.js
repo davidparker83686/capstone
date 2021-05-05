@@ -1,10 +1,16 @@
 import mongoose from 'mongoose'
-import ValueSchema from '../models/Value'
 import AccountSchema from '../models/Account'
+import ItemSchema from '../models/Item'
+import RequestSchema from '../models/Request'
+import ReviewSchema from '../models/Review'
+import ValueSchema from '../models/Value'
 
 class DbContext {
-  Values = mongoose.model('Value', ValueSchema);
   Account = mongoose.model('Account', AccountSchema);
+  Items = mongoose.model('Item', ItemSchema);
+  Requests = mongoose.model('Request', RequestSchema);
+  Reviews = mongoose.model('Review', ReviewSchema);
+  Values = mongoose.model('Value', ValueSchema);
 }
 
 export const dbContext = new DbContext()

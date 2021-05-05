@@ -7,8 +7,8 @@ const Review = new Schema(
     id: { type: String, required: true },
     creatorId: { type: String, required: true },
     requestId: { type: String, required: true },
-    ownerId: { type: String, ref: 'Account', required: true },
-    borrowerId: { type: String, ref: 'Account', required: true },
+    ownerId: { type: String, ref: 'Request', required: true },
+    borrowerId: { type: String, ref: 'Request', required: true },
     body: { type: String, required: true },
     rating: { type: String, required: true }
   },

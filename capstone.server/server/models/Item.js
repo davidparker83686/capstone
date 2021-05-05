@@ -6,13 +6,11 @@ const Item = new Schema(
 
     id: { type: String, required: true },
     category: { type: String, required: true },
-    ownerId: { type: String, required: true },
+    accountId: { type: String, required: true },
     availability: { type: Boolean, required: true },
     title: { type: String, required: true },
     description: { type: String, required: false },
     picture: { type: String, required: false },
-    borrowStartDate: { type: String, required: true },
-    borrowEndDate: { type: String, required: true },
     creatorId: { type: String, ref: 'Account', required: true }
   },
   { timestamps: true, toJSON: { virtuals: true } }
