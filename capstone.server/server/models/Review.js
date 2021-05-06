@@ -3,8 +3,6 @@ const Schema = mongoose.Schema
 
 const Review = new Schema(
   {
-
-    id: { type: String, required: true },
     creatorId: { type: String, required: true },
     requestId: { type: String, required: true },
     ownerId: { type: String, ref: 'Request', required: true },

@@ -3,8 +3,6 @@ const Schema = mongoose.Schema
 
 const Item = new Schema(
   {
-
-    id: { type: String, required: true },
     category: { type: String, required: true },
     accountId: { type: String, required: true },
     availability: { type: Boolean, required: true },
