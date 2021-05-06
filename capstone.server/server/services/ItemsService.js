@@ -14,7 +14,7 @@ class ItemsService {
   }
 
   async createItem(body) {
-    await dbContext.Items.create(body)
+    return await dbContext.Items.create(body)
   }
 
   async deleteItem(id) {

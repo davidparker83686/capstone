@@ -3,7 +3,7 @@ import { dbContext } from '../db/DbContext'
 
 class RequestsService {
   async createRequest(body) {
-    await dbContext.Requests.create(body)
+    return await dbContext.Requests.create(body)
   }
 
   async deleteRequest(id) {
@@ -16,11 +16,15 @@ class RequestsService {
     return data
   }
 
-  async getRequests(accountid) {
-    const data1 = await dbContext.Requests.find(borrowerid)
-    const data2 = await dbContext.Requests.find(borrowerid)
-    return data1 + data2
+  async getRequests(id) {
+    const data = await dbContext.Requests.find({ $or: [{ ownerId: id }, { borrowerId: id }] })
+    return data
   }
+
+  // async getRequests() {
+  //   const data = await dbContext.Requests.find()
+  //   return data
+  // }
 
   // async getOneRequest(id, id2) {
   //   const data = await dbContext.Requests.findOne({ _id: id, id2 }).populate('creator')
