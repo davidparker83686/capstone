@@ -1,24 +1,18 @@
 import BaseController from '../utils/BaseController'
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { itemsService } from '../services/ItemsService'
-import { reviewsService } from '../services/ReviewsService'
 
 export class ItemsController extends BaseController {
   constructor() {
     super('api/items')
     this.router
       .get('', this.getAllItems)
-      .get('/:id/items', this.getAllItemsByUserID)
-      .get('/:id/items/:id', this.getOneItem)
-
-      .get('/:id/requests', this.getRequestsByUserId)
-      .get('/:id/requests/:id', this.getOneRequestByUserId)
-
+      .get('/:id', this.getOneItem)
       .use(Auth0Provider.getAuthorizedUserInfo)
 
+      .post('', this.createItem)
       .delete('/:id', this.deleteItem)
       .put('/:id', this.editItem)
-      .post('', this.createItem)
   }
 
   async getAllItems(req, res, next) {
@@ -30,9 +24,9 @@ export class ItemsController extends BaseController {
     }
   }
 
-  async getAllItemsByUserID(req, res, next) {
+  async getOneItem(req, res, next) {
     try {
-      const data = await itemsService.getAllItemsByUserID(req.params.id)
+      const data = await itemsService.getOneItem(req.params.id)
       res.send(data)
     } catch (error) {
       next(error)
@@ -53,12 +47,8 @@ export class ItemsController extends BaseController {
   async deleteItem(req, res, next) {
     try {
       // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
-
-      req.body.id = req.params.id
-      req.body.creatorId = req.userInfo.id
-      const data = await itemsService.deleteItem(req.body)
+      const data = await itemsService.deleteItem({ _id: req.params.id, creatorId: req.userInfo.id })
       res.send(data)
-      res.send(req.body)
     } catch (error) {
       next(error)
     }
@@ -68,23 +58,8 @@ export class ItemsController extends BaseController {
     try {
       // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
       req.body.creatorId = req.userInfo.id
-      res.send(req.body)
-    } catch (error) {
-      next(error)
-    }
-  }
-
-  async getRequestsByUserId(req, res, next) {
-    try {
-      return res.send(['item1', 'item2'])
-    } catch (error) {
-      next(error)
-    }
-  }
-
-  async getOneRequestByUserId(req, res, next) {
-    try {
-      return res.send(['item1', 'item2'])
+      const data = await itemsService.editItem(req.body)
+      res.send(data)
     } catch (error) {
       next(error)
     }
