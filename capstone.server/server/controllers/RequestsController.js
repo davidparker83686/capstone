@@ -7,7 +7,7 @@ export class RequestsController extends BaseController {
   constructor() {
     super('api/requests')
     this.router
-
+      // .get('', this.getRequests)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createRequest)
       .delete('/:id', this.deleteRequest)
@@ -16,8 +16,9 @@ export class RequestsController extends BaseController {
 
   async createRequest(req, res, next) {
     try {
-      req.body.creatorId = req.userInfo.creatorId
-      await requestsService.createRequest(req.body)
+      req.body.creatorId = req.userInfo.id
+      const data = await requestsService.createRequest(req.body)
+      res.send(data)
     } catch (error) {
       logger.error(error)
     }
@@ -34,10 +35,22 @@ export class RequestsController extends BaseController {
 
   async editRequest(req, res, next) {
     try {
+      req.body.creatorId = req.userInfo.id
+      req.body.id = req.params.id
       const data = await requestsService.editRequest(req.body)
       res.send(data)
     } catch (error) {
       logger.error(error)
     }
   }
+
+  // delete this after testing
+  // async getRequests(req, res, next) {
+  //   try {
+  //     const data = await requestsService.getRequests()
+  //     res.send(data)
+  //   } catch (error) {
+  //     next(error)
+  //   }
+  // }
 }
