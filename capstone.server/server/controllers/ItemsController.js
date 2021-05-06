@@ -56,7 +56,6 @@ export class ItemsController extends BaseController {
 
   async editItem(req, res, next) {
     try {
-      // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
       req.body.creatorId = req.userInfo.id
       const data = await itemsService.editItem(req.body)
       res.send(data)

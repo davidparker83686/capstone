@@ -7,15 +7,35 @@ export class RequestsController extends BaseController {
   constructor() {
     super('api/requests')
     this.router
+
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .post('', this.create)
+      .post('', this.createRequest)
+      .delete('/:id', this.deleteRequest)
+      .put('/:id', this.editRequest)
   }
 
-  async create(req, res, next) {
+  async createRequest(req, res, next) {
     try {
       req.body.creatorId = req.userInfo.creatorId
-      const data = await requestsService.create(req.body)
-      return res.send(data)
+      await requestsService.createRequest(req.body)
+    } catch (error) {
+      logger.error(error)
+    }
+  }
+
+  async deleteRequest(req, res, next) {
+    try {
+      const data = await requestsService.deleteRequest({ _id: req.params.id, creatorId: req.userInfo.id })
+      res.send(data)
+    } catch (error) {
+      logger.error(error)
+    }
+  }
+
+  async editRequest(req, res, next) {
+    try {
+      const data = await requestsService.editRequest(req.body)
+      res.send(data)
     } catch (error) {
       logger.error(error)
     }
