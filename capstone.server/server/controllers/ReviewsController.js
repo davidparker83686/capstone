@@ -8,12 +8,22 @@ export class ReviewsController extends BaseController {
     super('api/reviews')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .post('', this.create)
+      .post('', this.createReview)
+      .delete('', this.deleteReview)
   }
 
-  async create(req, res, next) {
+  async createReview(req, res, next) {
     try {
-      await reviewsService.create(req.body)
+      await reviewsService.createReview(req.body)
+    } catch (error) {
+      logger.error(error)
+    }
+  }
+
+  async deleteReview(req, res, next) {
+    try {
+      const data = await reviewsService.deleteReview({ _id: req.params.id, creatorId: req.userInfo.id })
+      return res.send(data)
     } catch (error) {
       logger.error(error)
     }
