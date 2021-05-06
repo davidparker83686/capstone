@@ -3,13 +3,13 @@ const Schema = mongoose.Schema
 
 const Request = new Schema(
   {
-    id: { type: String, required: true },
     itemId: { type: String, required: true },
     ownerId: { type: String, required: true },
     ownerReview: { type: Boolean, required: true },
     borrowerId: { type: String, required: true },
     borrowerReview: { type: Boolean, required: true },
-    returned: { type: Boolean, required: true },
+    accepted: { type: Boolean, required: true, default: false },
+    returned: { type: Boolean, required: true, default: false },
     borrowStartDate: { type: String, required: true },
     borrowEndDate: { type: String, required: true },
     creatorId: { type: String, ref: 'Account', required: true }
