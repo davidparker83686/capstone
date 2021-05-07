@@ -6,7 +6,6 @@ const Message = new Schema(
     from: { type: String, required: true },
     to: { type: String, required: true },
     body: { type: String, required: true },
-    description: { type: String, required: true },
     creatorId: { type: String, ref: 'Account', required: true }
   },
   { timestamps: true, toJSON: { virtuals: true } }

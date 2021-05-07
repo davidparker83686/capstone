@@ -8,7 +8,7 @@ const Review = new Schema(
     ownerId: { type: String, ref: 'Request', required: true },
     borrowerId: { type: String, ref: 'Request', required: true },
     body: { type: String, required: true },
-    rating: { type: String, required: true }
+    rating: { type: Number, required: true }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )
