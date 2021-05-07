@@ -5,7 +5,7 @@ class ReviewsService {
     return await dbContext.Reviews.create(body)
   }
 
-  async getReviewsByUserID(query = {}) {
+  async getReviewsByUserId(query = {}) {
     const data = await dbContext.Reviews.find(query)
     return data
   }

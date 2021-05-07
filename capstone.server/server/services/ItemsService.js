@@ -13,7 +13,7 @@ class ItemsService {
     return data
   }
 
-  async getItemsByUserID(query = {}) {
+  async getItemsByUserId(query = {}) {
     const data = await dbContext.Items.find(query)
     return data
   }
