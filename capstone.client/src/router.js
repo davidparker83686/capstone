@@ -9,7 +9,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: loadPage('HomePage')
+    component: loadPage('LandingPage')
   },
   {
     path: '/about',
@@ -18,7 +18,7 @@ const routes = [
   },
   {
     path: '/search',
-    name: 'Search',
+    name: 'SearchPage',
     component: loadPage('SearchPage')
   },
   {
