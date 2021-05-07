@@ -1,10 +1,11 @@
 import BaseController from '../utils/BaseController'
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { itemsService } from '../services/ItemsService'
+import { logger } from '../utils/Logger'
 
-export class ProfilesController extends BaseController {
+export class ProfileController extends BaseController {
   constructor() {
-    super('api/profiles')
+    super('api/profile')
     this.router
       .get('/:id/items', this.getItemsByUserID)
       .use(Auth0Provider.getAuthorizedUserInfo)
@@ -12,6 +13,7 @@ export class ProfilesController extends BaseController {
 
   async getItemsByUserID(req, res, next) {
     try {
+      logger.log('getitemsbyuserId log')
       const data = await itemsService.getItemsByUserID({ creatorId: req.params.id })
       res.send(data)
     } catch (error) {
