@@ -8,15 +8,15 @@ export class ProfileController extends BaseController {
   constructor() {
     super('api/profile')
     this.router
-      .get('/:id/items', this.getItemsByUserID)
-      .get('/:id/reviews', this.getReviewsByUserID)
+      .get('/:id/items', this.getItemsByUserId)
+      .get('/:id/reviews', this.getReviewsByUserId)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('/:id/messages', this.getMessagesById)
   }
 
-  async getItemsByUserID(req, res, next) {
+  async getItemsByUserId(req, res, next) {
     try {
-      const data = await itemsService.getItemsByUserID({ creatorId: req.params.id })
+      const data = await itemsService.getItemsByUserId({ creatorId: req.params.id })
       res.send(data)
     } catch (error) {
       next(error)
@@ -32,9 +32,9 @@ export class ProfileController extends BaseController {
     }
   }
 
-  async getReviewsByUserID(req, res, next) {
+  async getReviewsByUserId(req, res, next) {
     try {
-      const data = await reviewsService.getReviewsByUserID({ creatorId: req.params.id })
+      const data = await reviewsService.getReviewsByUserId({ creatorId: req.params.id })
       res.send(data)
     } catch (error) {
       next(error)

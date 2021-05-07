@@ -28,6 +28,11 @@
           </router-link>
         </li>
         <li class="nav-item">
+          <router-link :to="{ name: 'Profile' }" class="nav-link">
+            Profile
+          </router-link>
+        </li>
+        <li class="nav-item">
           <router-link :to="{ name: 'About' }" class="nav-link">
             About
           </router-link>
