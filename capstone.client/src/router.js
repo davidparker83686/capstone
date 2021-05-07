@@ -17,6 +17,28 @@ const routes = [
     component: loadPage('AboutPage')
   },
   {
+    path: '/search',
+    name: 'Search',
+    component: loadPage('SearchPage')
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: loadPage('ProfilePage')
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: loadPage('DashboardPage'),
+    beforeEnter: authGuard
+  },
+  {
+    path: '/message',
+    name: 'Message',
+    component: loadPage('MessagePage'),
+    beforeEnter: authGuard
+  },
+  {
     path: '/account',
     name: 'Account',
     component: loadPage('AccountPage'),
