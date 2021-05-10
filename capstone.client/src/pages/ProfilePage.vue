@@ -7,8 +7,9 @@
           <div class="card-body">
             <h5 class="card-title d-flex justify-content-between">
               <div class="d-inline">
-                User Name
-                <!-- {{ account.name }} -->
+                <!-- {{
+                  (state.account.name.split('@')[0]).charAt(0).toUpperCase()+ (state.account.name.split('@')[0]).substring(1)
+                }} -->
               </div>
               <div class="d-inline">
                 <i class="fas fa-star star"></i>
@@ -50,8 +51,7 @@
       </div>
       <!-- listings  -->
       <div class="col-12 col-md-8 bg-danger mt-2">
-        MY ITEMS
-        <!-- <Item v-for="item in state.items" :key="item.id" :item="item"/> -->
+        <Item v-for="item in state.items" :key="item.id" :item="item" />
       </div>
       <div class="col-12 d-block d-md-none">
         <div class=" ">
@@ -86,30 +86,26 @@
 </template>
 
 <script>
-import { reactive } from '@vue/reactivity'
-import { computed, onMounted } from '@vue/runtime-core'
+
+import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { useRoute } from 'vue-router'
 import { itemsService } from '../services/ItemsService'
-import { reviewsService } from '../services/ReviewsService'
+
 export default {
   name: 'Home',
   setup() {
     const route = useRoute()
     const state = reactive({
       items: computed(() => AppState.items),
-      reviews: computed(() => AppState.reviews)
+      reviews: computed(() => AppState.reviews),
+      account: computed(() => AppState.account),
+      user: computed(() => AppState.user)
     })
     onMounted(async() => {
       try {
         await itemsService.getItemsByUserId(route.params.id)
-      } catch (error) {
-        console.error(error)
-      }
-    })
-    onMounted(async() => {
-      try {
-        await reviewsService.getReviewsByUserId(route.params.id)
+        // await reviewsService.getReviewsByUserId(route.params.id)
       } catch (error) {
         console.error(error)
       }
