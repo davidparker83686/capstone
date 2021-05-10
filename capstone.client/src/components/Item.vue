@@ -12,11 +12,11 @@
                   aria-controls="collapseOne"
           >
             <span><h2>{{ item.title }}</h2><h4 class="available" v-if="item.availability == true">Available</h4><h4 class="not-available" v-if="item.availability == false">Not Available</h4></span>
-            <div class="text-right" v-if="state.account.id === state.item.creatorId">
+            <div class="text-right" v-if="state.account.id === item.creatorId">
               <button type="button" class="btn btn-primary" @click="editItem()">
                 Edit
               </button>
-              <button type="button" class="btn btn-danger" @click="deleteItem()">
+              <button type="button" class="btn btn-danger" @click.prevent="deleteItem(item.id)">
                 Delete
               </button>
             </div>
@@ -24,25 +24,24 @@
         </h2>
       </div>
       <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-        <div class="card-body">
-          <div class="col-6">
-            <img class="image-fluid rounded" src="item.picture" alt="Item Picture">
+        <div class="card-body d-flex justify-content-between">
+          <div class="col-5">
+            <img class="img-fluid rounded" :src="item.picture" alt="Item Picture" v-if="item.picture">
           </div>
-          <div class="col-6">
-            <span>{{ item.title }}</span>
-            <span>{{ item.description }}</span>
-            <div class="buttons text-right">
+          <div class="col-5">
+            <span><b>{{ item.title }}</b> <br> {{ item.description }}</span>
+            <div class="buttons text-right ">
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" v-if="item.available == true && state.account.id !== state.item.creatorId">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" v-if="item.availability == true && state.account.id !== item.creatorId">
                 Borrow
               </button>
-              <button type="button" class="btn btn-primary disabled" v-if="item.available == false && state.account.id !== state.item.creatorId">
+              <button type="button" class="btn btn-primary disabled" v-if="item.availability == false && state.account.id !== item.creatorId">
                 Borrow
               </button>
-              <button type="button" class="btn btn-primary" v-if="item.available == true && state.account.id == state.item.creatorId" @click="toggleAvailability()">
+              <button type="button" class="btn btn-primary" v-if="item.availability == true && state.account.id == item.creatorId" @click="toggleAvailability()">
                 Make Unavailable
               </button>
-              <button type="button" class="btn btn-primary" v-if="item.available == false && state.account.id == state.item.creatorId" @click="toggleAvailability()">
+              <button type="button" class="btn btn-primary" v-if="item.availability == false && state.account.id == item.creatorId" @click="toggleAvailability()">
                 Make Available
               </button>
             </div>
@@ -67,16 +66,19 @@ export default {
       required: true
     }
   },
-  setup() {
+  setup(props) {
     const state = reactive({
-      items: computed(() => AppState.items)
+      user: computed(() => AppState.user),
+      account: computed(() => AppState.account)
     })
     return {
       state,
       async deleteItem(id) {
         try {
-          await itemsService.deleteItem(id)
-          Notification.toast('Successfully Deleted Item', 'success')
+          if (await Notification.confirmAction('Are you sure you want to delete this item?', 'You won\'t be able to revert this.', 'warning', 'Yes, Delete')) {
+            await itemsService.deleteItem(id)
+            Notification.toast('Successfully Deleted Item', 'success')
+          }
         } catch (error) {
           logger.error(error)
         }
