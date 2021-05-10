@@ -38,10 +38,10 @@
               <button type="button" class="btn btn-primary disabled" v-if="item.availability == false && state.account.id !== item.creatorId">
                 Borrow
               </button>
-              <button type="button" class="btn btn-primary" v-if="item.availability == true && state.account.id == item.creatorId" @click="toggleAvailability()">
+              <button type="button" class="btn btn-primary" v-if="item.availability == true && state.account.id == item.creatorId" @click="toggleAvailability(item)">
                 Make Unavailable
               </button>
-              <button type="button" class="btn btn-primary" v-if="item.availability == false && state.account.id == item.creatorId" @click="toggleAvailability()">
+              <button type="button" class="btn btn-primary" v-if="item.availability == false && state.account.id == item.creatorId" @click="toggleAvailability(item)">
                 Make Available
               </button>
             </div>
@@ -91,9 +91,9 @@ export default {
           logger.error(error)
         }
       },
-      async toggleAvailability(id) {
+      async toggleAvailability(item) {
         try {
-          await itemsService.toggleAvailability(id)
+          await itemsService.toggleAvailability(item)
           Notification.toast('Successfully Toggled Availability', 'success')
         } catch (error) {
           logger.error(error)

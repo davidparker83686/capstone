@@ -4,10 +4,10 @@ const Schema = mongoose.Schema
 const Item = new Schema(
   {
     category: { type: String, required: true },
-    accountId: { type: String, required: true },
-    availability: { type: Boolean, required: true },
+    // accountId: { type: String, required: true },
+    availability: { type: Boolean, required: false, default: true },
     title: { type: String, required: true },
-    description: { type: String, required: false },
+    description: { type: String, required: true },
     picture: { type: String, required: false },
     creatorId: { type: String, ref: 'Account', required: true }
   },

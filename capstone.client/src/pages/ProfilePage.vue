@@ -82,6 +82,7 @@
         </div>
       </div>
     </div>
+    <item-creation-modal />
   </div>
 </template>
 
