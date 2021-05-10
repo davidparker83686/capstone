@@ -17,7 +17,6 @@ export default {
       items: computed(() => AppState.items)
     })
     onMounted(async() => {
-      debugger
       await itemsService.getAll(route.query.filter)
     })
     return {
