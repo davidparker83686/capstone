@@ -1,20 +1,32 @@
 <template>
   <div class="container-fluid landing-page background-img align-items-end">
-    <div class="row">
-      <div class="col d-flex stretch text-light justify-content-center">
-        <p>LendMe</p>
+    <div class="row justify-content-center my-4">
+      <div class="col-10 col-md-6 card bg-card d-flex stretch text-light justify-content-center">
+        <div class="my-2">
+          <p class="mb-0">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit corrupti quia error distinctio cum! Quibusdam natus porro fugiat exercitationem numquam facilis dolores reiciendis nesciunt sit molestias impedit quia amet quo autem enim delectus ratione ullam consequatur perspiciatis odit magnam maiores, laboriosam labore. Ipsa, error a! Possimus alias provident itaque eveniet?
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-4 col-md-4 text-center d-flex justify-content-center align-items-center">
+        <input type="checkbox" id="location-check" aria-label="Checkbox for following text input" @change="location">
+        <p class="text-light mx-1 my-0">
+          Use My Location
+        </p>
       </div>
     </div>
     <div class="row align-items-center justify-content-center">
       <div class="col-md-4 col-11 card py-2 my-2 mx-2 hunting-bg-img">
-        <router-link :to="{name: 'SearchPage', query: {filter:'Hunting'}}">
+        <router-link :to="{name: 'SearchPage', query: {filter:'hunting'}}">
           <h3 class="router text-light">
             Hunting
           </h3>
         </router-link>
       </div>
       <div class="col-md-4 col-11 card py-2 my-2 mx-2 fishing-bg-img">
-        <router-link :to="{name: 'SearchPage', query: {filter:'Fishing'}}">
+        <router-link :to="{name: 'SearchPage', query: {filter:'fishing'}}">
           <h3 class="router text-light">
             Fishing
           </h3>
@@ -23,14 +35,14 @@
     </div>
     <div class="row align-items-center justify-content-center">
       <div class="col-md-4 col-11 card py-2 my-2 mx-2 boating-bg-img">
-        <router-link :to="{name: 'SearchPage', query: {filter:'Boating'}}">
+        <router-link :to="{name: 'SearchPage', query: {filter:'boating'}}">
           <h3 class="router text-light">
             Boating
           </h3>
         </router-link>
       </div>
       <div class="col-md-4 col-11 card py-2 my-2 mx-2 camping-bg-img">
-        <router-link :to="{name: 'SearchPage', query: {filter:'Camping'}}">
+        <router-link :to="{name: 'SearchPage', query: {filter:'camping'}}">
           <h3 class="router text-light">
             Camping
           </h3>
@@ -39,14 +51,14 @@
     </div>
     <div class="row align-items-center justify-content-center">
       <div class="col-md-4 col-11 card py-2 my-2 mx-2 sports-bg-img">
-        <router-link :to="{name: 'SearchPage', query: {filter:'Recreational Sports'}}">
+        <router-link :to="{name: 'SearchPage', query: {filter:'sports'}}">
           <h3 class="router text-light">
             Recreational Sports
           </h3>
         </router-link>
       </div>
       <div class="col-md-4 col-11 card py-2 my-2 mx-2 all-bg-img">
-        <router-link :to="{name: 'SearchPage', query: {filter:'All'}}">
+        <router-link :to="{name: 'SearchPage', query: {filter:'all'}}">
           <h3 class="router text-light">
             All
           </h3>
@@ -57,8 +69,22 @@
 </template>
 
 <script>
+import { reactive } from 'vue'
+import { logger } from '../utils/Logger'
+
 export default {
-  name: 'LandingPage'
+  name: 'LandingPage',
+  setup() {
+    const state = reactive({
+    })
+    return {
+      state,
+      async location() {
+        const confirm = window.confirm('Do you want our application to have access to your Location?')
+        if (confirm) { navigator.geolocation.getCurrentPosition(x => logger.log(x)) }
+      }
+    }
+  }
 }
 </script>
 
@@ -158,5 +184,10 @@ export default {
 .all-bg-img:hover{
   transition: all 0.25s;
   box-shadow: 0 0 3em 0.5em white;
+}
+
+.bg-card{
+  background-color: rgba(0, 0, 0, 0.753);
+  border: none;
 }
 </style>
