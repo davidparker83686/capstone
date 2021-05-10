@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid bg-success">
+  <div class="container-fluid background-img bg-success">
     <div class="row justify-content-around">
       <!-- profile stuff -->
       <div class="col-12 col-md-3">
@@ -127,6 +127,11 @@ export default {
 <style scoped lang="scss">
 .star{
   color:yellow
+}
+.background-img{
+  background-image: url('../assets/img/Untitled.jpg');
+  background-size: cover;
+  background-position-y: 50%;
 }
 
 </style>
