@@ -11,7 +11,9 @@
     </div>
     <div class="row justify-content-center">
       <div class="col-4 col-md-4 text-center d-flex justify-content-center align-items-center">
-        <input type="checkbox" id="location-check" aria-label="Checkbox for following text input" @change="location">
+        <button class="btn" :class="{ 'btn-success' : state.check === true, 'btn-outline-secondary' : state.check === false }" @click="location">
+          Use Your Location
+        </button>
         <p class="text-light mx-1 my-0">
           Use My Location
         </p>
@@ -71,17 +73,28 @@
 <script>
 import { reactive } from 'vue'
 import { logger } from '../utils/Logger'
+import { AppState } from '../AppState'
 
 export default {
   name: 'LandingPage',
   setup() {
     const state = reactive({
+      locationChecked: true,
+      location: AppState.location,
+      check: false
     })
     return {
       state,
       async location() {
+        // debugger
         const confirm = window.confirm('Do you want our application to have access to your Location?')
-        if (confirm) { navigator.geolocation.getCurrentPosition(x => logger.log(x)) }
+        if (confirm) {
+          await navigator.geolocation.getCurrentPosition(x => { AppState.location = x })
+          // arrow function returns an object, breaks implicit return when arrow function is directly assigning a value
+          state.check = !state.check
+          logger.log(state.check)
+          logger.log(state.location)
+        }
       }
     }
   }
@@ -117,6 +130,10 @@ export default {
 .background-img{
   background-image: url('../assets/img/tree-trunk.jpg');
   background-size: cover;
+}
+
+.background-content{
+  opacity: 1;
 }
 
 .hunting-bg-img{
@@ -189,5 +206,11 @@ export default {
 .bg-card{
   background-color: rgba(0, 0, 0, 0.753);
   border: none;
+}
+
+.btn-toggle{
+  background-color: green;
+  color: white;
+
 }
 </style>
