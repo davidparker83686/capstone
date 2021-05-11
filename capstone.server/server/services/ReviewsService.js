@@ -6,7 +6,7 @@ class ReviewsService {
   }
 
   async getReviewsByUserId(query = {}) {
-    const data = await dbContext.Reviews.find(query)
+    const data = await dbContext.Reviews.find(query).populate('creator')
     return data
   }
 

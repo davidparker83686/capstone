@@ -7,7 +7,7 @@
           <button class="btn btn-link btn-block text-left px-0"
                   type="button"
                   data-toggle="collapse"
-                  data-target="#collapseOne"
+                  :data-target="'#collapseOne'+item.id"
                   aria-expanded="true"
                   aria-controls="collapseOne"
           >
@@ -42,7 +42,7 @@
           </h4>
         </h2>
       </div>
-      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div :id="'collapseOne'+item.id" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card-body d-flex justify-content-between">
           <div class="col-5">
             <img class="img-fluid rounded" :src="item.picture" alt="Item Picture" v-if="item.picture">
