@@ -34,6 +34,11 @@
           </router-link>
         </li>
         <li class="nav-item" v-if="user.isAuthenticated">
+          <router-link :to="{ name: 'Dashboard', params: {id: account.id} }" class="nav-link">
+            Dashboard
+          </router-link>
+        </li>
+        <li class="nav-item" v-if="user.isAuthenticated">
           <button type="button" class="btn text-light btn-none" data-toggle="modal" data-target="#itemCreationModal">
             CREATE LISTING
           </button>

@@ -1,5 +1,5 @@
 <template>
-  <div class="accordion px-4 py-3" id="accordionExample">
+  <div class="request-component accordion px-4 py-3" id="accordionExample">
     <div class="row card">
       <div class="card-header" id="headingOne">
         <div class="row justify-content-between">
@@ -11,32 +11,24 @@
                     aria-expanded="true"
                     aria-controls="collapseOne"
             >
-              <h4>{{ result.title }}</h4>
+              <h4>Item: {{ result.title }}</h4>
             </button>
           </div>
           <div class="col-md-2 col-6">
-            <p>{{ result.category }}</p>
+            <p>Lender Name: {{ result.category }}</p>
           </div>
           <div class="col-md-1 col-6">
             <p>Rating??</p>
           </div>
-          <div class="col-md-2 col-12">
-            <p>Distance From You??</p>
-          </div>
-          <div class="col-md-2 col-12">
-            <h4 class="available text-success" v-if="result.availability == true">
-              Available
-            </h4>
-            <h4 class="not-available text-danger" v-if="result.availability == false">
-              Not Available
-            </h4>
+          <div class="col-md-1 col-6">
+            <p>Dates: 00/00/00 - 00/00/00</p>
           </div>
           <div class="col-md-2 col-12" v-if="state.account.id === result.creatorId">
-            <button type="button" class="btn btn-primary mr-2" @click="editresult()">
-              Edit
+            <button type="button" class="btn btn-primary mr-2" @click="acceptRequest()">
+              Accept
             </button>
-            <button type="button" class="btn btn-danger" @click="deleteresult()">
-              Delete
+            <button type="button" class="btn btn-danger" @click="declineRequest()">
+              Decline
             </button>
           </div>
         </div>
@@ -89,7 +81,7 @@ import { reactive, computed } from 'vue'
 import { AppState } from '../AppState'
 
 export default {
-  name: 'Results',
+  name: 'RequestComponent',
   props: {
     result: {
       type: Object,
