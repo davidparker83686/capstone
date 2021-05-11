@@ -10,6 +10,7 @@
         <h4>Here at LendMe, we believe in a time where... Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi iusto nulla fuga nemo minima provident saepe explicabo eligendi, quaerat quis ad vero, corrupti possimus corporis maxime tempora architecto deserunt quia officia voluptates reiciendis sint. Obcaecati id recusandae quam placeat voluptates in ducimus, hic, consequuntur perspiciatis eius cupiditate autem. Aspernatur, quasi.</h4>
       </div>
     </div>
+    <item-creation-modal />
   </div>
 </template>
 

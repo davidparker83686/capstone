@@ -40,6 +40,7 @@
     <div>
       <Results v-for="result in state.items" :result="result" :key="result.id" />
     </div>
+    <item-creation-modal />
   </div>
 </template>
 
