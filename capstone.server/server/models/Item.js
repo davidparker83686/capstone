@@ -9,11 +9,21 @@ const Item = new Schema(
     title: { type: String, required: true },
     description: { type: String, required: true },
     picture: { type: String, required: false },
+    location: {
+      type: {
+        type: String,
+        enum: ['Point'],
+        required: true,
+        index: '2dsphere'
+      },
+      coordinates: { type: [Number], required: true }
+    },
     creatorId: { type: String, ref: 'Account', required: true }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )
 
+// Item.createIndex({ location: '2dsphere' })
 Item.virtual('creator', {
   localField: 'creatorId',
   ref: 'Account',

@@ -9,7 +9,14 @@ const Account = new Schema(
     name: { type: String, required: true },
     picture: { type: String },
     bio: { type: String },
-    location: { type: Object, required: true },
+    location: {
+      type: {
+        type: String,
+        enum: ['Point'],
+        required: true
+      },
+      coordinates: { type: [Number], required: true }
+    },
     rating: { type: Number, required: true }
     // c789b7fe-892e-4eb4-bf8f-8843dd82e7b5
     // NOTE If you wish to add additional public properties for Accounts do so here
