@@ -9,9 +9,9 @@ const Account = new Schema(
     name: { type: String, required: true },
     picture: { type: String },
     bio: { type: String },
-    location: { type: Object, required: true }
+    location: { type: Object, required: true },
+    rating: { type: Number, required: true }
     // c789b7fe-892e-4eb4-bf8f-8843dd82e7b5
-    // rating: { type: Number, required: true }
     // NOTE If you wish to add additional public properties for Accounts do so here
   },
   { timestamps: true, _id: false, toJSON: { virtuals: true } }
