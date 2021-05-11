@@ -8,6 +8,7 @@ export class ItemsController extends BaseController {
     this.router
       .get('', this.getAllItems)
       .get('/:id', this.getOneItem)
+      .get('/search', this.searchItems)
       .use(Auth0Provider.getAuthorizedUserInfo)
 
       .post('', this.createItem)
@@ -60,6 +61,15 @@ export class ItemsController extends BaseController {
       req.body.creatorId = req.userInfo.id
       req.body.id = req.params.id
       const data = await itemsService.editItem(req.body)
+      res.send(data)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async searchItems(req, res, next) {
+    try {
+      const data = await itemsService.searchItems(req.query)
       res.send(data)
     } catch (error) {
       next(error)
