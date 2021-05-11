@@ -7,7 +7,7 @@
             <button class="btn btn-link btn-block text-left"
                     type="button"
                     data-toggle="collapse"
-                    data-target="#collapseOne"
+                    :data-target="'#collapseOne'+result.id"
                     aria-expanded="true"
                     aria-controls="collapseOne"
             >
@@ -41,7 +41,7 @@
           </div>
         </div>
       </div>
-      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div :id="'collapseOne'+result.id" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card-body">
           <div class="row">
             <div class="col-md-3 col-12">
