@@ -4,6 +4,7 @@
   </header>
   <main>
     <router-view />
+    <item-creation-modal />
   </main>
   <footer>
     <div class="bg-dark text-light text-center p-4">
@@ -15,7 +16,9 @@
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
+import ItemCreationModal from './components/ItemCreationModal.vue'
 export default {
+  components: { ItemCreationModal },
   name: 'App',
   setup() {
     return {

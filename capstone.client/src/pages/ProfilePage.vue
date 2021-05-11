@@ -30,6 +30,9 @@
                 <div class="pl-2 py-2">
                   Bio
                 </div>
+                <button type="button" class="btn btn-primary">
+                  Edit
+                </button>
               </div>
 
               <div class="card mb-2">
