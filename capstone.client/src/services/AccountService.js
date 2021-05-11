@@ -11,6 +11,11 @@ class AccountService {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
   }
+
+  async editBio(editedBio) {
+    const res = await api.put('api/accounts/' + editedBio.accountId, editedBio)
+    AppState.account.bio = res.data
+  }
 }
 
 export const accountService = new AccountService()

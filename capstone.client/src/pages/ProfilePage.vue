@@ -3,7 +3,7 @@
     <div class="row justify-content-around">
       <!-- profile stuff -->
       <div class="col-12 col-md-3 ">
-        <div class="card mt-2">
+        <div class="card shadow mt-2">
           <div class="card-body">
             <h5 class="card-title d-flex justify-content-between">
               <div class="d-inline">
@@ -21,18 +21,24 @@
               <img class="img-fluid rounded mb-2" :src="state.user.picture" alt="profile picture">
             </div>
             <div class=" d-none d-md-block">
-              <div class="card mb-2">
-                <div class="card-title m-0 bg-info">
+              <div class="card shadow mb-2">
+                <div class="card-title m-0 bg-info d-flex justify-content-between">
                   <span class="pl-2 py-2">
                     ABOUT ME
                   </span>
+                  <button type="button"
+                          class="btn btn-none text-primary"
+                          title="edit bio"
+                          aria="edit bio"
+                          data-toggle="modal"
+                          data-target="#editBioModal"
+                  >
+                    <i class="fas fa-edit"></i>
+                  </button>
                 </div>
                 <div class="pl-2 py-2">
                   Bio
                 </div>
-                <button type="button" class="btn btn-primary">
-                  Edit
-                </button>
               </div>
 
               <div class="card mb-2 ">

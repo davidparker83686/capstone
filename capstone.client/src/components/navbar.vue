@@ -23,28 +23,33 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <router-link :to="{ name: 'Home' }" class="nav-link">
+          <router-link :to="{ name: 'Home' }" class="nav-link navtext">
             Home
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'SearchPage'}" class="nav-link navtext">
+            SEARCH
           </router-link>
         </li>
         <li class="nav-item" v-if="user.isAuthenticated">
           <!-- <router-link :to="{ name: 'Profile' }" class="nav-link"> -->
-          <router-link :to="{ name: 'Profile', params: {id: account.id} }" class="nav-link">
+          <router-link :to="{ name: 'Profile', params: {id: account.id} }" class="nav-link navtext">
             Profile
           </router-link>
         </li>
         <li class="nav-item" v-if="user.isAuthenticated">
-          <router-link :to="{ name: 'Dashboard', params: {id: account.id} }" class="nav-link">
+          <router-link :to="{ name: 'Dashboard', params: {id: account.id} }" class="nav-link navtext">
             Dashboard
           </router-link>
         </li>
         <li class="nav-item" v-if="user.isAuthenticated">
-          <button type="button" class="btn text-light btn-none" data-toggle="modal" data-target="#itemCreationModal">
+          <button type="button" class="btn navtext btn-none" data-toggle="modal" data-target="#itemCreationModal">
             CREATE LISTING
           </button>
         </li>
         <li class="nav-item">
-          <router-link :to="{ name: 'About' }" class="nav-link">
+          <router-link :to="{ name: 'About' }" class="nav-link navtext">
             About
           </router-link>
         </li>
@@ -140,5 +145,8 @@ a:hover {
 }
 .nav-item .nav-link.router-link-exact-active{
   color: var(--primary);
+}
+.navtext{
+  color:palegreen
 }
 </style>
