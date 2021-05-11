@@ -1,17 +1,19 @@
 <template>
-  <div class="card ">
-    <div class="card-header">
-      <h4>
-        {{ review.title }}<i class="fas fa-star star"></i>{{ review.rating }}
-      </h4>
-      <div class="text-right" v-if="state.account.id === item.creatorId">
-        <button type="button" class="btn btn-danger" @click.prevent="deleteReview(review.id)" title="delete review" aria="delete review">
-          <i class="fas fa-trash-alt"></i>
-        </button>
+  <div class="row justify-content-center">
+    <div class="col-12 pr-3 pr-md-5">
+      <div class=" d-flex justify-content-between">
+        <div>
+          <span><b>{{ review.title }}</b> </span> <i class="fas fa-star star"></i>{{ review.rating }}
+        </div>
+        <div>
+          <button type="button" class="btn btn-none  text-danger" @click.prevent="deleteReview(review.id)" title="delete review" aria="delete review">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </div>
       </div>
-    </div>
-    <div class="card-body">
-      {{ review.body }}
+      <div class="border-bottom">
+        {{ review.body }}
+      </div>
     </div>
   </div>
 </template>
@@ -37,11 +39,11 @@ export default {
     })
     return {
       state,
-      async deleteItem(id) {
+      async deleteReview(id) {
         try {
           if (await Notification.confirmAction('Are you sure you want to delete this review?', 'You won\'t be able to revert this.', 'warning', 'Yes, Delete')) {
-            await reviewsService.deleteItem(id)
-            Notification.toast('Successfully Deleted Item', 'success')
+            await reviewsService.deleteReview(id)
+            Notification.toast('Successfully Deleted Review', 'success')
           }
         } catch (error) {
           logger.error(error)
@@ -79,5 +81,8 @@ a:hover {
 }
 .not-available {
   color: var(--danger)
+}
+.star{
+  color:yellow
 }
 </style>

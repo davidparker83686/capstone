@@ -2,7 +2,7 @@
   <div class="container-fluid bg-danger">
     <div class="row justify-content-around">
       <!-- profile stuff -->
-      <div class="col-12 col-md-3">
+      <div class="col-12 col-md-3 ">
         <div class="card mt-2">
           <div class="card-body">
             <h5 class="card-title d-flex justify-content-between">
@@ -12,8 +12,9 @@
               </div>
               <div class="d-inline">
                 <i class="fas fa-star star"></i>
-                5
-                <!-- {{user rating}} -->
+                {{ getUserRating() }}
+                <!-- {{ userRating }}
+                {{ rating }} -->
               </div>
             </h5>
             <div>
@@ -34,16 +35,15 @@
                 </button>
               </div>
 
-              <div class="card mb-2">
+              <div class="card mb-2 ">
                 <div class="card-title m-0 bg-info">
                   <span class="pl-2 py-2">
                     REvIEW
                   </span>
                 </div>
-                <div class="pl-2 py-2">
-                  <span>
-                    my reviews go here
-                    <!-- <Review-for="review in state.reviews" :key="review.id" :review="review" /> -->
+                <div class="row justify-content-center">
+                  <span class="col-12 ml-4 pr-1">
+                    <Review v-for="review in state.reviews" :key="review.id" :review="review" />
                   </span>
                 </div>
               </div>
@@ -76,8 +76,7 @@
             </div>
             <div class="pl-2 py-2">
               <span>
-                my reviews go here
-                <!-- <Review-for="review in state.reviews" :key="review.id" :review="review"/> -->
+                <Review v-for="review in state.reviews" :key="review.id" :review="review" />
               </span>
             </div>
           </div>
@@ -93,6 +92,7 @@ import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { useRoute } from 'vue-router'
 import { itemsService } from '../services/ItemsService'
+import { reviewsService } from '../services/ReviewsService'
 
 export default {
   name: 'Home',
@@ -106,8 +106,11 @@ export default {
     })
     onMounted(async() => {
       try {
+        await reviewsService.getReviewsByUserId(route.params.id)
         await itemsService.getItemsByUserId(route.params.id)
-        // await reviewsService.getReviewsByUserId(route.params.id)
+        // await reviewsService.getUserReviewScore(route.params.id)
+        // const rating = await reviewsService.getUserReviewScore(route.params.id)
+        // return rating
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error(error)
@@ -116,8 +119,17 @@ export default {
 
     return {
       state,
-      route
-
+      route,
+      getUserRating() {
+        // debugger
+        const totalReviews = state.reviews.length
+        let sumOfReviews = 0
+        state.reviews.forEach(r => {
+          sumOfReviews += r.rating
+        })
+        const userRating = sumOfReviews / totalReviews
+        return userRating
+      }
     }
   }
 }
