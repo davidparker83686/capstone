@@ -7,6 +7,7 @@ const Review = new Schema(
     requestId: { type: String, required: true },
     ownerId: { type: String, ref: 'Request', required: true },
     borrowerId: { type: String, ref: 'Request', required: true },
+    title: { type: String, required: true },
     body: { type: String, required: true },
     rating: { type: Number, required: true }
   },

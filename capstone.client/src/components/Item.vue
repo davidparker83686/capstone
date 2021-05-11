@@ -1,26 +1,45 @@
 <template>
   <!-- Start of accordian menue -->
   <div class="accordion" id="accordionExample">
-    <div class="row card">
+    <div class="row card mb-2">
       <div class="card-header" id="headingOne">
         <h2 class="mb-0">
-          <button class="btn btn-link btn-block text-left"
+          <button class="btn btn-link btn-block text-left px-0"
                   type="button"
                   data-toggle="collapse"
                   data-target="#collapseOne"
                   aria-expanded="true"
                   aria-controls="collapseOne"
           >
-            <span><h2>{{ item.title }}</h2><h4 class="available" v-if="item.availability == true">Available</h4><h4 class="not-available" v-if="item.availability == false">Not Available</h4></span>
-            <div class="text-right" v-if="state.account.id === item.creatorId">
-              <button type="button" class="btn btn-primary" @click="editItem()">
-                Edit
-              </button>
-              <button type="button" class="btn btn-danger" @click.prevent="deleteItem(item.id)">
-                Delete
-              </button>
+            <div class="justify-content-between d-flex">
+              <div>
+                <h2>{{ item.title }}</h2>
+              </div>
+              <div class="d-none d-md-block" v-if="state.account.id === item.creatorId">
+                <button type="button" class="btn btn-none btn-outline-danger text-danger" @click.prevent="deleteItem(item.id)">
+                  Delete
+                </button>
+                <button type="button" class="mx-1 btn btn-none btn-outline-primary text-primary" @click="editItem()">
+                  Edit
+                </button>
+              </div>
+
+              <div class="d-block d-md-none" v-if="state.account.id === item.creatorId">
+                <button type="button" class="btn btn-none p-0 text-danger" @click.prevent="deleteItem(item.id)">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+                <button type="button" class="mx-1 btn btn-none p-0 text-primary" @click="editItem()">
+                  <i class="fas fa-edit"></i>
+                </button>
+              </div>
             </div>
           </button>
+
+          <h4 class="available" v-if="item.availability == true">
+            Available
+          </h4><h4 class="not-available" v-if="item.availability == false">
+            Not Available
+          </h4>
         </h2>
       </div>
       <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
@@ -38,11 +57,11 @@
               <button type="button" class="btn btn-primary disabled" v-if="item.availability == false && state.account.id !== item.creatorId">
                 Borrow
               </button>
-              <button type="button" class="btn btn-primary" v-if="item.availability == true && state.account.id == item.creatorId" @click="toggleAvailability(item)">
-                Make Unavailable
+              <button type="button" class="btn btn-danger" v-if="item.availability == true && state.account.id == item.creatorId" @click="toggleAvailability(item)">
+                Unavailable
               </button>
-              <button type="button" class="btn btn-primary" v-if="item.availability == false && state.account.id == item.creatorId" @click="toggleAvailability(item)">
-                Make Available
+              <button type="button" class="btn btn-success" v-if="item.availability == false && state.account.id == item.creatorId" @click="toggleAvailability(item)">
+                Available
               </button>
             </div>
           </div>
