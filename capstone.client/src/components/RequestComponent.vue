@@ -11,13 +11,13 @@
                     aria-expanded="true"
                     aria-controls="collapseOne"
             >
-              <h4>Requested Item:<br> {{ result.title }}</h4>
+              <h4>Requested Item:<br> {{ request.itemId }}</h4>
             </button>
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <p>Borrower's Name: NAME HERE</p>
+            <p>Borrower's Name: {{ request.borrowerId }}</p>
           </div>
         </div>
         <div class="row">
@@ -29,7 +29,7 @@
       <div class="col-md-6">
         <div class="row">
           <div class="col">
-            <p>Dates: 00/00/00 - 00/00/00</p>
+            <p>Dates: {{ request.borrowStartDate }} - {{ request.borrowEndDate }}</p>
           </div>
         </div>
         <div class="row">
@@ -63,7 +63,7 @@
             <div class="col-md-6 col-6">
               <div class="row">
                 <div class="col">
-                  <p>NAME OF REQUESTER</p>
+                  <p>{{ request.borrowerId }}</p>
                 </div>
               </div>
               <div class="row">
@@ -77,7 +77,7 @@
         <div class="col-5">
           <div class="row">
             <div class="col">
-              <p>Would Like to Borrow Your:<br> {{ result.title }}</p>
+              <p>Would Like to Borrow Your:<br> YOUR ITEM'S TITLE</p>
             </div>
           </div>
           <div class="row">
@@ -98,7 +98,7 @@ import { AppState } from '../AppState'
 export default {
   name: 'RequestComponent',
   props: {
-    result: {
+    request: {
       type: Object,
       required: true
     }
