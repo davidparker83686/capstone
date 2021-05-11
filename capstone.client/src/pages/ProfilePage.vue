@@ -19,7 +19,6 @@
             </h5>
             <div>
               <img class="img-fluid rounded mb-2" :src="state.user.picture" alt="profile picture">
-              {{ currentProfile }}
             </div>
             <div class=" d-none d-md-block">
               <div class="card mb-2">
@@ -31,6 +30,9 @@
                 <div class="pl-2 py-2">
                   Bio
                 </div>
+                <button type="button" class="btn btn-primary">
+                  Edit
+                </button>
               </div>
 
               <div class="card mb-2">
@@ -101,11 +103,9 @@ export default {
       items: computed(() => AppState.items),
       reviews: computed(() => AppState.reviews),
       account: computed(() => AppState.account),
-      user: computed(() => AppState.user),
-      currentProfile: computed(() => AppState.currentProfile)
+      user: computed(() => AppState.user)
     })
     onMounted(async() => {
-      AppState.currentProfile = AppState.account
       try {
         await itemsService.getItemsByUserId(route.params.id)
         // await reviewsService.getReviewsByUserId(route.params.id)
