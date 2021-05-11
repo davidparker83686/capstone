@@ -3,7 +3,7 @@
     <div class="row justify-content-around">
       <!-- profile stuff -->
       <div class="col-12 col-md-3 ">
-        <div class="card shadow mt-2">
+        <div class="card shadow mt-2 mt-md-4">
           <div class="card-body">
             <h5 class="card-title d-flex justify-content-between">
               <div class="d-inline">
@@ -58,7 +58,7 @@
         </div>
       </div>
       <!-- listings  -->
-      <div class="col-11 col-md-8 mt-2">
+      <div class="col-11 col-md-8 mt-2 md-md-4">
         <Item v-for="item in state.items" :key="item.id" :item="item" />
       </div>
       <div class="col-12 d-block d-md-none">
