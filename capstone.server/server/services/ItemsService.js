@@ -31,5 +31,24 @@ class ItemsService {
     const data = await dbContext.Items.findOneAndUpdate({ _id: body.id }, body, { new: true })
     return data
   }
+
+  async searchItems(query = {}) {
+    const data = await dbContext.Items.find({
+      $and:
+        [{ query },
+          {
+            location: {
+              $nearSphere: {
+                $geometry: {
+                  type: 'Point',
+                  coordinates: [query.x, query.y]
+                },
+                maxDistance: query.distance
+              }
+            }
+          }]
+    })
+    return data
+  }
 }
 export const itemsService = new ItemsService()
