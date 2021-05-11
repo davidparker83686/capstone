@@ -1,14 +1,15 @@
 import BaseController from '../utils/BaseController'
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { itemsService } from '../services/ItemsService'
+import { logger } from '../utils/Logger'
 
 export class ItemsController extends BaseController {
   constructor() {
     super('api/items')
     this.router
       .get('', this.getAllItems)
-      .get('/:id', this.getOneItem)
       .get('/search', this.searchItems)
+      .get('/:id', this.getOneItem)
       .use(Auth0Provider.getAuthorizedUserInfo)
 
       .post('', this.createItem)
@@ -69,6 +70,7 @@ export class ItemsController extends BaseController {
 
   async searchItems(req, res, next) {
     try {
+      logger.log('search!')
       const data = await itemsService.searchItems(req.query)
       res.send(data)
     } catch (error) {
