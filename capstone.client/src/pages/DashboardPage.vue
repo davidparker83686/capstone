@@ -2,18 +2,18 @@
   <div class="dashboard container-fluid bg-danger">
     <div class="row p-2">
       <div class="col-md-12 col-12 card shadow">
-        <h3><u>Current Lends</u></h3>
-        <DashboardComponent v-for="result in state.items" :result="result" :key="result.id" />
+        <h3><u>Open Lends</u></h3>
+        <DashboardComponent v-for="request in state.requests" :request="request" :key="request.id" />
       </div>
     </div>
     <div class="row p-2 justify-content-between">
       <div class="col-md-5 col-12 card shadow my-1">
-        <h3><u>Pending</u></h3>
-        <RequestComponent v-for="result in state.items" :result="result" :key="result.id" />
+        <h3><u>Pending Requests</u></h3>
+        <RequestComponent v-for="request in state.requests" :request="request" :key="request.id" />
       </div>
       <div class="col-md-5 col-12 card shadow my-1">
-        <h3><u>History</u></h3>
-        <DashboardComponent v-for="result in state.items" :result="result" :key="result.id" />
+        <h3><u>Lend History</u></h3>
+        <DashboardComponent v-for="request in state.requests" :request="request" :key="request.id" />
       </div>
     </div>
   </div>
@@ -25,6 +25,7 @@ import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { useRoute } from 'vue-router'
 import { itemsService } from '../services/ItemsService'
+import { requestsService } from '../services/RequestsService'
 import { logger } from '../utils/Logger'
 
 export default {
@@ -35,11 +36,18 @@ export default {
       items: computed(() => AppState.items),
       reviews: computed(() => AppState.reviews),
       account: computed(() => AppState.account),
-      user: computed(() => AppState.user)
+      user: computed(() => AppState.user),
+      requests: computed(() => AppState.requests)
     })
     onMounted(async() => {
       try {
         await itemsService.getItemsByUserId(route.params.id)
+        // await reviewsService.getReviewsByUserId(route.params.id)
+      } catch (error) {
+        logger.log(error)
+      }
+      try {
+        await requestsService.getRequests(route.params.id)
         // await reviewsService.getReviewsByUserId(route.params.id)
       } catch (error) {
         logger.log(error)
@@ -49,7 +57,6 @@ export default {
     return {
       state,
       route
-
     }
   }
 }

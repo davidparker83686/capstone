@@ -1,23 +1,26 @@
 <template>
-  <div class="dashboard-component container-fluid">
-    <div class="row card">
+  <div class="dashboard-component container-fluid card shadow my-2">
+    <div class="row m-2">
       <div class="col-md-6 col-12">
-        <h4>Item: {{ result.title }}</h4>
+        <div class="row">
+          <h4>Item: YOUR ITEM's TITLE HERE</h4>
+        </div>
+        <div class="row">
+          <p>Lender Name: {{ request.ownerId }}</p>
+        </div>
+        <div class="row">
+          <p>Borrower Name: {{ request.borrowerId }}</p>
+        </div>
       </div>
       <div class="col-md-6 col-12">
-        <p>Dates: 00/00/00 - 00/00/00</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2 col-6">
-        <p>Lender Name: {{ result.category }}</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2 col-12" v-if="state.account.id === result.creatorId">
-        <button type="button" class="btn btn-danger" @click="deleteHistoryItem()">
-          Delete History Item
-        </button>
+        <div class="row">
+          <p>Dates: {{ request.borrowStartDate }} - {{ request.borrowEndDate }}</p>
+        </div>
+        <div class="row">
+          <button type="button" class="btn btn-danger" @click="deleteHistoryItem()">
+            Delete History Item
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -30,7 +33,7 @@ import { AppState } from '../AppState'
 export default {
   name: 'DashboardComponent',
   props: {
-    result: {
+    request: {
       type: Object,
       required: true
     }
