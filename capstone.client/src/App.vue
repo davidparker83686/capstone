@@ -16,7 +16,9 @@
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
+import ItemCreationModal from './components/ItemCreationModal.vue'
 export default {
+  components: { ItemCreationModal },
   name: 'App',
   setup() {
     return {
