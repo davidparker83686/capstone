@@ -18,7 +18,8 @@
               </div>
             </h5>
             <div>
-              <img class="img-fluid rounded mb-2" src="https://personalexcellence.co/files/girl-smiling2.jpg" alt="profile picture">
+              <img class="img-fluid rounded mb-2" :src="state.user.picture" alt="profile picture">
+              {{ currentProfile }}
             </div>
             <div class=" d-none d-md-block">
               <div class="card mb-2">
@@ -82,7 +83,6 @@
         </div>
       </div>
     </div>
-    <item-creation-modal />
   </div>
 </template>
 
@@ -101,13 +101,16 @@ export default {
       items: computed(() => AppState.items),
       reviews: computed(() => AppState.reviews),
       account: computed(() => AppState.account),
-      user: computed(() => AppState.user)
+      user: computed(() => AppState.user),
+      currentProfile: computed(() => AppState.currentProfile)
     })
     onMounted(async() => {
+      AppState.currentProfile = AppState.account
       try {
         await itemsService.getItemsByUserId(route.params.id)
         // await reviewsService.getReviewsByUserId(route.params.id)
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error(error)
       }
     })
