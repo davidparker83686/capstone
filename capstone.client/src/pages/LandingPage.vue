@@ -1,7 +1,7 @@
 <template>
-  <div class="container-fluid landing-page background-img align-items-end">
+  <div class="container-fluid landing-page  align-items-end">
     <div class="row justify-content-center my-4">
-      <div class="col-10 col-md-6 card bg-card d-flex stretch text-light justify-content-center">
+      <div class="col-10 col-md-8 card bg-card d-flex stretch text-light justify-content-center">
         <div class="my-2">
           <p class="mb-0">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit corrupti quia error distinctio cum! Quibusdam natus porro fugiat exercitationem numquam facilis dolores reiciendis nesciunt sit molestias impedit quia amet quo autem enim delectus ratione ullam consequatur perspiciatis odit magnam maiores, laboriosam labore. Ipsa, error a! Possimus alias provident itaque eveniet?
@@ -10,7 +10,8 @@
       </div>
     </div>
     <div class="row justify-content-center">
-      <div class="col-4 col-md-4 text-center d-flex justify-content-center align-items-center">
+      <!-- <div class="col-4 col-md-4 text-center d-flex justify-content-center align-items-center"> -->
+      <div class="col-4 col-md-8 text-left d-flex ">
         <button class="btn" :class="{ 'btn-success' : state.check === true, 'btn-outline-secondary' : state.check === false }" @click="location">
           Use Your Location
         </button>
