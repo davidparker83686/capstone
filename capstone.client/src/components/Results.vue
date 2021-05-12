@@ -17,12 +17,12 @@
           <div class="col-md-2 col-6">
             <p>{{ result.category }}</p>
           </div>
-          <div class="col-md-1 col-6">
-            <p>Rating??</p>
+          <div class="col-md-3 col-6">
+            <p>Owner Rating: {{ result.creator.rating }}</p>
           </div>
-          <div class="col-md-2 col-12">
-            <p>Distance From You??</p>
-          </div>
+          <!-- <div class="col-md-2 col-12">
+            <p>Distance From You: ???</p>
+          </div> -->
           <div class="col-md-2 col-12">
             <h4 class="available text-success" v-if="result.availability == true">
               Available
@@ -51,14 +51,14 @@
             <div class="col-8">
               <div class="row my-2">
                 <div class="col-md-2 col-6">
-                  <h5>Item Owner:</h5>
+                  <h5>Item Owner: {{ result.creator.name }}</h5>
                 </div>
                 <div class="col-md-6 col-6" v-if="result.creator">
-                  <img class="profile-img" :src="state.user.picture" alt="profile picture">
+                  <img class="profile-img" :src="result.creator.picture" alt="profile picture" v-if="result.creator">
                   <p>{{ result.creator.name }}</p>
                 </div>
                 <div class="col-md-4 col-12">
-                  Rating: STARS GO HERE??
+                  Rating: {{ result.creator.rating }}
                 </div>
               </div>
               <div class="row">
