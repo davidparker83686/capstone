@@ -1,6 +1,6 @@
 <template>
-  <div class="request-component card shadow accordion px-4 py-3 my-2" id="accordionExample">
-    <div class="row card-header" id="headingOne">
+  <div class="requestcomponent row card shadow accordion px-4 py-3 my-2" id="accordionExample">
+    <div class="card-header" id="headingOne">
       <div class="col-md-6">
         <div class="row justify-content-between">
           <div class="col">
@@ -98,7 +98,7 @@ import { AppState } from '../AppState'
 export default {
   name: 'RequestComponent',
   props: {
-    request: {
+    requestProp: {
       type: Object,
       required: true
     }
