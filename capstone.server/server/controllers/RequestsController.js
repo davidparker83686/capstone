@@ -17,6 +17,7 @@ export class RequestsController extends BaseController {
   async createRequest(req, res, next) {
     try {
       req.body.creatorId = req.userInfo.id
+
       const data = await requestsService.createRequest(req.body)
       res.send(data)
     } catch (error) {
