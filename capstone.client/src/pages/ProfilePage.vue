@@ -134,7 +134,8 @@ export default {
           sumOfReviews += r.rating
         })
         const userRating = sumOfReviews / totalReviews
-        return userRating
+        return Math.round(userRating)
+        // return userRating
       }
     }
   }
