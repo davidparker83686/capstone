@@ -13,7 +13,8 @@ const Account = new Schema(
       type: {
         type: String,
         enum: ['Point'],
-        required: true
+        required: true,
+        index: '2dsphere'
       },
       coordinates: { type: [Number], required: true }
     },
