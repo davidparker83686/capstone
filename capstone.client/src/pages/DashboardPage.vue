@@ -3,17 +3,20 @@
     <div class="row p-2">
       <div class="col-md-12 col-12 card shadow">
         <h3>Open Lends</h3>
-        <DashboardComponent v-for="request in state.requests" :request="request" :key="request.id" />
+
+        <DashboardComponent v-for="dashboardComponent in state.requests" :key="dashboardComponent.id " :dashboard-component="dashboardComponent" />
       </div>
     </div>
     <div class="row p-2 justify-content-between">
       <div class="col-md-5 col-12 card shadow my-1">
         <h3>Pending Requests</h3>
-        <RequestComponent v-for="request in state.requests" :request="request" :key="request.id" />
+        <RequestComponent v-for="requestComponent in state.requests" :key="requestComponent.id" :request-prop="requestComponent" />
       </div>
       <div class="col-md-5 col-12 card shadow my-1">
         <h3>Lend History</h3>
-        <DashboardComponent v-for="request in state.requests" :request="request" :key="request.id" />
+
+        <!-- first thing in our v-for is the name of the component -->
+        <DashboardComponent v-for="dashboardComponent in state.requests" :key="dashboardComponent.id " :dashboard-prop="dashboardComponent" />
       </div>
     </div>
   </div>
@@ -42,12 +45,8 @@ export default {
     onMounted(async() => {
       try {
         await itemsService.getItemsByUserId(route.params.id)
-        // await reviewsService.getReviewsByUserId(route.params.id)
-      } catch (error) {
-        logger.log(error)
-      }
-      try {
         await requestsService.getRequests(route.params.id)
+        // await reviewsService.getReviewsByUserId(route.params.id)
         // await reviewsService.getReviewsByUserId(route.params.id)
       } catch (error) {
         logger.log(error)

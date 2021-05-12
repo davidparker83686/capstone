@@ -3,6 +3,7 @@ import { Auth0Provider } from '@bcwdev/auth0provider'
 import { itemsService } from '../services/ItemsService'
 import { reviewsService } from '../services/ReviewsService'
 import { messagesService } from '../services/MessagesService'
+// import { requestsService } from '../services/RequestsService'
 
 export class ProfileController extends BaseController {
   constructor() {
@@ -10,6 +11,8 @@ export class ProfileController extends BaseController {
     this.router
       .get('/:id/items', this.getItemsByUserId)
       .get('/:id/reviews', this.getReviewsByUserId)
+      // .get('/:id/requests', this.getRequestsByUserId)
+
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('/:id/messages', this.getMessagesById)
   }

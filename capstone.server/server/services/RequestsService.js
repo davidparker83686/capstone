@@ -21,11 +21,6 @@ class RequestsService {
     return data
   }
 
-  // async getRequests() {
-  //   const data = await dbContext.Requests.find()
-  //   return data
-  // }
-
   // async getOneRequest(id, id2) {
   //   const data = await dbContext.Requests.findOne({ _id: id, id2 }).populate('creator')
   //   return data

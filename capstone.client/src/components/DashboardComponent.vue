@@ -1,12 +1,12 @@
 <template>
-  <div class="dashboard-component container-fluid card shadow my-2">
-    <div class="row m-2">
+  <div class="dashboardcomponent row card shadow my-2">
+    <div class=" m-2">
       <div class="col-md-6 col-12">
         <div class="row">
           <h4>Item: YOUR ITEM's TITLE HERE</h4>
         </div>
         <div class="row">
-          <p>Lender Name: {{ request.ownerId }}</p>
+          <p>Lender Name: {{ dashboardProp.ownerId }}</p>
         </div>
         <div class="row">
           <p>Borrower Name: {{ request.borrowerId }}</p>
@@ -31,21 +31,22 @@ import { reactive, computed } from 'vue'
 import { AppState } from '../AppState'
 
 export default {
+  // our name must match the name of the file
   name: 'DashboardComponent',
   props: {
-    request: {
+    dashboardProp: {
       type: Object,
       required: true
     }
   },
   setup() {
     const state = reactive({
+      user: computed(() => AppState.user),
       account: computed(() => AppState.account)
     })
-    // onMounted(async() => {
-    //   await itemsService.getAll(route.query.filter)
-    // })
-    return { state }
+    return {
+      state
+    }
   }
 }
 </script>
