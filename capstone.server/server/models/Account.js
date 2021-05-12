@@ -15,7 +15,7 @@ const Account = new Schema(
         enum: ['Point'],
         index: '2dsphere'
       },
-      coordinates: { type: [Number], required: true }
+      coordinates: { type: [Number] }
     },
     rating: { type: Number }
     // c789b7fe-892e-4eb4-bf8f-8843dd82e7b5
