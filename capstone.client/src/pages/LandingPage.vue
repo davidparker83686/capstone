@@ -76,6 +76,16 @@ import { reactive } from 'vue'
 import { logger } from '../utils/Logger'
 import { AppState } from '../AppState'
 
+function getLocation() {
+  return new Promise((resolve, reject) => {
+    try {
+      navigator.geolocation.getCurrentPosition(x => { resolve(x) })
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+
 export default {
   name: 'LandingPage',
   setup() {
@@ -90,7 +100,8 @@ export default {
         // debugger
         const confirm = window.confirm('Do you want our application to have access to your Location?')
         if (confirm) {
-          await navigator.geolocation.getCurrentPosition(x => { AppState.location = x })
+          const coords = await getLocation()
+          AppState.location = coords
           // arrow function returns an object, breaks implicit return when arrow function is directly assigning a value
           state.check = !state.check
           logger.log(state.check)

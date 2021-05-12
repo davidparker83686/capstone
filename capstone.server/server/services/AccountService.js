@@ -39,16 +39,16 @@ function sanitizeBody(body) {
     name: body.name,
     phones: body.phones,
     addresses: body.addresses,
-    notes: body.notes,
+    bio: body.bio,
     picture: body.picture
   }
   return writable
 }
 
 class AccountService {
-   /**
+  /**
     * Returns a list user profiles from a query search of name or email likeness
-    * limits to first 20 without offset 
+    * limits to first 20 without offset
     * @param {string} str
    */
   async findProfiles(str = '') {
