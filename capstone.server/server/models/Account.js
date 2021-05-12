@@ -12,12 +12,11 @@ const Account = new Schema(
     location: {
       type: {
         type: String,
-        enum: ['Point'],
-        required: true
+        enum: ['Point']
       },
-      coordinates: { type: [Number], required: true }
+      coordinates: { type: [Number] }
     },
-    rating: { type: Number, required: true }
+    rating: { type: Number }
     // c789b7fe-892e-4eb4-bf8f-8843dd82e7b5
     // NOTE If you wish to add additional public properties for Accounts do so here
   },
