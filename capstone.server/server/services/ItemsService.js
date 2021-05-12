@@ -6,17 +6,17 @@ class ItemsService {
   // ANCHOR how to do query for getAllItems
 
   async getAllItems(query = {}) {
-    const data = await dbContext.Items.find(query).populate('creator')
+    const data = await dbContext.Items.find(query).populate('creator', 'name picture')
     return data
   }
 
   async getOneItem(id) {
-    const data = await dbContext.Items.findOne({ _id: id })
+    const data = await dbContext.Items.findOne({ _id: id }).populate('creator')
     return data
   }
 
   async getItemsByUserId(query = {}) {
-    const data = await dbContext.Items.find(query)
+    const data = await dbContext.Items.find(query).populate('creator')
     return data
   }
 

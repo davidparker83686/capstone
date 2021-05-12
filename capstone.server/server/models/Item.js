@@ -19,7 +19,7 @@ const Item = new Schema(
     description: { type: String, required: true },
     picture: { type: String, required: false },
     location: {
-      type: Point,
+      type: [Point],
       required: true,
       index: '2dsphere'
     },
