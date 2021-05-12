@@ -73,11 +73,11 @@
 
 <script>
 import { reactive } from 'vue'
-import { logger } from '../utils/Logger'
+// import { logger } from '../utils/Logger'
 import { AppState } from '../AppState'
 
-function getLocation() {
-  return new Promise((resolve, reject) => {
+async function getLocation() {
+  return await new Promise((resolve, reject) => {
     try {
       navigator.geolocation.getCurrentPosition(x => { resolve(x) })
     } catch (error) {
@@ -104,8 +104,6 @@ export default {
           AppState.location = coords
           // arrow function returns an object, breaks implicit return when arrow function is directly assigning a value
           state.check = !state.check
-          logger.log(state.check)
-          logger.log(state.location)
         }
       }
     }

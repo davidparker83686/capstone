@@ -2,6 +2,7 @@ import { initialize } from '@bcwdev/auth0provider-client'
 import { AppState } from '../AppState'
 import { audience, clientId, domain } from '../env'
 import router from '../router'
+import { logger } from '../utils/Logger'
 import { accountService } from './AccountService'
 import { setBearer } from './AxiosService'
 
@@ -23,4 +24,6 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function() {
   AppState.user = AuthService.user
   await accountService.getAccount()
   // NOTE if there is something you want to do once the user is authenticated, place that here
+  await accountService.getLocation()
+  logger.log(AppState.location)
 })

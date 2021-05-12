@@ -16,6 +16,21 @@ class AccountService {
     const res = await api.put('api/accounts/' + editedBio.accountId, editedBio)
     AppState.account.bio = res.data
   }
+
+  async getLocation() {
+    const location = async function() {
+      return await new Promise((resolve, reject) => {
+        try {
+          navigator.geolocation.getCurrentPosition(x => { resolve(x) })
+        } catch (error) {
+          reject(error)
+        }
+      })
+    }
+    AppState.location = await location()
+    logger.log(AppState.location.coords)
+    await api.put('account', AppState.location)
+  }
 }
 
 export const accountService = new AccountService()

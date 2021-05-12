@@ -13,12 +13,11 @@ const Account = new Schema(
       type: {
         type: String,
         enum: ['Point'],
-        required: true,
         index: '2dsphere'
       },
       coordinates: { type: [Number], required: true }
     },
-    rating: { type: Number, required: true }
+    rating: { type: Number }
     // c789b7fe-892e-4eb4-bf8f-8843dd82e7b5
     // NOTE If you wish to add additional public properties for Accounts do so here
   },
