@@ -39,6 +39,7 @@ export class ItemsController extends BaseController {
     try {
       // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
       req.body.creatorId = req.userInfo.id
+      req.body.location = req.userInfo.location
       const data = await itemsService.createItem(req.body)
 
       res.send(data)

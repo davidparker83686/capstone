@@ -12,7 +12,8 @@ const Account = new Schema(
     location: {
       type: {
         type: String,
-        enum: ['Point']
+        enum: ['Point'],
+        index: '2dsphere'
       },
       coordinates: { type: [Number] }
     },

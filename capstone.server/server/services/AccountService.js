@@ -40,7 +40,8 @@ function sanitizeBody(body) {
     phones: body.phones,
     addresses: body.addresses,
     bio: body.bio,
-    picture: body.picture
+    picture: body.picture,
+    location: body.location
   }
   return writable
 }
