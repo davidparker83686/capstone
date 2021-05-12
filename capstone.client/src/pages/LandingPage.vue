@@ -22,14 +22,14 @@
     </div>
     <div class="row align-items-center justify-content-center">
       <div class="col-md-4 col-11 card py-2 my-2 mx-2 hunting-bg-img">
-        <router-link :to="{name: 'SearchPage', query: {filter:'hunting'}}">
+        <router-link :to="{name: 'SearchPage', query: {filter:'hunting'}}" style="text-decoration: none;">
           <h3 class="router text-light">
             Hunting
           </h3>
         </router-link>
       </div>
       <div class="col-md-4 col-11 card py-2 my-2 mx-2 fishing-bg-img">
-        <router-link :to="{name: 'SearchPage', query: {filter:'fishing'}}">
+        <router-link :to="{name: 'SearchPage', query: {filter:'fishing'}}" style="text-decoration: none;">
           <h3 class="router text-light">
             Fishing
           </h3>
@@ -38,14 +38,14 @@
     </div>
     <div class="row align-items-center justify-content-center">
       <div class="col-md-4 col-11 card py-2 my-2 mx-2 boating-bg-img">
-        <router-link :to="{name: 'SearchPage', query: {filter:'boating'}}">
+        <router-link :to="{name: 'SearchPage', query: {filter:'boating'}}" style="text-decoration: none;">
           <h3 class="router text-light">
             Boating
           </h3>
         </router-link>
       </div>
       <div class="col-md-4 col-11 card py-2 my-2 mx-2 camping-bg-img">
-        <router-link :to="{name: 'SearchPage', query: {filter:'camping'}}">
+        <router-link :to="{name: 'SearchPage', query: {filter:'camping'}}" style="text-decoration: none;">
           <h3 class="router text-light">
             Camping
           </h3>
@@ -54,14 +54,14 @@
     </div>
     <div class="row align-items-center justify-content-center">
       <div class="col-md-4 col-11 card py-2 my-2 mx-2 sports-bg-img">
-        <router-link :to="{name: 'SearchPage', query: {filter:'sports'}}">
+        <router-link :to="{name: 'SearchPage', query: {filter:'sports'}}" style="text-decoration: none;">
           <h3 class="router text-light">
             Recreational Sports
           </h3>
         </router-link>
       </div>
       <div class="col-md-4 col-11 card py-2 my-2 mx-2 all-bg-img">
-        <router-link :to="{name: 'SearchPage', query: {filter:'all'}}">
+        <router-link :to="{name: 'SearchPage', query: {filter:'all'}}" style="text-decoration: none;">
           <h3 class="router text-light">
             All
           </h3>

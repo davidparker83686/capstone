@@ -2,17 +2,17 @@
   <div class="dashboard container-fluid bg-danger">
     <div class="row p-2">
       <div class="col-md-12 col-12 card shadow">
-        <h3><u>Open Lends</u></h3>
+        <h3>Open Lends</h3>
         <DashboardComponent v-for="request in state.requests" :request="request" :key="request.id" />
       </div>
     </div>
     <div class="row p-2 justify-content-between">
       <div class="col-md-5 col-12 card shadow my-1">
-        <h3><u>Pending Requests</u></h3>
+        <h3>Pending Requests</h3>
         <RequestComponent v-for="request in state.requests" :request="request" :key="request.id" />
       </div>
       <div class="col-md-5 col-12 card shadow my-1">
-        <h3><u>Lend History</u></h3>
+        <h3>Lend History</h3>
         <DashboardComponent v-for="request in state.requests" :request="request" :key="request.id" />
       </div>
     </div>

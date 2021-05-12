@@ -1,7 +1,7 @@
 <template>
   <div class="accordion px-4 py-3" id="accordionExample">
-    <div class="row card">
-      <div class="card-header" id="headingOne">
+    <div class="row card p-3">
+      <div class="" id="headingOne">
         <div class="row justify-content-between">
           <div class="col-md-3 col-12">
             <button class="btn btn-link btn-block text-left"
@@ -11,11 +11,19 @@
                     aria-expanded="true"
                     aria-controls="collapseOne"
             >
-              <h4>{{ result.title }}</h4>
+              <div class="">
+                <h4>{{ result.title.toUpperCase() }}</h4>
+                <h4 class="available text-success" v-if="result.availability == true">
+                  Available
+                </h4>
+                <h4 class="not-available text-danger" v-if="result.availability == false">
+                  Not Available
+                </h4>
+              </div>
             </button>
           </div>
           <div class="col-md-2 col-6">
-            <p>{{ result.category }}</p>
+            <p>{{ result.category.toUpperCase() }}</p>
           </div>
           <div class="col-md-1 col-6">
             <p>Rating??</p>
@@ -23,14 +31,7 @@
           <div class="col-md-2 col-12">
             <p>Distance From You??</p>
           </div>
-          <div class="col-md-2 col-12">
-            <h4 class="available text-success" v-if="result.availability == true">
-              Available
-            </h4>
-            <h4 class="not-available text-danger" v-if="result.availability == false">
-              Not Available
-            </h4>
-          </div>
+
           <div class="col-md-2 col-12" v-if="state.account.id === result.creatorId">
             <button type="button" class="btn btn-primary mr-2" @click="editresult()">
               Edit
@@ -54,8 +55,8 @@
                   <h5>Item Owner:</h5>
                 </div>
                 <div class="col-md-6 col-6" v-if="result.creator">
-                  <img class="profile-img" :src="state.user.picture" alt="profile picture">
-                  <p>{{ result.creator.name }}</p>
+                  <p>{{ result.creator.name.split('@')[0] }}</p>
+                  <img class="rounded-circle" :src="result.creator.picture" alt="profile picture">
                 </div>
                 <div class="col-md-4 col-12">
                   Rating: STARS GO HERE??
@@ -110,9 +111,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.profile-img{
-  border-radius: 50%;
-  cursor: pointer;
-}
+// .profile-img{
+//   border-radius: 50%;
+//   cursor: pointer;
+// }
 
 </style>
