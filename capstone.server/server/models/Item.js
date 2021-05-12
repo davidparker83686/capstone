@@ -1,6 +1,16 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
+const Point = new Schema(
+  {
+    type: { type: String, enum: ['Point'], required: true, default: 'Point' },
+    coordinates: {
+      type: [Number],
+      required: true
+    }
+  }
+)
+
 const Item = new Schema(
   {
     category: { type: String, required: true },
@@ -9,13 +19,9 @@ const Item = new Schema(
     description: { type: String, required: true },
     picture: { type: String, required: false },
     location: {
-      type: {
-        type: String,
-        enum: ['Point'],
-        required: true,
-        index: '2dsphere'
-      },
-      coordinates: { type: [Number], required: true }
+      type: Point,
+      required: true,
+      index: '2dsphere'
     },
     creatorId: { type: String, ref: 'Account', required: true }
   },
