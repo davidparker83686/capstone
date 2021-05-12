@@ -55,18 +55,7 @@
                        required
                 >
               </div>
-              <div class="form-group">
-                <label for="location"></label>
-                <input type="text"
-                       class="form-control"
-                       id="location"
-                       placeholder="Location..."
-                       minlength="3"
-                       maxlength="200"
-                       v-model="state.newItem.location"
-                       required
-                >
-              </div>
+
               <div class="form-group">
                 <label for="picture"></label>
                 <input type="text"
