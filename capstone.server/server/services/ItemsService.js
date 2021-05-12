@@ -6,7 +6,7 @@ class ItemsService {
   // ANCHOR how to do query for getAllItems
 
   async getAllItems(query = {}) {
-    const data = await dbContext.Items.find(query)
+    const data = await dbContext.Items.find(query).populate('creator')
     return data
   }
 

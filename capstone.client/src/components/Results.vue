@@ -46,16 +46,16 @@
           <div class="row">
             <div class="col-md-3 col-12">
               <!-- TODO change this back after styling     <img class="image-fluid rounded" src="result.picture" alt="result Picture"> -->
-              <img class="image-fluid rounded" src="//placehold.it//200x200" alt="result Picture">
+              <img class="img-fluid rounded" :src="result.picture" alt="Item Picture" v-if="result.picture">
             </div>
             <div class="col-8">
               <div class="row my-2">
                 <div class="col-md-2 col-6">
                   <h5>Item Owner:</h5>
                 </div>
-                <div class="col-md-6 col-6">
-                  <img class="profile-img" src="//placehold.it//100x100" alt="">
-                  <p>{{ result.creatorId }}</p>
+                <div class="col-md-6 col-6" v-if="result.creator">
+                  <img class="profile-img" :src="state.user.picture" alt="profile picture">
+                  <p>{{ result.creator.name }}</p>
                 </div>
                 <div class="col-md-4 col-12">
                   Rating: STARS GO HERE??
@@ -69,10 +69,10 @@
               </div>
               <div class="buttons text-right">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#requestCreationModal" v-if="result.available == true && state.account.id !== result.creatorId">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#requestCreationModal" v-if="result.availability == true && state.account.id !== result.creatorId">
                   Borrow
                 </button>
-                <button type="button" class="btn btn-primary disabled" v-if="result.available == false && state.account.id !== result.creatorId">
+                <button type="button" class="btn btn-primary disabled" v-if="result.availability == false && state.account.id !== result.creatorId">
                   Borrow
                 </button>
               </div>
