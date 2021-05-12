@@ -51,7 +51,7 @@
             <span><b>{{ item.title }}</b> <br> {{ item.description }}</span>
             <div class="buttons text-right ">
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" v-if="item.availability == true && state.account.id !== item.creatorId">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#requestCreationModal" v-if="item.availability == true && state.account.id !== item.creatorId">
                 Borrow
               </button>
               <button type="button" class="btn btn-primary disabled" v-if="item.availability == false && state.account.id !== item.creatorId">

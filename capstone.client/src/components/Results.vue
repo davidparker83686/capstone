@@ -69,7 +69,7 @@
               </div>
               <div class="buttons text-right">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" v-if="result.available == true && state.account.id !== result.creatorId">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#requestCreationModal" v-if="result.available == true && state.account.id !== result.creatorId">
                   Borrow
                 </button>
                 <button type="button" class="btn btn-primary disabled" v-if="result.available == false && state.account.id !== result.creatorId">
