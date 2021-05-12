@@ -28,8 +28,15 @@ class AccountService {
       })
     }
     AppState.location = await location()
-    logger.log(AppState.location.coords)
-    await api.put('account', AppState.location)
+    const request = {
+      name: AppState.account.name,
+      location: {
+        coordinates: [AppState.location.coords.longitude, AppState.location.coords.latitude]
+      }
+    }
+    const res = await api.put('account', request)
+    AppState.account = res.data
+    logger.log(AppState.account)
   }
 }
 

@@ -55,18 +55,25 @@ class ItemsService {
   //   return data
   // }
 
-  async searchItems(query = {}) {
+  async searchItems(query = {}, term) {
+    // regex= regular expression, they're used to search strings
+    const q = { $or: [{ title: { $regex: new RegExp(term, 'ig') } }, { description: { $regex: new RegExp(term, 'ig') } }] }
     const data = await dbContext.Items.find({
-      location: {
-        $nearSphere: {
-          $geometry: {
-            type: 'Point',
-            coordinates: [query.y, query.x]
-          },
-          $minDistance: 0,
-          $maxDistance: query.distance * 1609.34
+      $and: [
+        q,
+        {
+          location: {
+            $nearSphere: {
+              $geometry: {
+                type: 'Point',
+                coordinates: [query.y, query.x]
+              },
+              $minDistance: 0,
+              $maxDistance: query.distance * 1609.34
+            }
+          }
         }
-      }
+      ]
     })
     logger.log(data)
     return data

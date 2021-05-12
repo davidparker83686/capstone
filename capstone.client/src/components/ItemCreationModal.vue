@@ -56,18 +56,6 @@
                 >
               </div>
               <div class="form-group">
-                <label for="location"></label>
-                <input type="text"
-                       class="form-control"
-                       id="location"
-                       placeholder="Location..."
-                       minlength="3"
-                       maxlength="200"
-                       v-model="state.newItem.location"
-                       required
-                >
-              </div>
-              <div class="form-group">
                 <label for="picture"></label>
                 <input type="text"
                        class="form-control"
@@ -94,22 +82,35 @@
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
 import { itemsService } from '../services/ItemsService'
 import $ from 'jquery'
+import { AppState } from '../AppState'
+import { accountService } from '../services/AccountService'
+
 export default {
   name: 'ItemCreationModal',
   setup() {
     const state = reactive({
-      newItem: {}
+      newItem: {},
+      account: computed(() => AppState.account)
     })
     return {
       state,
       async createItem() {
         try {
-          await itemsService.createItem(state.newItem)
-          state.newItem = {}
-          $('#itemCreationModal').modal('hide')
+          if (!state.account.location) {
+            const confirm = window.confirm('Do you want our application to have access to your Location? To create a new item you must share your location')
+            if (confirm) {
+              await accountService.getLocation()
+            } else {
+              $('#itemCreationModal').modal('hide')
+            }
+          } else {
+            await itemsService.createItem(state.newItem)
+            state.newItem = {}
+            $('#itemCreationModal').modal('hide')
+          }
         } catch (error) {
           console.error(error)
         }

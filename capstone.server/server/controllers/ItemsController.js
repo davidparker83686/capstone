@@ -39,7 +39,8 @@ export class ItemsController extends BaseController {
     try {
       // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
       req.body.creatorId = req.userInfo.id
-      req.body.location = req.userInfo.location
+      // USER INFO DOES NOT CONTAIN ACCOUNT INFO, ONLY HAS WHAT INFO IS RETURNED BY AUTH0
+      // req.body.location = req.userInfo.location
       const data = await itemsService.createItem(req.body)
 
       res.send(data)
@@ -72,7 +73,9 @@ export class ItemsController extends BaseController {
   async searchItems(req, res, next) {
     try {
       logger.log('search!')
-      const data = await itemsService.searchItems(req.query)
+      const query = req.query.query || ''
+      delete req.query.query
+      const data = await itemsService.searchItems(req.query, query)
       res.send(data)
     } catch (error) {
       next(error)

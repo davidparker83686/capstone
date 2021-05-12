@@ -20,7 +20,6 @@ const Item = new Schema(
     picture: { type: String, required: false },
     location: {
       type: Point,
-      required: true,
       index: '2dsphere'
     },
     creatorId: { type: String, ref: 'Account', required: true }
