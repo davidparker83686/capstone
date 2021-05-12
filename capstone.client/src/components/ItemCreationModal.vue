@@ -87,6 +87,7 @@ import { itemsService } from '../services/ItemsService'
 import $ from 'jquery'
 import { AppState } from '../AppState'
 import { accountService } from '../services/AccountService'
+import { logger } from '../utils/Logger'
 
 export default {
   name: 'ItemCreationModal',
@@ -112,7 +113,7 @@ export default {
             $('#itemCreationModal').modal('hide')
           }
         } catch (error) {
-          console.error(error)
+          logger.error(error)
         }
       }
     }

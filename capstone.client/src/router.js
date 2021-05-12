@@ -28,7 +28,7 @@ const routes = [
     component: loadPage('ProfilePage')
   },
   {
-    path: '/dashboard',
+    path: '/dashboard/:id',
     name: 'Dashboard',
     component: loadPage('DashboardPage'),
     beforeEnter: authGuard
