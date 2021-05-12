@@ -4,6 +4,7 @@ import { api } from './AxiosService'
 
 class ItemsService {
   async createItem(newItem) {
+    newItem.location = AppState.account.location
     const res = await api.post('api/items', newItem)
     AppState.items.push(res.data)
     // this.getItemsByUserId()

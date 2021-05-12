@@ -6,17 +6,17 @@ class ItemsService {
   // ANCHOR how to do query for getAllItems
 
   async getAllItems(query = {}) {
-    const data = await dbContext.Items.find(query).populate('creator')
+    const data = await dbContext.Items.find(query).populate('creator', 'name picture')
     return data
   }
 
   async getOneItem(id) {
-    const data = await dbContext.Items.findOne({ _id: id })
+    const data = await dbContext.Items.findOne({ _id: id }).populate('creator')
     return data
   }
 
   async getItemsByUserId(query = {}) {
-    const data = await dbContext.Items.find(query)
+    const data = await dbContext.Items.find(query).populate('creator')
     return data
   }
 
@@ -55,18 +55,25 @@ class ItemsService {
   //   return data
   // }
 
-  async searchItems(query = {}) {
+  async searchItems(query = {}, term) {
+    // regex= regular expression, they're used to search strings
+    const q = { $or: [{ title: { $regex: new RegExp(term, 'ig') } }, { description: { $regex: new RegExp(term, 'ig') } }] }
     const data = await dbContext.Items.find({
-      location: {
-        $nearSphere: {
-          $geometry: {
-            type: 'Point',
-            coordinates: [query.y, query.x]
-          },
-          $minDistance: 0,
-          $maxDistance: query.distance * 1609.34
+      $and: [
+        q,
+        {
+          location: {
+            $nearSphere: {
+              $geometry: {
+                type: 'Point',
+                coordinates: [query.y, query.x]
+              },
+              $minDistance: 0,
+              $maxDistance: query.distance * 1609.34
+            }
+          }
         }
-      }
+      ]
     })
     logger.log(data)
     return data
