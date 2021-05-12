@@ -98,6 +98,7 @@ export default {
   },
   setup() {
     const state = reactive({
+      user: computed(() => AppState.user),
       account: computed(() => AppState.account)
     })
     // onMounted(async() => {
