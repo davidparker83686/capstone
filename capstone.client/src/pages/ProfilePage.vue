@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid bg-danger">
+  <div class="container-fluid ">
     <div class="row justify-content-around">
       <!-- profile stuff -->
       <div class="col-12 col-md-3 ">

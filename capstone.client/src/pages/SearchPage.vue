@@ -1,5 +1,5 @@
 <template>
-  <div class="component container-fluid bg-danger">
+  <div class="component container-fluid">
     <div class="row pt-3 pt-md-5 justify-content-center">
       <div class="col-md-11 col-11 card shadow bg-dark text-light">
         <form>
