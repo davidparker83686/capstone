@@ -7,5 +7,5 @@ export const AppState = reactive({
   items: [],
   reviews: [],
   location: null,
-  requests: null
+  requests: []
 })
