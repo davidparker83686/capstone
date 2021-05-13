@@ -51,7 +51,13 @@
             <span><b>{{ item.title }}</b> <br> {{ item.description }}</span>
             <div class="buttons text-right ">
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#requestCreationModal" v-if="item.availability == true && state.account.id !== item.creatorId">
+              <button type="button"
+                      class="btn btn-primary"
+                      data-toggle="modal"
+                      data-target="#requestCreationModal"
+                      v-if="item.availability == true && state.account.id !== item.creatorId"
+                      @click="assignActiveItem(item)"
+              >
                 Borrow
               </button>
               <button type="button" class="btn btn-primary disabled" v-if="item.availability == false && state.account.id !== item.creatorId">
@@ -114,6 +120,13 @@ export default {
         try {
           await itemsService.toggleAvailability(item)
           Notification.toast('Successfully Toggled Availability', 'success')
+        } catch (error) {
+          logger.error(error)
+        }
+      },
+      async assignActiveItem(item) {
+        try {
+          await itemsService.assignActiveItem(item)
         } catch (error) {
           logger.error(error)
         }

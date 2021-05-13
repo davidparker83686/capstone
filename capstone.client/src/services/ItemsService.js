@@ -45,6 +45,11 @@ class ItemsService {
 
     logger.log(res.data)
   }
+
+  assignActiveItem(item) {
+    AppState.activeItem = item
+    logger.log(AppState.activeItem)
+  }
 }
 
 export const itemsService = new ItemsService()

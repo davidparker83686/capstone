@@ -62,19 +62,25 @@
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import { requestsService } from '../services/RequestsService'
 import $ from 'jquery'
+import { AppState } from '../AppState'
 export default {
   name: 'RequestCreationModal',
   setup() {
     const state = reactive({
-      newRequest: {}
+      newRequest: {},
+      user: computed(() => AppState.user),
+      account: computed(() => AppState.account)
     })
     return {
       state,
       async createRequest() {
         try {
+          state.newRequest.ownerId = AppState.activeItem.creatorId
+          // state.newRequest.itemName = AppState.activeItem.title
+          state.newRequest.itemId = AppState.activeItem.id
           await requestsService.createRequest(state.newRequest)
           state.newRequest = {}
           $('#requestCreationModal').modal('hide')
