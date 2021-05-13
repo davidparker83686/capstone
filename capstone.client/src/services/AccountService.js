@@ -36,7 +36,7 @@ class AccountService {
     }
     const res = await api.put('account', request)
     AppState.account = res.data
-    logger.log(AppState.account)
+    logger.log(AppState.account.location)
   }
 }
 

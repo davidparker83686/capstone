@@ -16,6 +16,12 @@ class ItemsService {
     logger.log(AppState.items)
   }
 
+  async search(searchQuery) {
+    const res = await api.get('api/items/search', { params: { query: searchQuery.query, y: AppState.location.coords.longitude, x: AppState.location.coords.latitude, distance: searchQuery.distance } })
+    AppState.items = res.data.filter(item => item.category === searchQuery.category)
+    logger.log(AppState.items)
+  }
+
   async getItemsByUserId(id) {
     const res = await api.get(`api/profile/${id}/items`)
     AppState.items = res.data
