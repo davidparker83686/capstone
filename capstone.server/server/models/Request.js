@@ -13,7 +13,8 @@ const Request = new Schema(
     returned: { type: Boolean, required: true, default: false },
     borrowStartDate: { type: String, required: true },
     borrowEndDate: { type: String, required: true },
-    creatorId: { type: String, ref: 'Account', required: true }
+    creatorId: { type: String, ref: 'Account', required: true },
+    ownerName: { type: String }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )
