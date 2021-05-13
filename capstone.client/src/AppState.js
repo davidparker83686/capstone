@@ -8,6 +8,7 @@ export const AppState = reactive({
   reviews: [],
   location: null,
   requests: [],
+  activeRequests: [],
   pendingRequests: [],
   pastRequests: []
 

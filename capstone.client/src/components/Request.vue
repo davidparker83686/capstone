@@ -3,9 +3,6 @@
     <div class="col-md-12 col-12">
       <div class="row justify-content-between">
         <h4>Item: ITEM's TITLE</h4>
-        <button type="button" class="btn btn-none text-danger" title="delete" aria="delete" @click="deleteHistoryItem()">
-          <i class="fas fa-trash-alt"></i>
-        </button>
       </div>
       <div class="row">
         <p>
@@ -21,12 +18,51 @@
         <p>Dates: {{ request.borrowStartDate }} - {{ request.borrowEndDate }}</p>
       </div>
     </div>
+
+    <div class="col-5">
+      <div class="buttons text-right">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" @click="accept(request)" v-if="request.pending ===true && request.returned== false">
+          accept
+        </button>
+        <button type="button"
+                class="btn btn-danger"
+                title="delete"
+                aria="delete"
+                @click="deleteRequest(request)"
+                v-if="request.pending == true && request.returned== false"
+        >
+          decline
+        </button>
+        <button title="accepted"
+                aria="accepted"
+                @click="accepted(request)"
+                type="button"
+                class="btn btn-danger"
+                v-if="request.accepted == false && request.returned== false && request.pending== false"
+        >
+          accepted
+        </button>
+        <button title="returned"
+                aria="returned"
+                @click="returned(request)"
+                type="button"
+                class="btn btn-success"
+                v-if="request.accepted == true && request.returned== false && request.pending== false"
+        >
+          returned
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { reactive, computed } from 'vue'
 import { AppState } from '../AppState'
+import { requestsService } from '../services/RequestsService'
+import { logger } from '../utils/Logger'
+import Notification from '../utils/Notification'
 // import { requestsService } from '../services/RequestsService'
 
 export default {
@@ -45,7 +81,41 @@ export default {
       requests: computed(() => AppState.requests)
     })
     return {
-      state
+      state,
+      async deleteRequest(id) {
+        try {
+          if (await Notification.confirmAction('Are you sure you want to decline this request?', 'You won\'t be able to revert this.', 'warning', 'Yes, Decline')) {
+            await requestsService.deleteRequest(id)
+            Notification.toast('Successfully Declined Request', 'success')
+          }
+        } catch (error) {
+          logger.error(error)
+        }
+      },
+      async accept(request) {
+        try {
+          await requestsService.accept(request)
+          Notification.toast('Successfully Accepted', 'success')
+        } catch (error) {
+          logger.error(error)
+        }
+      },
+      async accepted(request) {
+        try {
+          await requestsService.accepted(request)
+          Notification.toast('Successfully Received', 'success')
+        } catch (error) {
+          logger.error(error)
+        }
+      },
+      async returned(request) {
+        try {
+          await requestsService.returned(request)
+          Notification.toast('Successfully Received', 'success')
+        } catch (error) {
+          logger.error(error)
+        }
+      }
     }
   }
 }
