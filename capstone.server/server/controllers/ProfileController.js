@@ -14,7 +14,7 @@ export class ProfileController extends BaseController {
       // .get('/:id/requests', this.getRequestsByUserId)
 
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .get('/:id/messages', this.getMessagesById)
+      .get('/:to/messages', this.getMessagesById)
   }
 
   async getItemsByUserId(req, res, next) {
@@ -28,7 +28,7 @@ export class ProfileController extends BaseController {
 
   async getMessagesById(req, res, next) {
     try {
-      const data = await messagesService.getMessagesById(req.params.id)
+      const data = await messagesService.getMessagesById(req.userInfo.id, req.params.to)
       res.send(data)
     } catch (error) {
       next(error)

@@ -11,5 +11,7 @@ export const AppState = reactive({
   activeRequests: [],
   pendingRequests: [],
   pastRequests: [],
+  messages: [],
+  chats: [],
   activeItem: {}
 })

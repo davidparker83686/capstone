@@ -3,8 +3,8 @@ const Schema = mongoose.Schema
 
 const Message = new Schema(
   {
-    from: { type: String, required: true },
-    to: { type: String, required: true },
+    from: { type: String, ref: 'Account', required: true },
+    to: { type: String, ref: 'Account', required: true },
     body: { type: String, required: true },
     creatorId: { type: String, ref: 'Account', required: true }
   },
