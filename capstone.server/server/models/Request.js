@@ -25,4 +25,17 @@ Request.virtual('creator', {
   justOne: true
 })
 
+Request.virtual('itemOwner', {
+  localField: 'ownerId',
+  ref: 'Account',
+  foreignField: '_id',
+  justOne: true
+})
+
+Request.virtual('itemName', {
+  localField: 'itemId',
+  ref: 'Item',
+  foreignField: '_id',
+  justOne: true
+})
 export default Request
