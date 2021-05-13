@@ -82,10 +82,10 @@ export default {
     })
     return {
       state,
-      async deleteRequest(id) {
+      async deleteRequest(request) {
         try {
           if (await Notification.confirmAction('Are you sure you want to decline this request?', 'You won\'t be able to revert this.', 'warning', 'Yes, Decline')) {
-            await requestsService.deleteRequest(id)
+            await requestsService.deleteRequest(request)
             Notification.toast('Successfully Declined Request', 'success')
           }
         } catch (error) {
