@@ -12,14 +12,21 @@ class ItemsService {
 
   async getAll(query) {
     const res = await api.get('api/items')
-    AppState.items = res.data.filter(item => item.category === query)
-    logger.log(AppState.items)
+    if (query !== 'All') {
+      AppState.items = res.data.filter(item => item.category === query)
+    } else {
+      AppState.items = res.data
+    }
+    // AppState.items = res.data.filter(item => item.category === query)
   }
 
   async search(searchQuery) {
     const res = await api.get('api/items/search', { params: { query: searchQuery.query, y: AppState.location.coords.longitude, x: AppState.location.coords.latitude, distance: searchQuery.distance } })
-    AppState.items = res.data.filter(item => item.category === searchQuery.category)
-    logger.log(AppState.items)
+    if (searchQuery.category !== 'All') {
+      AppState.items = res.data.filter(item => item.category === searchQuery.category)
+    } else {
+      AppState.items = res.data
+    }
   }
 
   async getItemsByUserId(id) {

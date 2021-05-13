@@ -55,7 +55,7 @@ class ItemsService {
   //   return data
   // }
 
-  async searchItems(query = {}, term) {
+  async searchItems(query = {}, term = {}) {
     // regex= regular expression, they're used to search strings
     const q = { $or: [{ title: { $regex: new RegExp(term, 'ig') } }, { description: { $regex: new RegExp(term, 'ig') } }] }
     const data = await dbContext.Items.find({
