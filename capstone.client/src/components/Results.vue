@@ -70,6 +70,7 @@
               </div>
               <div class="buttons text-right">
                 <!-- Button trigger modal -->
+
                 <button type="button"
                         class="btn btn-primary"
                         data-toggle="modal"
@@ -77,6 +78,7 @@
                         v-if="result.availability == true && state.account.id !== result.creatorId"
                         @click="assignActiveItem(result)"
                 >
+
                   Borrow
                 </button>
                 <button type="button" class="btn btn-primary disabled" v-if="result.availability == false && state.account.id !== result.creatorId">

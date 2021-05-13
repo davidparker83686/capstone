@@ -30,18 +30,19 @@
                        v-model="state.newItem.title"
                        required
                 >
-              </div>
-              <div class="form-group">
-                <label for="category"></label>
-                <input type="text"
-                       class="form-control"
-                       id="category"
-                       placeholder="Category..."
-                       minlength="3"
-                       maxlength="200"
-                       v-model="state.newItem.category"
-                       required
-                >
+                <div class="form-group mt-3">
+                  <label for="categorySelect" class="mb-0 pt-3 d-none d-md-block">Categories</label>
+                  <select class="form-control" id="categorySelect" v-model="state.newItem.category" required>
+                    <option value="" disabled>
+                      --Select Category--
+                    </option>
+                    <option>Hunting</option>
+                    <option>Fishing</option>
+                    <option>Boating</option>
+                    <option>Camping</option>
+                    <option>Recreational Sports</option>
+                  </select>
+                </div>
               </div>
               <div class="form-group">
                 <label for="description"></label>
