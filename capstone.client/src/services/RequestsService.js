@@ -26,7 +26,7 @@ class RequestsService {
   async deleteRequest(id) {
     await api.delete(`api/Requests/${id}`)
     AppState.requests = AppState.requests.filter(i => i.id !== id)
-    // this.getRequests(id)
+    this.getRequests(id)
   }
 
   async accept(request) {
