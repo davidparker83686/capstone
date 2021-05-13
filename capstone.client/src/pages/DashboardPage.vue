@@ -1,22 +1,26 @@
 <template>
   <div class="dashboard container-fluid bg-danger">
-    <div class="row p-2">
-      <div class="col-md-12 col-12 card shadow">
-        <h3>Open Lends</h3>
-
-        <DashboardComponent v-for="dashboardComponent in state.requests" :key="dashboardComponent.id " :dashboard-component="dashboardComponent" />
+    <div class="row justify-content-center  p-3 p-md-5">
+      <div class="col-md-12 col-12 p-0 card shadow">
+        <h3 class="card-heading pl-5 pt-3 m-0">
+          Open Lends
+        </h3>
+        <div class="card-body">
+          <Request v-for="request in state.requests" :key="request.id " :request="request" />
+        </div>
       </div>
     </div>
-    <div class="row p-2 justify-content-between">
-      <div class="col-md-5 col-12 card shadow my-1">
-        <h3>Pending Requests</h3>
-        <RequestComponent v-for="requestComponent in state.requests" :key="requestComponent.id" :request-prop="requestComponent" />
-      </div>
-      <div class="col-md-5 col-12 card shadow my-1">
-        <h3>Lend History</h3>
 
+    <div class="row px-md-5 mb-5 between-to-center">
+      <div class="col-md-5 col-11 card  shadow p-3 p-md-5">
+        <h3>Pending Requests</h3>
+        <!-- <PendingRequest v-for="pendingrequest in state.requests" :key="pendingrequest.id" :pendingrequest="pendingrequest" /> -->
+      </div>
+      <div class="col-md-5 col-11 card p-3 m-0 shadow">
+        <h3>Lend History</h3>
         <!-- first thing in our v-for is the name of the component -->
-        <DashboardComponent v-for="dashboardComponent in state.requests" :key="dashboardComponent.id " :dashboard-prop="dashboardComponent" />
+        <!-- <div v-if="{{ request.returned=== true }}"> -->
+        <Request v-for="request in state.requests" :key="request.id " :request="request" />
       </div>
     </div>
   </div>
@@ -55,7 +59,20 @@ export default {
 
     return {
       state,
-      route
+      route,
+      getPendingRequests(id) {
+        this.getRequests(id)
+        const pendingRequests = state.requests.filter(r => r.pending === false)
+        return pendingRequests
+        // return userRating
+      },
+      getPastRequests(id) {
+        this.getRequests(id)
+        const pastRequests = state.requests.filter(r => r.returned === true)
+        return pastRequests
+        // return userRating
+      }
+
     }
   }
 }
@@ -64,6 +81,14 @@ export default {
 <style lang="scss" scoped>
 h3{
   font-weight: 900;
+}
+.between-to-center{
+  justify-content: space-between;
+}
+@media screen and (max-width:760px){
+.between-to-center{
+  justify-content: center;
+}
 }
 
 </style>
