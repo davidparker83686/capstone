@@ -1,6 +1,7 @@
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
+import Notification from '../utils/Notification'
 
 class RequestsService {
   async createRequest(newRequest) {

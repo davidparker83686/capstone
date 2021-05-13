@@ -2,11 +2,13 @@
   <div class="request row card shadow mx-3 mt-3 p-3  justify-content-center">
     <div class="col-md-12 col-12">
       <div class="row justify-content-between">
-        <h4>Item: ITEM's TITLE</h4>
+        <h4 v-if="request.itemName">
+          Item: {{ request.itemName.title }}
+        </h4>
       </div>
       <div class="row">
         <p>
-          Lender : {{ request.ownerId }}
+          Lender : {{ request.itemOwner.name.split('@')[0] }}
         </p>
       </div>
       <div class="row" v-if="request.creator">
