@@ -8,6 +8,7 @@ const Request = new Schema(
     ownerReview: { type: Boolean },
     borrowerId: { type: String },
     borrowerReview: { type: Boolean },
+    pending: { type: Boolean, required: true, default: false },
     accepted: { type: Boolean, required: true, default: false },
     returned: { type: Boolean, required: true, default: false },
     borrowStartDate: { type: String, required: true },
