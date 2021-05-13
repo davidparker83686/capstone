@@ -5,7 +5,9 @@ import { api } from './AxiosService'
 class RequestsService {
   async createRequest(newRequest) {
     const res = await api.post('api/requests', newRequest)
+    // res.borrowerName = res.creator.name
     AppState.requests.push(res.data)
+    Notification.toast('Successfully Created Request', 'success')
     // this.getRequestsByUserId()
   }
 

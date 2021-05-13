@@ -17,7 +17,7 @@ class RequestsService {
   }
 
   async getRequests(id) {
-    const data = await dbContext.Requests.find({ $or: [{ ownerId: id }, { borrowerId: id }] })
+    const data = await dbContext.Requests.find({ $or: [{ ownerId: id }, { borrowerId: id }] }).populate('creator').populate('itemOwner').populate('itemName')
     return data
   }
 

@@ -9,8 +9,8 @@
           Lender : {{ request.ownerId }}
         </p>
       </div>
-      <div class="row">
-        <p>Borrower : {{ request.borrowerId }}</p>
+      <div class="row" v-if="request.creator">
+        <p>Borrower : {{ request.creator.name.split('@')[0] }}</p>
       </div>
     </div>
     <div class="col-md-6 col-12">
