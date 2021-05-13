@@ -6,7 +6,7 @@
           Open Lends
         </h3>
         <div class="card-body">
-          <Request v-for="request in state.requests" :key="request.id " :request="request" />
+          <Request v-for="request in state.activeRequests" :key="request.id " :request="request" />
         </div>
       </div>
     </div>
@@ -15,14 +15,17 @@
       <div class="col-md-5 col-11 card  shadow p-3 p-md-5">
         <h3>Pending Requests</h3>
         <!-- <PendingRequest v-for="pendingrequest in state.requests" :key="pendingrequest.id" :pendingrequest="pendingrequest" /> -->
+        <Request v-for="request in state.pendingRequests" :key="request.id " :request="request" />
       </div>
       <div class="col-md-5 col-11 card p-3 m-0 shadow">
         <h3>Lend History</h3>
         <!-- first thing in our v-for is the name of the component -->
         <!-- <div v-if="{{ request.returned=== true }}"> -->
-        <Request v-for="request in state.requests" :key="request.id " :request="request" />
+        <Request v-for="request in state.pastRequests" :key="request.id " :request="request" />
       </div>
     </div>
+    <!-- {{ getPendingRequests() }}
+    {{ getPastRequests() }} -->
   </div>
 </template>
 
@@ -44,7 +47,10 @@ export default {
       reviews: computed(() => AppState.reviews),
       account: computed(() => AppState.account),
       user: computed(() => AppState.user),
-      requests: computed(() => AppState.requests)
+      requests: computed(() => AppState.requests),
+      activeRequests: computed(() => AppState.activeRequests),
+      pendingRequests: computed(() => AppState.pendingRequests),
+      pastRequests: computed(() => AppState.pastRequests)
     })
     onMounted(async() => {
       try {
@@ -59,19 +65,21 @@ export default {
 
     return {
       state,
-      route,
-      getPendingRequests(id) {
-        this.getRequests(id)
-        const pendingRequests = state.requests.filter(r => r.pending === false)
-        return pendingRequests
-        // return userRating
-      },
-      getPastRequests(id) {
-        this.getRequests(id)
-        const pastRequests = state.requests.filter(r => r.returned === true)
-        return pastRequests
-        // return userRating
-      }
+      route
+      // getPendingRequests(id) {
+      //   requestsService.getRequests(id)
+      //   this.getRequests(id)
+      //   const pendingRequests = state.requests.filter(r => r.pending === true)
+      //   logger.log(pendingRequests)
+      //   state.pendingRequests = pendingRequests
+      // },
+      // getPastRequests(id) {
+      //   requestsService.getRequests(id)
+      //   this.getRequests(id)
+      //   const pastRequests = state.requests.filter(r => r.returned === true)
+      //   state.pastRequests = pastRequests
+      //   logger.log(state.pastRequests)
+      // }
 
     }
   }
