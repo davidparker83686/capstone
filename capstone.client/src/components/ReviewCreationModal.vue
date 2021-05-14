@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="modal "
-         id="reviewCreationModal"
+         :id="'reviewCreationModal' + requestProp.id"
          tabindex="-1"
          role="dialog"
          aria-labelledby="exampleModalLabel"
@@ -59,7 +59,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                   Dismiss
                 </button>
-                <button type="submit" class="btn btn-primary" @click="reviewedRequest(requestProp)">
+                <button type="submit" class="btn btn-primary" @click="reviewedRequest()">
                   Create
                 </button>
                 <!-- <button type="submit" class="btn btn-primary">
@@ -97,9 +97,9 @@ export default {
     })
     return {
       state,
-      async reviewedRequest(request) {
+      async reviewedRequest() {
         try {
-          await requestsService.reviewedRequest(request)
+          await requestsService.reviewedRequest(props.requestProp)
         } catch (error) {
           logger.error(error)
         }

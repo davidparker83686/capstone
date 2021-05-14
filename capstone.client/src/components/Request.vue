@@ -72,7 +72,7 @@
         <button title="leaveReview"
                 aria="leaveReview"
                 data-toggle="modal"
-                data-target="#reviewCreationModal"
+                :data-target="'#reviewCreationModal' + request.id"
                 type="button"
                 class="btn btn-success"
                 v-if="request.pending == false && request.accepted == true && request.returned== true && request.reviewed == false"
