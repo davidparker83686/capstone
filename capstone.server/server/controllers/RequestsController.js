@@ -18,6 +18,7 @@ export class RequestsController extends BaseController {
     try {
       req.body.creatorId = req.userInfo.id
       req.body.borrowerId = req.userInfo.id
+      req.body.borrowerName = req.userInfo.name
 
       const data = await requestsService.createRequest(req.body)
       res.send(data)
