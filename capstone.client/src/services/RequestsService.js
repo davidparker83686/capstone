@@ -58,6 +58,15 @@ class RequestsService {
 
     logger.log(res.data)
   }
+
+  async reviewedRequest(request) {
+    request.reviewed = true
+    const res = await api.put('api/requests/' + request.id, request)
+    const oldRequest = AppState.requests.findIndex(i => i.id === request.id)
+    AppState.requests[oldRequest] = request
+
+    logger.log(res.data)
+  }
 }
 
 export const requestsService = new RequestsService()

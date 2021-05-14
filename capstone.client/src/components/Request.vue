@@ -3,7 +3,7 @@
     <div class="col-md-12 col-12">
       <div class="row justify-content-between">
         <h4 v-if="request.itemName">
-          Item: {{ request.itemName.title }}
+          {{ request.itemName.title }}
         </h4>
       </div>
       <div class="row">
@@ -15,13 +15,13 @@
         <p>Borrower : {{ request.creator.name.split('@')[0] }}</p>
       </div>
     </div>
-    <div class="col-md-6 col-12">
+    <div class="col-md-12 col-12">
       <div class="row">
-        <p>Dates: {{ request.borrowStartDate }} - {{ request.borrowEndDate }}</p>
+        {{ request.borrowStartDate }} - {{ request.borrowEndDate }}
       </div>
     </div>
 
-    <div class="col-5">
+    <div class="col-12">
       <div class="buttons text-right">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" @click="accept(request)" v-if="request.pending ===true && request.returned== false">
@@ -41,7 +41,7 @@
                 @click="accepted(request)"
                 type="button"
                 class="btn btn-danger"
-                v-if="request.accepted == false && request.returned== false && request.pending== false"
+                v-if="request.pending== false && request.accepted == false && request.returned== false"
         >
           accepted
         </button>
@@ -50,12 +50,24 @@
                 @click="returned(request)"
                 type="button"
                 class="btn btn-success"
-                v-if="request.accepted == true && request.returned== false && request.pending== false"
+                v-if="request.pending== false && request.accepted == true && request.returned== false"
         >
           returned
         </button>
+        <button title="leaveReview"
+                aria="leaveReview"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                type="button"
+                class="btn btn-success"
+                v-if="request.pending== false && request.accepted == true && request.returned== true && request.reviewed== false"
+        >
+          <!-- :data-target="'#exampleModal'+request.id" -->
+          Leave a Review
+        </button>
       </div>
     </div>
+    <review-creation-modal />
   </div>
 </template>
 

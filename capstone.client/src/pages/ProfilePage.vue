@@ -41,7 +41,7 @@
                 </div>
               </div>
 
-              <div class="card mb-2 ">
+              <div class="card shadow mb-2 ">
                 <div class="card-title m-0 bg-info">
                   <span class="pl-2 py-2">
                     REvIEW

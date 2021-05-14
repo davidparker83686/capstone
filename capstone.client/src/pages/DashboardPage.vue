@@ -1,8 +1,8 @@
 <template>
   <div class="dashboard container-fluid bg-danger">
     <div class="row justify-content-center  p-3 p-md-5">
-      <div class="col-md-12 col-12 p-0 card shadow">
-        <h3 class="card-heading pl-5 pt-3 m-0">
+      <div class="col-md-12 col-12 p-0 card scroll shadow">
+        <h3 class=" pl-5 pt-3 m-0">
           Open Lends
         </h3>
         <div class="card-body">
@@ -11,17 +11,25 @@
       </div>
     </div>
 
-    <div class="row px-md-5 mb-5 between-to-center">
-      <div class="col-md-5 col-11 card  shadow p-3 p-md-5">
-        <h3>Pending Requests</h3>
+    <div class="row px-md-5 pb-5 between-to-center">
+      <div class="col-md-5 col-11 card scroll shadow p-3 m-0">
+        <div class="">
+          <h3>Pending Requests</h3>
+        </div>
+        <div class="card-body">
+          <Request v-for="request in state.pendingRequests" :key="request.id " :request="request" />
+        </div>
         <!-- <PendingRequest v-for="pendingrequest in state.requests" :key="pendingrequest.id" :pendingrequest="pendingrequest" /> -->
-        <Request v-for="request in state.pendingRequests" :key="request.id " :request="request" />
       </div>
-      <div class="col-md-5 col-11 card p-3 m-0 shadow">
-        <h3>Lend History</h3>
+      <div class="col-md-5 col-11 card scroll p-3 m-0 shadow">
+        <div class="">
+          <h3>Lend History</h3>
+        </div>
+        <div class="card-body">
+          <Request v-for="request in state.pastRequests" :key="request.id " :request="request" />
+        </div>
         <!-- first thing in our v-for is the name of the component -->
         <!-- <div v-if="{{ request.returned=== true }}"> -->
-        <Request v-for="request in state.pastRequests" :key="request.id " :request="request" />
       </div>
     </div>
     <!-- {{ getPendingRequests() }}
@@ -97,6 +105,19 @@ h3{
 .between-to-center{
   justify-content: center;
 }
+}
+
+.scroll{
+    overflow-y: scroll;
+    // overflow-:auto;
+    // flex-wrap: nowrap;
+    max-height: 25vw;// display: inline-block;
+}
+@media screen and (max-width:760px){
+  .scroll{
+    overflow-y: scroll;
+    max-height: 45vw;// display: inline-block;
+  }
 }
 
 </style>

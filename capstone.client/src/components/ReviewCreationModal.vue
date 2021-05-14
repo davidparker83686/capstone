@@ -1,21 +1,22 @@
 <template>
   <div>
     <div class="modal "
-         id="itemCreationModal"
+         id="exampleModal"
          tabindex="-1"
          role="dialog"
          aria-labelledby="exampleModalLabel"
          aria-hidden="true"
     >
+      <!-- :id="'exampleModal'+request.id" -->
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">
-              Create A Listing
+              Review
             </h5>
           </div>
           <div class="modal-body">
-            <form @submit.prevent="createItem">
+            <form @submit.prevent="createReview">
               <div class="form-group">
                 <label for="title"></label>
                 <input type="text"
@@ -24,42 +25,33 @@
                        placeholder="Tile..."
                        minlength="3"
                        maxlength="50"
-                       v-model="state.newItem.title"
+                       v-model="state.newReview.title"
                        required
                 >
                 <div class="form-group mt-3">
-                  <label for="categorySelect" class="mb-0 pt-3 d-none d-md-block">Categories</label>
-                  <select class="form-control" id="categorySelect" v-model="state.newItem.category" required>
+                  <label for="rating" class="mb-0 pt-3 d-none d-md-block">Rating</label>
+                  <select class="form-control" id="rating" v-model="state.newReview.rating" required>
                     <option value="" disabled>
-                      --Select Category--
+                      --Rate Your Experience--
                     </option>
-                    <option>Hunting</option>
-                    <option>Fishing</option>
-                    <option>Boating</option>
-                    <option>Camping</option>
-                    <option>Recreational Sports</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
                   </select>
                 </div>
               </div>
               <div class="form-group">
-                <label for="description"></label>
+                <label for="body"></label>
                 <input type="text"
                        class="form-control"
-                       id="description"
-                       placeholder="Description..."
+                       id="body"
+                       placeholder="Body..."
                        minlength="3"
                        maxlength="200"
-                       v-model="state.newItem.description"
+                       v-model="state.newReview.body"
                        required
-                >
-              </div>
-              <div class="form-group">
-                <label for="picture"></label>
-                <input type="text"
-                       class="form-control"
-                       id="picture"
-                       placeholder="Picture..."
-                       v-model="state.newItem.picture"
                 >
               </div>
 
@@ -67,7 +59,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                   Dismiss
                 </button>
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary" @click="reviewedRequest(request)">
                   Create
                 </button>
               </div>
@@ -81,35 +73,33 @@
 
 <script>
 import { reactive, computed } from 'vue'
-import { itemsService } from '../services/ItemsService'
+import { reviewsService } from '../services/ReviewsService'
+import { requestsService } from '../services/RequestsService'
 import $ from 'jquery'
 import { AppState } from '../AppState'
-import { accountService } from '../services/AccountService'
 import { logger } from '../utils/Logger'
 
 export default {
-  name: 'ItemCreationModal',
+  name: 'ReviewCreationModal',
   setup() {
     const state = reactive({
-      newItem: {},
+      newReview: {},
       account: computed(() => AppState.account)
     })
     return {
       state,
-      async createItem() {
+      async reviewedRequest(request) {
         try {
-          if (!state.account.location) {
-            const confirm = window.confirm('Do you want our application to have access to your Location? To create a new item you must share your location')
-            if (confirm) {
-              await accountService.getLocation()
-            } else {
-              $('#itemCreationModal').modal('hide')
-            }
-          } else {
-            await itemsService.createItem(state.newItem)
-            state.newItem = {}
-            $('#itemCreationModal').modal('hide')
-          }
+          await requestsService.reviewedRequest(request)
+        } catch (error) {
+          logger.error(error)
+        }
+      },
+      async createReview() {
+        try {
+          await reviewsService.createReview(state.newReview)
+          state.newReview = {}
+          $('#reviewCreationModal').modal('hide')
         } catch (error) {
           logger.error(error)
         }
