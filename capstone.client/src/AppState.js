@@ -6,6 +6,7 @@ export const AppState = reactive({
   account: {},
   items: [],
   reviews: [],
+  myReviews: [],
   location: null,
   requests: [],
   activeRequests: [],

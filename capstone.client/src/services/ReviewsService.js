@@ -11,6 +11,14 @@ class ReviewsService {
 
   async getReviewsByUserId(id) {
     const res = await api.get(`api/profile/${id}/reviews`)
+    debugger
+    res.data.filter(r => r.creatorId !== AppState.account.id)
+
+    AppState.reviews = res.data
+
+    // we need to find the reviews where we were teh borrower or lender BUT where we went the creator
+    // AppState.reviews.filter(i => i.creator.id !== state.account.id)
+
     AppState.reviews = res.data
   }
 
