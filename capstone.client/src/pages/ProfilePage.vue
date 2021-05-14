@@ -115,7 +115,7 @@ export default {
     const route = useRoute()
     const state = reactive({
       items: computed(() => AppState.items),
-      reviews: computed(() => AppState.reviews),
+      reviews: computed(() => AppState.reviews.filter(r => r.creatorId !== AppState.account.id)),
       account: computed(() => AppState.account),
       user: computed(() => AppState.user)
     })

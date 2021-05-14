@@ -1,5 +1,5 @@
 import { AppState } from '../AppState'
-// import { logger } from '../utils/Logger'
+import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
 class ReviewsService {
@@ -11,14 +11,15 @@ class ReviewsService {
 
   async getReviewsByUserId(id) {
     const res = await api.get(`api/profile/${id}/reviews`)
-    debugger
-    res.data.filter(r => r.creatorId !== AppState.account.id)
 
+    // res.data.filter(r => r.creatorId !== AppState.account.id)
+    // res.data.filter(r => r.creatorId !== AppState.account.id)
+    logger.log('account', AppState.account)
+    console.log('reviews', res.data)
     AppState.reviews = res.data
 
     // we need to find the reviews where we were teh borrower or lender BUT where we went the creator
     // AppState.reviews.filter(i => i.creator.id !== state.account.id)
-
     AppState.reviews = res.data
   }
 
