@@ -7,6 +7,7 @@
     <item-creation-modal />
     <edit-bio-modal />
     <request-creation-modal />
+    <!-- <review-creation-modal /> -->
   </main>
   <footer>
     <div class="bg-dark text-light text-center p-4">

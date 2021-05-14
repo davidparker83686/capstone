@@ -57,17 +57,18 @@
         <button title="leaveReview"
                 aria="leaveReview"
                 data-toggle="modal"
-                data-target="#exampleModal"
+                data-target="#reviewCreationModal"
                 type="button"
                 class="btn btn-success"
-                v-if="request.pending== false && request.accepted == true && request.returned== true && request.reviewed== false"
+                v-if="request.pending == false && request.accepted == true && request.returned== true && request.reviewed == false"
+                @click="assignActiveRequest(request)"
         >
           <!-- :data-target="'#exampleModal'+request.id" -->
           Leave a Review
         </button>
       </div>
     </div>
-    <review-creation-modal />
+    <review-creation-modal :request-prop="request" />
   </div>
 </template>
 
@@ -126,6 +127,13 @@ export default {
         try {
           await requestsService.returned(request)
           Notification.toast('Successfully Received', 'success')
+        } catch (error) {
+          logger.error(error)
+        }
+      },
+      async assignActiveRequest(request) {
+        try {
+          await requestsService.assignActiveRequest(request)
         } catch (error) {
           logger.error(error)
         }

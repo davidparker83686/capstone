@@ -35,8 +35,14 @@ class RequestsService {
   async accept(request) {
     request.pending = false
     const res = await api.put('api/requests/' + request.id, request)
-    const oldRequest = AppState.requests.findIndex(i => i.id === request.id)
-    AppState.requests[oldRequest] = request
+    this.getRequests(res.data.creatorId)
+    // const oldRequest = AppState.pendingRequests.findIndex(i => i.id === request.id)
+    // AppState.pendingRequests.splice(oldRequest, 1)
+    // AppState.activeRequests.push(res.data)
+
+    // NOTE you can recall the get all fucnction or you could probaly splice the old one out of the appstate and push the new one into the right appstate
+
+    // AppState.activeRequest = [...AppState.activeRequests, res.data]
 
     logger.log(res.data)
   }
@@ -44,8 +50,9 @@ class RequestsService {
   async accepted(request) {
     request.accepted = true
     const res = await api.put('api/requests/' + request.id, request)
-    const oldRequest = AppState.requests.findIndex(i => i.id === request.id)
-    AppState.requests[oldRequest] = request
+    this.getRequests(res.data.creatorId)
+    // const oldRequest = AppState.requests.findIndex(i => i.id === request.id)
+    // AppState.requests[oldRequest] = request
 
     logger.log(res.data)
   }
@@ -53,19 +60,27 @@ class RequestsService {
   async returned(request) {
     request.returned = true
     const res = await api.put('api/requests/' + request.id, request)
-    const oldRequest = AppState.requests.findIndex(i => i.id === request.id)
-    AppState.requests[oldRequest] = request
+    this.getRequests(res.data.creatorId)
+    // const oldRequest = AppState.requests.findIndex(i => i.id === request.id)
+    // AppState.requests[oldRequest] = request
 
     logger.log(res.data)
   }
 
   async reviewedRequest(request) {
+    debugger
+    // const apple = AppState.requests.find(r => r.id === request.id)
+    // apple.reviewed = true
     request.reviewed = true
     const res = await api.put('api/requests/' + request.id, request)
-    const oldRequest = AppState.requests.findIndex(i => i.id === request.id)
+    const oldRequest = AppState.requests.findIndex(r => r.id === request.id)
     AppState.requests[oldRequest] = request
 
     logger.log(res.data)
+  }
+
+  assignActiveRequest(request) {
+    AppState.activeRequest = request
   }
 }
 

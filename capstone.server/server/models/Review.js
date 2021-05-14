@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const Review = new Schema(
   {
     creatorId: { type: String, required: true },
-    requestId: { type: String, required: true },
+    requestId: { type: String },
     title: { type: String, required: true },
     ownerId: { type: String, ref: 'Request', required: true },
     borrowerId: { type: String, ref: 'Request', required: true },

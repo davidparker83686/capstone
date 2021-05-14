@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="modal "
-         id="exampleModal"
+         id="reviewCreationModal"
          tabindex="-1"
          role="dialog"
          aria-labelledby="exampleModalLabel"
@@ -59,9 +59,12 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                   Dismiss
                 </button>
-                <button type="submit" class="btn btn-primary" @click="reviewedRequest(request)">
+                <button type="submit" class="btn btn-primary" @click="reviewedRequest(requestProp)">
                   Create
                 </button>
+                <!-- <button type="submit" class="btn btn-primary">
+                  Create
+                </button> -->
               </div>
             </form>
           </div>
@@ -81,7 +84,13 @@ import { logger } from '../utils/Logger'
 
 export default {
   name: 'ReviewCreationModal',
-  setup() {
+  props: {
+    requestProp: {
+      type: Object,
+      required: true
+    }
+  },
+  setup(props) {
     const state = reactive({
       newReview: {},
       account: computed(() => AppState.account)
@@ -96,10 +105,14 @@ export default {
         }
       },
       async createReview() {
+        state.newReview.ownerId = AppState.activeRequest.creatorId
+        // state.newReview.itemName = AppState.activeRequest.title
+        state.newReview.borrowerId = AppState.activeRequest.borrowerId
         try {
           await reviewsService.createReview(state.newReview)
           state.newReview = {}
           $('#reviewCreationModal').modal('hide')
+          // $('#reviewCreationModal' + request.id).modal('hide')
         } catch (error) {
           logger.error(error)
         }
