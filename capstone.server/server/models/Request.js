@@ -15,7 +15,8 @@ const Request = new Schema(
     borrowStartDate: { type: String, required: true },
     borrowEndDate: { type: String, required: true },
     creatorId: { type: String, ref: 'Account', required: true },
-    ownerName: { type: String }
+    ownerName: { type: String },
+    borrowerName: { type: String }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )

@@ -36,6 +36,7 @@ class RequestsService {
     request.pending = false
     const res = await api.put('api/requests/' + request.id, request)
     this.getRequests(res.data.creatorId)
+
     // const oldRequest = AppState.pendingRequests.findIndex(i => i.id === request.id)
     // AppState.pendingRequests.splice(oldRequest, 1)
     // AppState.activeRequests.push(res.data)

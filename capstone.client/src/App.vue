@@ -1,8 +1,8 @@
 <template>
-  <header>
+  <header class="font">
     <Navbar />
   </header>
-  <main>
+  <main class="font">
     <router-view />
     <item-creation-modal />
     <edit-bio-modal />
@@ -32,5 +32,7 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
-
+.font{
+  font-family: 'Fjalla One', sans-serif;
+}
 </style>
