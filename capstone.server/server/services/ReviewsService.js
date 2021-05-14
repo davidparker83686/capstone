@@ -5,8 +5,8 @@ class ReviewsService {
     return await dbContext.Reviews.create(body)
   }
 
-  async getReviewsByUserId(query = {}) {
-    const data = await dbContext.Reviews.find(query).populate('creator')
+  async getReviewsByUserId(id) {
+    const data = await dbContext.Reviews.find({ $or: [{ ownerId: id }, { borrowerId: id }] }).populate('creator')
     return data
   }
 

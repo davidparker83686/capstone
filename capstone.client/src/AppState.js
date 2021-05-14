@@ -7,6 +7,7 @@ export const AppState = reactive({
   loading: true,
   items: [],
   reviews: [],
+  myReviews: [],
   location: null,
   requests: [],
   activeRequests: [],

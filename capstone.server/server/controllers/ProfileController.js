@@ -50,7 +50,8 @@ export class ProfileController extends BaseController {
 
   async getReviewsByUserId(req, res, next) {
     try {
-      const data = await reviewsService.getReviewsByUserId({ creatorId: req.params.id })
+      const data = await reviewsService.getReviewsByUserId(req.params.id)
+      // const data = await reviewsService.getReviewsByUserId({ ownerId: req.params.id }, { borrowerId: req.params.id })
       res.send(data)
     } catch (error) {
       next(error)

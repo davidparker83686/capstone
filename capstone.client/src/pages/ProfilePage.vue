@@ -119,6 +119,7 @@ export default {
       items: computed(() => AppState.items),
       reviews: computed(() => AppState.reviews),
       activeAccount: computed(() => AppState.activeAccount),
+      reviews: computed(() => AppState.reviews.filter(r => r.creatorId !== AppState.account.id)),
       account: computed(() => AppState.account),
       user: computed(() => AppState.user),
       loading: computed(() => AppState.loading)

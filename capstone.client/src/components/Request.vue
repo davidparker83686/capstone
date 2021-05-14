@@ -11,8 +11,8 @@
           Lender : {{ request.itemOwner.name.split('@')[0] }}
         </p>
       </div>
-      <div class="row" v-if="request.creator">
-        <p>Borrower : {{ request.creator.name.split('@')[0] }}</p>
+      <div class="row" v-if="request.borrowerName">
+        <p>Borrower : {{ request.borrowerName.split('@')[0] }}</p>
       </div>
     </div>
     <div class="col-md-12 col-12">
@@ -24,7 +24,7 @@
     <div class="col-12">
       <div class="buttons text-right">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" @click="accept(request)" v-if="request.pending ===true && request.returned== false">
+        <button type="button" class="btn btn-primary" @click="accept(request)" v-if="request.pending ===true && request.returned== false &&request.ownerId===state.account.id ">
           accept
         </button>
         <button type="button"
@@ -32,28 +32,43 @@
                 title="delete"
                 aria="delete"
                 @click="deleteRequest(request)"
-                v-if="request.pending == true && request.returned== false"
+                v-if="request.pending == true && request.returned== false &&request.ownerId===state.account.id"
         >
           decline
         </button>
+        <div v-if="request.pending ===true && request.returned== false &&request.borrowerId===state.account.id">
+          <span>
+            currently pending
+          </span>
+        </div>
         <button title="accepted"
                 aria="accepted"
                 @click="accepted(request)"
                 type="button"
                 class="btn btn-danger"
-                v-if="request.pending== false && request.accepted == false && request.returned== false"
+                v-if="request.pending== false && request.accepted == false && request.returned== false && request.borrowerId===state.account.id "
         >
           accepted
         </button>
+
+        <div v-if="request.pending== false && request.accepted == true && request.returned== false && request.borrowerId===state.account.id ">
+          <span class="text-info">You are now using this item.</span>
+        </div>
+
+        <!-- <div v-if="request.pending== false && request.accepted == true && request.returned== false && request.ownerId===state.account.id ">
+          Now waiting on Item to be returned
+        </div> -->
+
         <button title="returned"
                 aria="returned"
                 @click="returned(request)"
                 type="button"
                 class="btn btn-success"
-                v-if="request.pending== false && request.accepted == true && request.returned== false"
+                v-if="request.pending== false && request.accepted == true && request.returned== false && request.ownerId===state.account.id "
         >
           returned
         </button>
+
         <button title="leaveReview"
                 aria="leaveReview"
                 data-toggle="modal"
