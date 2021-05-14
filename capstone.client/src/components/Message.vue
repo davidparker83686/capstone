@@ -1,25 +1,25 @@
 <template>
-  <div class="my-2" v-if="state.account">
+  <div class="my-3">
     <div v-if="message.from === state.account.id">
       <div class="
          row
-         justify-content-start"
+         align-items-start flex-column"
       >
-        <div class="col-6 d-flex card">
-          <div>
-            {{ message.from }}
-          </div>
+        <div>
+          {{ message.creator.name }}
+        </div>
+        <div class="col-11 col-md-6 d-flex card shadow rounded-pill px-4 py-2 text-light bg-primary">
           <div>
             {{ message.body }}
           </div>
         </div>
       </div>
     </div>
-    <div class="row justify-content-end" v-else>
-      <div class="col-6 d-flex card">
-        <div>
-          {{ message.from }}
-        </div>
+    <div class="row align-items-end flex-column" v-else>
+      <div>
+        {{ message.creator.name }}
+      </div>
+      <div class="col-11 col-md-6 d-flex card shadow rounded-pill px-4 py-2">
         <div>
           {{ message.body }}
         </div>

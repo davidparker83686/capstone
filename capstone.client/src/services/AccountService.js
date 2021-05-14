@@ -7,6 +7,7 @@ class AccountService {
     try {
       const res = await api.get('/account')
       AppState.account = res.data
+      AppState.loading = false
     } catch (err) {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
@@ -40,7 +41,8 @@ class AccountService {
   }
 
   async getActive(id) {
-    const res = await api.get(`api/profile/${id}`)
+    const res = await api.get(`api/profile/${id}/active`)
+    logger.log(res.data)
     AppState.activeAccount = res.data
   }
 }

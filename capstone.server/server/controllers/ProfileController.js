@@ -4,7 +4,7 @@ import { itemsService } from '../services/ItemsService'
 import { reviewsService } from '../services/ReviewsService'
 import { messagesService } from '../services/MessagesService'
 // import { requestsService } from '../services/RequestsService'
-import { accountService } from '../services/AccountService'
+import { profileService } from '../services/ProfileService'
 
 export class ProfileController extends BaseController {
   constructor() {
@@ -15,8 +15,8 @@ export class ProfileController extends BaseController {
       // .get('/:id/requests', this.getRequestsByUserId)
 
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .get('/:to/messages', this.getMessagesById)
-      .get('/:id', this.getProfile)
+      .get('/:id/messages', this.getMessagesById)
+      .get('/:id/active', this.getProfile)
   }
 
   async getItemsByUserId(req, res, next) {
@@ -31,11 +31,14 @@ export class ProfileController extends BaseController {
   async getMessagesById(req, res, next) {
     try {
       const query = {
-        $and: [
-          { $or: [{ to: req.params.to }, { from: req.params.to }] },
-          { $or: [{ to: req.userInfo.id }, { from: req.userInfo.id }] }
+        // $and: [
+        //   { $or: [{ to: req.params.id }, { from: req.params.id }] },
+        //   { $or: [{ to: req.userInfo.id }, { from: req.userInfo.id }] }
+        // ]
+        $or: [
+          { $and: [{ to: req.params.id }, { from: req.userInfo.id }] },
+          { $and: [{ to: req.userInfo.id }, { from: req.params.id }] }
         ]
-
       }
 
       const data = await messagesService.getMessagesById(query)
@@ -56,7 +59,7 @@ export class ProfileController extends BaseController {
 
   async getProfile(req, res, next) {
     try {
-      const data = await accountService.getAccount(req.params.id)
+      const data = await profileService.getProfile(req.params.id)
       res.send(data)
     } catch (error) {
       next(error)

@@ -9,10 +9,10 @@
         <Message v-for="message in state.messages" :key="message.id" :message="message" />
       </div>
       <div class="col-10">
-        <form class="form-group" @sumbit.prevent="send">
+        <form class="d-flex flex-row" @submit.prevent="send">
           <label for="message">Message</label>
-          <input type="test" class="form-control" id="exampleFormControlInput1" v-model="state.message.body">
-          <button type="submit" class="btn btn-info">
+          <input type="text" class="form-control" id="exampleFormControlInput1" v-model="state.newMessage.body">
+          <button type="submit" class="btn btn-info ml-2">
             Send
           </button>
         </form>
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { reactive, computed, onMounted } from 'vue'
+import { reactive, computed, watch } from 'vue'
 import { AppState } from '../AppState'
 import { messagesService } from '../services/MessagesService'
 import { logger } from '../utils/Logger'
@@ -36,25 +36,33 @@ export default {
       chats: computed(() => AppState.chats),
       messages: computed(() => AppState.messages),
       account: computed(() => AppState.account),
-      message: {
-        to: route.params.id,
-        from: computed(() => this.account.id)
+      newMessage: {}
+    })
+    watch(() => state.account, () => {
+      if (route) {
+        messagesService.getAllMessages(route.params.id)
       }
     })
-    onMounted(async() => {
-      try {
-        await messagesService.getAllMessages(route.params.id)
-      } catch (error) {
-        logger.error(error)
-      }
-    })
+    // onMounted(async() => {
+    //   try {
+    //     await messagesService.getAllMessages(route.params.id)
+    //   } catch (error) {
+    //     logger.error(error)
+    //   }
+    // })
     return {
       state,
       async refresh() {
         await messagesService.getAllMessages(route.params.id)
       },
       async send() {
-        await messagesService.createMessage(state.message)
+        const m = {
+          to: route.params.id,
+          from: state.account.id,
+          body: state.newMessage.body
+        }
+        logger.log(state.newMessage)
+        await messagesService.createMessage(m, route.params.id)
       }
     }
   }
@@ -62,8 +70,4 @@ export default {
 </script>
 
 <style scoped>
-* {
-    border: 1px solid red;
-
-}
 </style>

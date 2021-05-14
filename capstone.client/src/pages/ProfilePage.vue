@@ -1,14 +1,14 @@
 <template>
-  <div class="container-fluid" v-if="state.activeAccount">
+  <div class="container-fluid" v-if="!state.loading">
     <div class="row justify-content-around">
       <!-- profile stuff -->
-      <div class="col-12 col-md-3 ">
+      <div class="col-12 col-md-3" v-if="state.activeAccount">
         <div class="card shadow mt-2 mt-md-5">
           <div class="card-body">
             <h5 class="card-title d-flex justify-content-between">
               <div class="d-inline">
                 <!-- {{ (state.account.name.split('@')[0]).charAt(0).toUpperCase()+ (state.account.name.split('@')[0]).substring(1) }} -->
-                {{ state.activeAccount.name.split('@')[0] }}
+                {{ state.activeAccount.name }}
               </div>
               <div class="d-inline">
                 <i class="fas fa-star star"></i>
@@ -103,7 +103,7 @@
 
 <script>
 
-import { computed, onMounted, reactive } from 'vue'
+import { computed, onMounted, reactive, watch } from 'vue'
 import { AppState } from '../AppState'
 import { useRoute } from 'vue-router'
 import { itemsService } from '../services/ItemsService'
@@ -120,11 +120,17 @@ export default {
       reviews: computed(() => AppState.reviews),
       activeAccount: computed(() => AppState.activeAccount),
       account: computed(() => AppState.account),
-      user: computed(() => AppState.user)
+      user: computed(() => AppState.user),
+      loading: computed(() => AppState.loading)
+    })
+    watch(() => state.loading, () => {
+      accountService.getActive(route.params.id)
     })
     onMounted(async() => {
       try {
-        await accountService.getActive(route.params.id)
+        if (!state.loading) {
+          await accountService.getActive(route.params.id)
+        }
         await reviewsService.getReviewsByUserId(route.params.id)
         await itemsService.getItemsByUserId(route.params.id)
         logger.log(state.activeAccount)
