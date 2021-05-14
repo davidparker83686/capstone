@@ -1,14 +1,14 @@
 <template>
-  <div class="container-fluid ">
+  <div class="container-fluid" v-if="!state.loading">
     <div class="row justify-content-around">
       <!-- profile stuff -->
-      <div class="col-12 col-md-3 ">
+      <div class="col-12 col-md-3" v-if="state.activeAccount">
         <div class="card shadow mt-2 mt-md-5">
           <div class="card-body">
             <h5 class="card-title d-flex justify-content-between">
               <div class="d-inline">
                 <!-- {{ (state.account.name.split('@')[0]).charAt(0).toUpperCase()+ (state.account.name.split('@')[0]).substring(1) }} -->
-                {{ state.account.name.split('@')[0] }}
+                {{ state.activeAccount.name }}
               </div>
               <div class="d-inline">
                 <i class="fas fa-star star"></i>
@@ -18,10 +18,10 @@
               </div>
             </h5>
             <div>
-              <img class="img-fluid rounded mb-2" :src="state.user.picture" alt="profile picture">
+              <img class="img-fluid rounded mb-2" :src="state.activeAccount.picture" alt="profile picture">
             </div>
-            <div>
-              <router-link :to="{name: 'Messages', params: {id: state.account.id}}">
+            <div v-if="state.activeAccount.id !== state.account.id">
+              <router-link :to="{name: 'Messages', params: {id: state.activeAccount.id}}">
                 <button
                   class="btn btn-success my-1"
                 >
@@ -103,11 +103,13 @@
 
 <script>
 
-import { computed, onMounted, reactive } from 'vue'
+import { computed, onMounted, reactive, watch } from 'vue'
 import { AppState } from '../AppState'
 import { useRoute } from 'vue-router'
 import { itemsService } from '../services/ItemsService'
 import { reviewsService } from '../services/ReviewsService'
+import { accountService } from '../services/AccountService'
+import { logger } from '../utils/Logger'
 
 export default {
   name: 'Home',
@@ -115,14 +117,24 @@ export default {
     const route = useRoute()
     const state = reactive({
       items: computed(() => AppState.items),
+      reviews: computed(() => AppState.reviews),
+      activeAccount: computed(() => AppState.activeAccount),
       reviews: computed(() => AppState.reviews.filter(r => r.creatorId !== AppState.account.id)),
       account: computed(() => AppState.account),
-      user: computed(() => AppState.user)
+      user: computed(() => AppState.user),
+      loading: computed(() => AppState.loading)
+    })
+    watch(() => state.loading, () => {
+      accountService.getActive(route.params.id)
     })
     onMounted(async() => {
       try {
+        if (!state.loading) {
+          await accountService.getActive(route.params.id)
+        }
         await reviewsService.getReviewsByUserId(route.params.id)
         await itemsService.getItemsByUserId(route.params.id)
+        logger.log(state.activeAccount)
         // await reviewsService.getUserReviewScore(route.params.id)
         // const rating = await reviewsService.getUserReviewScore(route.params.id)
         // return rating
