@@ -41,19 +41,29 @@
                 @click="accepted(request)"
                 type="button"
                 class="btn btn-danger"
-                v-if="request.pending== false && request.accepted == false && request.returned== false"
+                v-if="request.pending== false && request.accepted == false && request.returned== false && request.borrowerId===state.account.id "
         >
           accepted
         </button>
+
+        <div v-if="request.pending== false && request.accepted == true && request.returned== false && request.borrowerId===state.account.id ">
+          <span class="text-info">You are now using this item.</span>
+        </div>
+
+        <!-- <div v-if="request.pending== false && request.accepted == true && request.returned== false && request.ownerId===state.account.id ">
+          Now waiting on Item to be returned
+        </div> -->
+
         <button title="returned"
                 aria="returned"
                 @click="returned(request)"
                 type="button"
                 class="btn btn-success"
-                v-if="request.pending== false && request.accepted == true && request.returned== false"
+                v-if="request.pending== false && request.accepted == true && request.returned== false && request.ownerId===state.account.id "
         >
           returned
         </button>
+
         <button title="leaveReview"
                 aria="leaveReview"
                 data-toggle="modal"
