@@ -34,7 +34,7 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: '/messages',
+    path: '/messages/:id',
     name: 'Messages',
     component: loadPage('MessagesPage'),
     beforeEnter: authGuard

@@ -8,6 +8,11 @@ class MessagesService {
     const res = await api.get(`api/profile/${id}/messages`)
     AppState.messages = res.data
   }
+
+  async createMessage(message) {
+    const res = await api.post('api/messages', message)
+    AppState.messages.push(res.data)
+  }
 }
 
 export const messagesService = new MessagesService()
