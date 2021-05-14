@@ -20,6 +20,15 @@
             <div>
               <img class="img-fluid rounded mb-2" :src="state.user.picture" alt="profile picture">
             </div>
+            <div>
+              <router-link :to="{name: 'Messages', params: {id: state.account.id}}">
+                <button
+                  class="btn btn-success my-1"
+                >
+                  Chat
+                </button>
+              </router-link>
+            </div>
             <div class=" d-none d-md-block">
               <div class="card shadow mb-2">
                 <div class="card-title m-0 bg-info d-flex justify-content-between">

@@ -52,12 +52,14 @@
             <div class="col-8">
               <div class="row my-2">
                 <div class="col-md-2 col-6">
-                  <h5>Item Owner:</h5>
+                  <h5>Item Owner: </h5>
                 </div>
-                <div class="col-md-6 col-6" v-if="result.creator">
-                  <p>{{ result.creator.name.split('@')[0] }}</p>
-                  <img class="rounded-circle" :src="result.creator.picture" alt="profile picture">
-                </div>
+                <router-link :to="{name: 'Profile', params: {id: result.creatorId}}">
+                  <div class="col-md-6 col-6" v-if="result.creator">
+                    <p>{{ result.creator.name.split('@')[0] }}</p>
+                    <img class="rounded-circle" :src="result.creator.picture" alt="profile picture">
+                  </div>
+                </router-link>
                 <div class="col-md-4 col-12">
                   Rating: STARS GO HERE??
                 </div>
@@ -78,7 +80,6 @@
                         v-if="result.availability == true && state.account.id !== result.creatorId"
                         @click="assignActiveItem(result)"
                 >
-
                   Borrow
                 </button>
                 <button type="button" class="btn btn-primary disabled" v-if="result.availability == false && state.account.id !== result.creatorId">

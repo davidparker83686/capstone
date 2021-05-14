@@ -28,7 +28,15 @@ export class ProfileController extends BaseController {
 
   async getMessagesById(req, res, next) {
     try {
-      const data = await messagesService.getMessagesById(req.userInfo.id, req.params.to)
+      const query = {
+        $and: [
+          { $or: [{ to: req.params.to }, { from: req.params.to }] },
+          { $or: [{ to: req.userInfo.id }, { from: req.userInfo.id }] }
+        ]
+
+      }
+
+      const data = await messagesService.getMessagesById(query)
       res.send(data)
     } catch (error) {
       next(error)

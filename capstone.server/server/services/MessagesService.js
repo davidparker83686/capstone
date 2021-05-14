@@ -1,13 +1,8 @@
 import { dbContext } from '../db/DbContext'
 
 class MessagesService {
-  async getMessagesById(user, to) {
-    const data = await dbContext.Messages.find({
-      $and: [
-        { $or: [{ to: to }, { from: to }] },
-        { $or: [{ to: user }, { from: user }] }
-      ]
-    }).populate('creator', 'name picture')
+  async getMessagesById(query) {
+    const data = await dbContext.Messages.find(query).populate('creator', 'name picture')
     return data
   }
 
