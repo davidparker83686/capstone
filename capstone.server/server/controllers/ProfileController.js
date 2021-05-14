@@ -4,6 +4,7 @@ import { itemsService } from '../services/ItemsService'
 import { reviewsService } from '../services/ReviewsService'
 import { messagesService } from '../services/MessagesService'
 // import { requestsService } from '../services/RequestsService'
+import { accountService } from '../services/AccountService'
 
 export class ProfileController extends BaseController {
   constructor() {
@@ -15,6 +16,7 @@ export class ProfileController extends BaseController {
 
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('/:to/messages', this.getMessagesById)
+      .get('/:id', this.getProfile)
   }
 
   async getItemsByUserId(req, res, next) {
@@ -46,6 +48,15 @@ export class ProfileController extends BaseController {
   async getReviewsByUserId(req, res, next) {
     try {
       const data = await reviewsService.getReviewsByUserId({ creatorId: req.params.id })
+      res.send(data)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getProfile(req, res, next) {
+    try {
+      const data = await accountService.getAccount(req.params.id)
       res.send(data)
     } catch (error) {
       next(error)

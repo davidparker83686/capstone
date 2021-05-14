@@ -38,6 +38,11 @@ class AccountService {
     AppState.account = res.data
     logger.log(AppState.account.location)
   }
+
+  async getActive(id) {
+    const res = await api.get(`api/profile/${id}`)
+    AppState.activeAccount = res.data
+  }
 }
 
 export const accountService = new AccountService()
