@@ -24,7 +24,7 @@
     <div class="col-12">
       <div class="buttons text-right">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" @click="accept(request)" v-if="request.pending ===true && request.returned== false &&request.ownerId===state.account.id ">
+        <button type="button" class="btn btn-primary" @click="accept(request)" v-if="request.pending === true && request.returned == false && request.ownerId === state.account.id ">
           accept
         </button>
         <button type="button"
@@ -32,11 +32,11 @@
                 title="delete"
                 aria="delete"
                 @click="deleteRequest(request)"
-                v-if="request.pending == true && request.returned== false &&request.ownerId===state.account.id"
+                v-if="request.pending == true && request.returned == false &&request.ownerId === state.account.id"
         >
           decline
         </button>
-        <div v-if="request.pending ===true && request.returned== false &&request.borrowerId===state.account.id">
+        <div v-if="request.pending === true && request.returned == false && request.borrowerId === state.account.id">
           <span>
             currently pending
           </span>
@@ -72,10 +72,23 @@
         <button title="leaveReview"
                 aria="leaveReview"
                 data-toggle="modal"
-                data-target="#reviewCreationModal"
+                :data-target="'#reviewCreationModal' + request.id"
                 type="button"
                 class="btn btn-success"
-                v-if="request.pending == false && request.accepted == true && request.returned== true && request.reviewed == false"
+                v-if="request.pending == false && request.accepted == true && request.returned == true && request.ownerReviewed == false && request.ownerId === state.account.id"
+                @click="assignActiveRequest(request)"
+        >
+          <!-- :data-target="'#exampleModal'+request.id" -->
+          Leave a Review
+        </button>
+
+        <button title="leaveReview"
+                aria="leaveReview"
+                data-toggle="modal"
+                :data-target="'#reviewCreationModal' + request.id"
+                type="button"
+                class="btn btn-success"
+                v-if="request.pending == false && request.accepted == true && request.returned == true && request.borrowerReviewed == false && request.borrowerId === state.account.id"
                 @click="assignActiveRequest(request)"
         >
           <!-- :data-target="'#exampleModal'+request.id" -->
