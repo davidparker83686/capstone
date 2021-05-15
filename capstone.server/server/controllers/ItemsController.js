@@ -1,7 +1,6 @@
 import BaseController from '../utils/BaseController'
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { itemsService } from '../services/ItemsService'
-import { logger } from '../utils/Logger'
 
 export class ItemsController extends BaseController {
   constructor() {
@@ -72,7 +71,6 @@ export class ItemsController extends BaseController {
 
   async searchItems(req, res, next) {
     try {
-      logger.log('search!')
       const query = req.query.query || ''
       delete req.query.query
       const data = await itemsService.searchItems(req.query, query)

@@ -31,7 +31,6 @@
 import { reactive, computed, watch } from 'vue'
 import { AppState } from '../AppState'
 import { messagesService } from '../services/MessagesService'
-import { logger } from '../utils/Logger'
 import { useRoute } from 'vue-router'
 
 export default {
@@ -67,7 +66,6 @@ export default {
           from: state.account.id,
           body: state.newMessage.body
         }
-        logger.log(state.newMessage)
         await messagesService.createMessage(m, route.params.id)
       }
     }
@@ -84,7 +82,6 @@ input{
   width: 100%;
 }
 
-<style >
 .background-img{
   background-image: url('../assets/img/Untitled.jpg');
   background-size: cover;

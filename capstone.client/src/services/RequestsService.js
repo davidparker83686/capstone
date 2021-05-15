@@ -1,5 +1,4 @@
 import { AppState } from '../AppState'
-import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 import Notification from '../utils/Notification'
 
@@ -17,10 +16,10 @@ class RequestsService {
     AppState.requests = res.data
 
     const activeRequests = res.data.filter(r => r.pending === false && r.returned === false)
-    logger.log(activeRequests)
+
     AppState.activeRequests = activeRequests
     const pendingRequests = res.data.filter(r => r.pending === true)
-    logger.log(pendingRequests)
+
     AppState.pendingRequests = pendingRequests
     const pastRequests = res.data.filter(r => r.returned === true)
     AppState.pastRequests = pastRequests
@@ -44,8 +43,6 @@ class RequestsService {
     // NOTE you can recall the get all fucnction or you could probaly splice the old one out of the appstate and push the new one into the right appstate
 
     // AppState.activeRequest = [...AppState.activeRequests, res.data]
-
-    logger.log(res.data)
   }
 
   async accepted(request) {
@@ -54,8 +51,6 @@ class RequestsService {
     this.getRequests(res.data.creatorId)
     // const oldRequest = AppState.requests.findIndex(i => i.id === request.id)
     // AppState.requests[oldRequest] = request
-
-    logger.log(res.data)
   }
 
   async returned(request) {
@@ -64,12 +59,9 @@ class RequestsService {
     this.getRequests(res.data.creatorId)
     // const oldRequest = AppState.requests.findIndex(i => i.id === request.id)
     // AppState.requests[oldRequest] = request
-
-    logger.log(res.data)
   }
 
   async reviewedRequest(request) {
-    debugger
     if (request.ownerId === AppState.account.id) {
       request.ownerReviewed = true
     } else {
@@ -78,11 +70,9 @@ class RequestsService {
     // const apple = AppState.requests.find(r => r.id === request.id)
     // apple.reviewed = true
     // request.reviewed = true
-    const res = await api.put('api/requests/' + request.id, request)
+    await api.put('api/requests/' + request.id, request)
     const oldRequest = AppState.requests.findIndex(r => r.id === request.id)
     AppState.requests[oldRequest] = request
-
-    logger.log(res.data)
   }
 
   assignActiveRequest(request) {

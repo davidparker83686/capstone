@@ -109,7 +109,6 @@ import { useRoute } from 'vue-router'
 import { itemsService } from '../services/ItemsService'
 import { reviewsService } from '../services/ReviewsService'
 import { accountService } from '../services/AccountService'
-import { logger } from '../utils/Logger'
 
 export default {
   name: 'Home',
@@ -133,7 +132,6 @@ export default {
         }
         await reviewsService.getReviewsByUserId(route.params.id)
         await itemsService.getItemsByUserId(route.params.id)
-        logger.log(state.activeAccount)
         // await reviewsService.getUserReviewScore(route.params.id)
         // const rating = await reviewsService.getUserReviewScore(route.params.id)
         // return rating

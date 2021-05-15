@@ -67,7 +67,7 @@ export default {
         // await reviewsService.getReviewsByUserId(route.params.id)
         // await reviewsService.getReviewsByUserId(route.params.id)
       } catch (error) {
-        logger.log(error)
+        logger.error(error)
       }
     })
 

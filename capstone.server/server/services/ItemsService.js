@@ -1,6 +1,5 @@
 import { dbContext } from '../db/DbContext'
 // import { BadRequest } from '../utils/Errors'
-import { logger } from '../utils/Logger'
 
 class ItemsService {
   // ANCHOR how to do query for getAllItems
@@ -75,7 +74,6 @@ class ItemsService {
         }
       ]
     }).populate('creator', 'name picture')
-    logger.log(data)
     return data
   }
 }

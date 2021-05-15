@@ -1,5 +1,5 @@
 import { AppState } from '../AppState'
-import { logger } from '../utils/Logger'
+// import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
 class ItemsService {
@@ -46,16 +46,13 @@ class ItemsService {
     } else if (item.availability === false) {
       item.availability = true
     }
-    const res = await api.put('api/items/' + item.id, item)
+    await api.put('api/items/' + item.id, item)
     const oldItem = AppState.items.findIndex(i => i.id === item.id)
     AppState.items[oldItem] = item
-
-    logger.log(res.data)
   }
 
   assignActiveItem(item) {
     AppState.activeItem = item
-    logger.log(AppState.activeItem)
   }
 }
 
