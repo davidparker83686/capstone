@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid background-img">
     <div class="row justify-content-center">
       <div class="col-10">
         Messages Page
@@ -69,5 +69,10 @@ export default {
 }
 </script>
 
-<style scoped>
+<style >
+.background-img{
+  background-image: url('../assets/img/Untitled.jpg');
+  background-size: cover;
+}
+
 </style>

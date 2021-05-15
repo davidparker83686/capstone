@@ -1,5 +1,5 @@
 <template>
-  <div class="component container-fluid">
+  <div class="component background-img container-fluid">
     <div class="row pt-3 pt-md-5 justify-content-center">
       <div class="col-md-11 col-11 card shadow bg-dark text-light">
         <form @submit.prevent="search">
@@ -106,6 +106,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
+.background-img{
+  background-image: url('../assets/img/Untitled.jpg');
+  background-size: cover;
+}
 
 </style>

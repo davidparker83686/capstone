@@ -1,10 +1,10 @@
 <template>
-  <div class="container-fluid landing-page  align-items-end">
+  <div class="container-fluid landing-page over-lay background-img align-items-end">
     <div class="row justify-content-center my-4">
-      <div class="col-10 col-md-8 card bg-card d-flex stretch text-light justify-content-center">
+      <div class="col-10 col-md-8 card dark-green-background d-flex stretch text-light justify-content-center">
         <div class="my-2">
           <p class="mb-0">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit corrupti quia error distinctio cum! Quibusdam natus porro fugiat exercitationem numquam facilis dolores reiciendis nesciunt sit molestias impedit quia amet quo autem enim delectus ratione ullam consequatur perspiciatis odit magnam maiores, laboriosam labore. Ipsa, error a! Possimus alias provident itaque eveniet?
+            Lend Me is an outdoors recreational equipment lening app. Making it easy for any who has an interest or an oppurtunity to enjoy the great out doors without need to invest in expensive equipment while also building a local community with those who enjoy the same activities.
           </p>
         </div>
       </div>
@@ -139,7 +139,7 @@ export default {
 }
 
 .background-img{
-  background-image: url('../assets/img/tree-trunk.jpg');
+  background-image: url('../assets/img/Untitled.jpg');
   background-size: cover;
 }
 
@@ -214,10 +214,10 @@ export default {
   box-shadow: 0 0 3em 0.5em white;
 }
 
-.bg-card{
-  background-color: rgba(0, 0, 0, 0.753);
-  border: none;
-}
+// .bg-card{
+//   background-color: rgba(0, 0, 0, 0.753);
+//   border: none;
+// }
 
 .btn-toggle{
   background-color: green;

@@ -1,9 +1,9 @@
 <template>
-  <div class="container-fluid" v-if="!state.loading">
+  <div class="container-fluid background-img" v-if="!state.loading">
     <div class="row justify-content-around">
       <!-- profile stuff -->
       <div class="col-12 col-md-3" v-if="state.activeAccount">
-        <div class="card shadow mt-2 mt-md-5">
+        <div class="card bg-secondary shadow mt-2 mt-md-5">
           <div class="card-body">
             <h5 class="card-title d-flex justify-content-between">
               <div class="d-inline">
@@ -31,8 +31,8 @@
             </div>
             <div class=" d-none d-md-block">
               <div class="card shadow mb-2">
-                <div class="card-title m-0 bg-info d-flex justify-content-between">
-                  <span class="pl-2 py-2">
+                <div class="card-title m-0 dark-green-background d-flex justify-content-between">
+                  <span class="pl-2 py-2 text-white">
                     ABOUT ME
                   </span>
                   <button type="button"
@@ -51,8 +51,8 @@
               </div>
 
               <div class="card shadow mb-2 ">
-                <div class="card-title m-0 bg-info">
-                  <span class="pl-2 py-2">
+                <div class="card-title dark-green-background m-0">
+                  <span class="pl-2 py-2 text-white">
                     REvIEW
                   </span>
                 </div>
@@ -73,8 +73,8 @@
       <div class="col-12 d-block d-md-none">
         <div class=" ">
           <div class="card mb-2">
-            <div class="card-title m-0 bg-info">
-              <span class="pl-2 py-2">
+            <div class="card-title m-0 dark-green-background ">
+              <span class="pl-2 py-2 text-white">
                 ABOUT ME
               </span>
             </div>
@@ -84,8 +84,8 @@
           </div>
 
           <div class="card mb-2">
-            <div class="card-title m-0 bg-info">
-              <span class="pl-2 py-2">
+            <div class="card-title m-0 dark-green-background ">
+              <span class="pl-2 py-2 text-white">
                 REvIEW
               </span>
             </div>
@@ -162,14 +162,12 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .star{
   color:yellow
 }
 .background-img{
   background-image: url('../assets/img/Untitled.jpg');
   background-size: cover;
-  background-position-y: 50%;
 }
-
 </style>

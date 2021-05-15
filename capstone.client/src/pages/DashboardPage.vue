@@ -1,8 +1,8 @@
 <template>
-  <div class="dashboard container-fluid bg-danger">
+  <div class="dashboard container-fluid background-img ">
     <div class="row justify-content-center  p-3 p-md-5">
-      <div class="col-md-12 col-12 p-0 card scroll shadow">
-        <h3 class=" pl-5 pt-3 m-0">
+      <div class="col-md-12 col-12 p-0 card bg-secondary scroll shadow">
+        <h3 class=" dark-green-text pl-4 pt-3 m-0">
           Open Lends
         </h3>
         <div class="card-body">
@@ -12,8 +12,8 @@
     </div>
 
     <div class="row px-md-5 pb-5 between-to-center">
-      <div class="col-md-5 col-11 card scroll shadow p-3 m-0">
-        <div class="">
+      <div class="col-md-5 col-11 card bg-secondary m-2 scroll shadow ">
+        <div class=" dark-green-text p-3">
           <h3>Pending Requests</h3>
         </div>
         <div class="card-body">
@@ -21,8 +21,8 @@
         </div>
         <!-- <PendingRequest v-for="pendingrequest in state.requests" :key="pendingrequest.id" :pendingrequest="pendingrequest" /> -->
       </div>
-      <div class="col-md-5 col-11 card scroll p-3 m-0 shadow">
-        <div class="">
+      <div class="col-md-5 col-11 card  bg-secondary  m-2 scroll  shadow">
+        <div class=" dark-green-text p-3">
           <h3>Lend History</h3>
         </div>
         <div class="card-body">
@@ -116,8 +116,12 @@ h3{
 @media screen and (max-width:760px){
   .scroll{
     overflow-y: scroll;
-    max-height: 45vw;// display: inline-block;
+    max-height: 85vw;// display: inline-block;
   }
+}
+.background-img{
+  background-image: url('../assets/img/Untitled.jpg');
+  background-size: cover;
 }
 
 </style>

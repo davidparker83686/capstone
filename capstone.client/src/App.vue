@@ -10,7 +10,7 @@
     <!-- <review-creation-modal /> -->
   </main>
   <footer>
-    <div class="bg-dark text-light text-center p-4">
+    <div class="dark-green-background creme-text text-center ">
       Created By David, Ethan, Lane, Scott | May 2021
     </div>
   </footer>
