@@ -9,7 +9,7 @@
     <request-creation-modal />
     <!-- <review-creation-modal /> -->
   </main>
-  <footer>
+  <footer class="font">
     <div class="dark-green-background creme-text text-center ">
       Created By David, Ethan, Lane, Scott | May 2021
     </div>
