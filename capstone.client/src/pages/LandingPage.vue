@@ -4,13 +4,13 @@
       <div class="col-10 col-md-8 card dark-green-background d-flex stretch text-light justify-content-center">
         <div class="my-2">
           <p class="mb-0">
-            Lend Me is an outdoors recreational equipment lening app. Making it easy for any who has an interest or an oppurtunity to enjoy the great out doors without need to invest in expensive equipment while also building a local community with those who enjoy the same activities.
+            Lend Me is an outdoors recreational equipment lending app. Making it easy for any who has an interest or an oppurtunity to enjoy the great out doors without need to invest in expensive equipment while also building a local community with those who enjoy the same activities.
           </p>
         </div>
       </div>
     </div>
-    <div class="row justify-content-center">
-      <!-- <div class="col-4 col-md-4 text-center d-flex justify-content-center align-items-center"> -->
+    <!-- <div class="row justify-content-center">
+
       <div class="col-4 col-md-8 text-left d-flex ">
         <button class="btn" :class="{ 'btn-success' : state.check === true, 'btn-outline-secondary' : state.check === false }" @click="location">
           Use Your Location
@@ -19,7 +19,7 @@
           Use My Location
         </p>
       </div>
-    </div>
+    </div> -->
     <div class="row align-items-center justify-content-center">
       <div class="col-md-4 col-11 card py-2 my-2 mx-2 hunting-bg-img">
         <router-link :to="{name: 'SearchPage', query: {filter:'Hunting'}}" style="text-decoration: none;">
