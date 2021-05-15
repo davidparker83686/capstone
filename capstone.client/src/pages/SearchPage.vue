@@ -1,14 +1,14 @@
 <template>
   <div class="component container-fluid">
     <div class="row pt-3 pt-md-5 justify-content-center">
-      <div class="col-md-11 col-11 card shadow bg-dark text-light">
+      <div class="text-dark">
+        <h3>Search By</h3>
+      </div>
+      <div class="col-md-11 col-11 card shadow bg-dark text-light justify-content-center pt-3">
         <form @submit.prevent="search">
-          <div class="row justify-content-between">
-            <div class="col-md-3 col-12 p-3">
-              <h3>Search By</h3>
-            </div>
-            <div class="col-md-4 col-12 form-group">
-              <label for="categorySelect" class="mb-0 pt-3 d-none d-md-block">Categories</label>
+          <div class="row justify-content-around">
+            <div class="col-md-6 col-12 form-group">
+              <label for="categorySelect" class="my-0 pt-1 d-none d-md-block">Categories</label>
               <select class="form-control" id="categorySelect" v-model="state.searchQuery.category" required>
                 <option value="" disabled>
                   --Select Category--
@@ -21,8 +21,8 @@
                 <option>Recreational Sports</option>
               </select>
             </div>
-            <div class="col-md-4 col-12 form-group">
-              <label for="distanceSelect" class="mb-0 pt-3 d-none d-md-block">Distance From You in Miles</label>
+            <div class="col-md-6 col-12 form-group">
+              <label for="distanceSelect" class="my-0 pt-1 d-none d-md-block">Distance From You in Miles</label>
               <select class="form-control" id="distanceSelect" v-model="state.searchQuery.distance" required>
                 <option value="" disabled>
                   --Select Miles From You--
@@ -35,8 +35,8 @@
               </select>
             </div>
           </div>
-          <div class="row form-group px-3 justify-content-between">
-            <div class="col-md-11 col-12 p-0">
+          <div class="row form-group px-3 justify-content-center">
+            <div class="col-md-12 d-flex col-12 p-0 align-items-center">
               <input type="text"
                      class="form-control w-100"
                      id="searchInput"
@@ -44,9 +44,7 @@
                      placeholder="Search For Items..."
                      v-model="state.searchQuery.query"
               >
-            </div>
-            <div class="col-md-1 col-12 pt-3 pt-md-0 text-right">
-              <button type="submit" class="btn btn-primary ">
+              <button type="submit" class="btn btn-primary btn-sm">
                 Submit
               </button>
             </div>

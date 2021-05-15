@@ -74,7 +74,7 @@ class ItemsService {
           }
         }
       ]
-    })
+    }).populate('account', 'name picture')
     logger.log(data)
     return data
   }

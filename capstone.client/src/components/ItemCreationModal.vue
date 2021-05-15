@@ -21,7 +21,7 @@
                 <input type="text"
                        class="form-control"
                        id="title"
-                       placeholder="Tile..."
+                       placeholder="Title..."
                        minlength="3"
                        maxlength="50"
                        v-model="state.newItem.title"
