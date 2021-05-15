@@ -4,13 +4,13 @@
       <div class="col-10 col-md-8 card bg-card d-flex stretch text-light justify-content-center">
         <div class="my-2">
           <p class="mb-0">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit corrupti quia error distinctio cum! Quibusdam natus porro fugiat exercitationem numquam facilis dolores reiciendis nesciunt sit molestias impedit quia amet quo autem enim delectus ratione ullam consequatur perspiciatis odit magnam maiores, laboriosam labore. Ipsa, error a! Possimus alias provident itaque eveniet?
+            Welcome to LendMe!  A peer to peer borrowing platform for all your recreational needs! <br> Want to go camping but you don't want to buy your own tent?  Use LendMe!  Want to go fishing but don't want to buy your own fishing gear?  Use LendMe!  Want to play soccer but don't have any balls?  Use LendMe!  Want to go bird watching but don't have a pair of binoculars?  Use LendMe!
           </p>
         </div>
       </div>
     </div>
-    <div class="row justify-content-center">
-      <!-- <div class="col-4 col-md-4 text-center d-flex justify-content-center align-items-center"> -->
+    <!-- <div class="row justify-content-center">
+
       <div class="col-4 col-md-8 text-left d-flex ">
         <button class="btn" :class="{ 'btn-success' : state.check === true, 'btn-outline-secondary' : state.check === false }" @click="location">
           Use Your Location
@@ -19,7 +19,7 @@
           Use My Location
         </p>
       </div>
-    </div>
+    </div> -->
     <div class="row align-items-center justify-content-center">
       <div class="col-md-4 col-11 card py-2 my-2 mx-2 hunting-bg-img">
         <router-link :to="{name: 'SearchPage', query: {filter:'Hunting'}}" style="text-decoration: none;">

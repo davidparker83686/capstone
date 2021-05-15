@@ -9,20 +9,20 @@
           Refresh
         </button>
       </div>
-      <div class="col-12">
+      <div class="col-10 card shadow transparent-bg">
         <div class="row justify-content-center">
           <div class="col-10">
             <Message v-for="message in state.messages" :key="message.id" :message="message" />
-            <form class="d-flex flex-row mt-5 align-items-center" @submit.prevent="send">
-              <label for="message">Message</label>
-              <input type="text" class="form-control ml-1" id="exampleFormControlInput1" v-model="state.newMessage.body">
-              <button type="submit" class="btn btn-info ml-2">
-                Send
-              </button>
-            </form>
           </div>
         </div>
       </div>
+      <form class=" col-md-10 col-12 d-flex flex-row mt-5 align-items-center" @submit.prevent="send">
+        <label for="message">Message</label>
+        <input type="text" class="form-control ml-1" id="exampleFormControlInput1" v-model="state.newMessage.body">
+        <button type="submit" class="btn btn-info ml-2">
+          Send
+        </button>
+      </form>
     </div>
   </div>
 </template>
@@ -76,4 +76,11 @@ export default {
 </script>
 
 <style scoped>
+.transparent-bg{
+  background-color: rgba(0, 0, 0, 0.103);
+  border-radius: 2.5%;
+}
+input{
+  width: 100%;
+}
 </style>

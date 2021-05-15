@@ -57,7 +57,7 @@
                       {{ result.creator.name.split('@')[0] }}
                     </h5>
                     <div v-if="result.creator.picture">
-                      <img class="rounded-circle" :src="result.creator.picture" alt="profile picture">
+                      <img class="rounded-circle img-size" :src="result.creator.picture" alt="profile picture">
                     </div>
                   </div>
                 </div>
@@ -69,26 +69,27 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12 col-12"></div>
-            <p class="ml-2">
-              {{ result.description }}
-            </p>
-          </div>
-          <div class="buttons text-right">
-            <!-- Button trigger modal -->
+            <div class="col-md-12 col-12">
+              <p class="ml-2 d-block">
+                {{ result.description }}
+              </p>
+              <div class="buttons text-right mb-2">
+                <!-- Button trigger modal -->
 
-            <button type="button"
-                    class="btn btn-primary"
-                    data-toggle="modal"
-                    data-target="#requestCreationModal"
-                    v-if="result.availability == true && state.account.id !== result.creatorId"
-                    @click="assignActiveItem(result)"
-            >
-              Borrow
-            </button>
-            <button type="button" class="btn btn-primary disabled" v-if="result.availability == false && state.account.id !== result.creatorId">
-              Borrow
-            </button>
+                <button type="button"
+                        class="btn btn-primary"
+                        data-toggle="modal"
+                        data-target="#requestCreationModal"
+                        v-if="result.availability == true && state.account.id !== result.creatorId"
+                        @click="assignActiveItem(result)"
+                >
+                  Borrow
+                </button>
+                <button type="button" class="btn btn-primary disabled" v-if="result.availability == false && state.account.id !== result.creatorId">
+                  Borrow
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -148,5 +149,17 @@ export default {
 .hover:hover{
   position: relative;
   bottom: 2px;
+}
+
+.img-size{
+  width: 100%;
+}
+
+.collapse.in, .collapse{
+  // overflow: auto;
+  overflow-x: hidden;
+}
+.card{
+  // overflow: auto;
 }
 </style>
