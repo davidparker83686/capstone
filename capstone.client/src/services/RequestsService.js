@@ -70,9 +70,14 @@ class RequestsService {
 
   async reviewedRequest(request) {
     debugger
+    if (request.ownerId === AppState.account.id) {
+      request.ownerReviewed = true
+    } else {
+      request.borrowerReviewed = true
+    }
     // const apple = AppState.requests.find(r => r.id === request.id)
     // apple.reviewed = true
-    request.reviewed = true
+    // request.reviewed = true
     const res = await api.put('api/requests/' + request.id, request)
     const oldRequest = AppState.requests.findIndex(r => r.id === request.id)
     AppState.requests[oldRequest] = request
