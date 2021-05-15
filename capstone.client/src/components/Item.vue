@@ -2,7 +2,7 @@
   <!-- Start of accordian menue -->
   <div class="accordion" id="accordionExample">
     <div class="row card shadow mb-2">
-      <div class="card-header" id="headingOne">
+      <div class="card-header bg-secondary " id="headingOne">
         <h2 class="mb-0">
           <button class="btn btn-link btn-block text-left px-0"
                   type="button"

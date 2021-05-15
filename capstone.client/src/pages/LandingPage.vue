@@ -1,10 +1,10 @@
 <template>
-  <div class="container-fluid landing-page  align-items-end">
+  <div class="container-fluid landing-page over-lay background-img align-items-end">
     <div class="row justify-content-center my-4">
-      <div class="col-10 col-md-8 card bg-card d-flex stretch text-light justify-content-center">
+      <div class="col-10 col-md-8 card dark-green-background d-flex stretch text-light justify-content-center">
         <div class="my-2">
           <p class="mb-0">
-            Welcome to LendMe!  A peer to peer borrowing platform for all your recreational needs! <br> Want to go camping but you don't want to buy your own tent?  Use LendMe!  Want to go fishing but don't want to buy your own fishing gear?  Use LendMe!  Want to play soccer but don't have any balls?  Use LendMe!  Want to go bird watching but don't have a pair of binoculars?  Use LendMe!
+            Lend Me is an outdoors recreational equipment lending app. Making it easy for any who has an interest or an oppurtunity to enjoy the great out doors without need to invest in expensive equipment while also building a local community with those who enjoy the same activities.
           </p>
         </div>
       </div>
@@ -139,7 +139,7 @@ export default {
 }
 
 .background-img{
-  background-image: url('../assets/img/tree-trunk.jpg');
+  background-image: url('../assets/img/Untitled.jpg');
   background-size: cover;
 }
 
@@ -214,10 +214,10 @@ export default {
   box-shadow: 0 0 3em 0.5em white;
 }
 
-.bg-card{
-  background-color: rgba(0, 0, 0, 0.753);
-  border: none;
-}
+// .bg-card{
+//   background-color: rgba(0, 0, 0, 0.753);
+//   border: none;
+// }
 
 .btn-toggle{
   background-color: green;

@@ -1,10 +1,10 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark dark-green-background">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <img
           alt="logo"
-          src="../assets/img/LendMe-logo.png"
+          src="../assets/img/LendMe-logo-light.png"
           height="45"
         />
       </div>
@@ -23,33 +23,33 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <router-link :to="{ name: 'Home' }" class="nav-link ">
+          <router-link :to="{ name: 'Home' }" class="nav-link  text-hov texlit">
             Home
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link :to="{ name: 'SearchPage'}" class="nav-link ">
+          <router-link :to="{ name: 'SearchPage'}" class="nav-link text-hov  texlit">
             SEARCH
           </router-link>
         </li>
         <li class="nav-item" v-if="user.isAuthenticated">
           <!-- <router-link :to="{ name: 'Profile' }" class="nav-link"> -->
-          <router-link :to="{ name: 'Profile', params: {id: account.id} }" class="nav-link">
+          <router-link :to="{ name: 'Profile', params: {id: account.id} }" class="nav-link text-hov texlit">
             PROFILE
           </router-link>
         </li>
         <li class="nav-item" v-if="user.isAuthenticated">
-          <router-link :to="{ name: 'Dashboard', params: {id: account.id} }" class="nav-link">
+          <router-link :to="{ name: 'Dashboard', params: {id: account.id} }" class="text-hov nav-link texlit">
             DASHBOARD
           </router-link>
         </li>
         <li class="nav-item" v-if="user.isAuthenticated">
-          <button type="button" class="btn nav-link btn-none" data-toggle="modal" data-target="#itemCreationModal">
+          <button type="button" class="btn nav-link btn-none text-hov  texlit" data-toggle="modal" data-target="#itemCreationModal ">
             CREATE LISTING
           </button>
         </li>
         <li class="nav-item">
-          <router-link :to="{ name: 'About' }" class="nav-link ">
+          <router-link :to="{ name: 'About' }" class="nav-link  text-hov texlit">
             ABOUT
           </router-link>
         </li>
@@ -74,7 +74,7 @@
               height="40"
               class="rounded"
             />
-            <span class="mx-3">{{ user.name }}</span>
+            <span class="mx-3 texlit">{{ user.name }}</span>
           </div>
           <div
             class="dropdown-menu p-0 list-group w-100"
@@ -139,12 +139,16 @@ export default {
 }
 a:hover {
   text-decoration: none;
+  color:aquamarine!important
 }
 .nav-link{
   text-transform: uppercase;
 }
 .nav-item .nav-link.router-link-exact-active{
-  color: var(--primary);
+  color: aquamarine!important;
+}
+.texlit{
+  color: antiquewhite!important;;
 }
 
 </style>

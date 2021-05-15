@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid background-img">
     <div class="row justify-content-center">
       <div class="col-10 my-4 flex-row">
         <h4 class="d-flex">
@@ -83,4 +83,11 @@ export default {
 input{
   width: 100%;
 }
+
+<style >
+.background-img{
+  background-image: url('../assets/img/Untitled.jpg');
+  background-size: cover;
+}
+
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="component container-fluid">
+  <div class="component background-img container-fluid">
     <div class="row pt-3 pt-md-5 justify-content-center">
       <div class="text-dark">
         <h3>Search By</h3>
@@ -104,6 +104,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
+.background-img{
+  background-image: url('../assets/img/Untitled.jpg');
+  background-size: cover;
+}
 
 </style>
