@@ -15,7 +15,27 @@ class AccountService {
 
   async editBio(editedBio) {
     const res = await api.put('api/accounts/' + editedBio.accountId, editedBio)
-    AppState.account.bio = res.data
+    if (res.name == null) {
+      res.name = AppState.account.name
+      AppState.account.name = res.name
+    } else { AppState.account.name = res.name }
+
+    if (res.email == null) {
+      res.email = AppState.account.email
+      AppState.account.email = res.email
+    } else { AppState.account.email = res.email }
+
+    if (res.picture == null) {
+      res.picture = AppState.account.picture
+      AppState.account.picture = res.picture
+    } else { AppState.account.picture = res.picture }
+
+    if (res.bio == null) {
+      res.bio = AppState.account.bio
+      AppState.account.bio = res.bio
+    } else { AppState.account.bio = res.bio }
+
+    AppState.account = res.data
   }
 
   async getLocation() {

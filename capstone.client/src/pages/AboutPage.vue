@@ -2,12 +2,12 @@
   <div class="about container-fluid background-img">
     <div class="row">
       <div class="col pt-5 pb-3 px-5">
-        <h2>LEND ME</h2>
+        <h2><b> LendMe</b></h2>
       </div>
     </div>
     <div class="row">
       <div class="col px-5">
-        <h4>Lend Me is an outdoors recreational equipment lending app. Making it easy for any who has an interest or an oppurtunity to enjoy the great out doors without need to invest in expensive equipment while also building a local community with those who enjoy the same activities. Lend me is a collaborative effort between four junior developers David Parker, Ethan Boone, Lane Davis, Scott Miller at Boise Code Works. Please take a look at our individual GitHub accounts to check out all our most current works.</h4>
+        <h4><b>LendMe</b> is an outdoor recreational equipment lending app. Making it easy for anyone who has an interest or an oppurtunity to enjoy the great outdoors without need to invest in expensive equipment while also building a local community with those who enjoy the same activities. <b>LendMe</b> is a collaborative effort between four junior developers David Parker, Ethan Boone, Lane Davis, Scott Miller at Boise Code Works. Please take a look at our individual GitHub accounts to check out all our most current works.</h4>
       </div>
     </div>
     <div class="row">

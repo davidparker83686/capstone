@@ -24,7 +24,7 @@
                        id="title"
                        placeholder="Tile..."
                        minlength="3"
-                       maxlength="50"
+                       maxlength="40"
                        v-model="state.newReview.title"
                        required
                 >
@@ -111,7 +111,7 @@ export default {
         try {
           await reviewsService.createReview(state.newReview)
           state.newReview = {}
-          $('#reviewCreationModal').modal('hide')
+          $('#reviewCreationModal' + props.requestProp.id).modal('hide')
           // $('#reviewCreationModal' + request.id).modal('hide')
         } catch (error) {
           logger.error(error)

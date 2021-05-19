@@ -1,10 +1,10 @@
 <template>
   <div class="container-fluid landing-page over-lay background-img align-items-end">
-    <div class="row justify-content-center my-4">
-      <div class="col-10 col-md-8 card dark-green-background d-flex stretch text-light justify-content-center">
+    <div class="row justify-content-center my-3 my-md-5">
+      <div class="col-11 col-md-11 card dark-green-background d-flex stretch text-light justify-content-center">
         <div class="my-2">
           <p class="mb-0">
-            Lend Me is an outdoors recreational equipment lending app. Making it easy for any who has an interest or an oppurtunity to enjoy the great out doors without need to invest in expensive equipment while also building a local community with those who enjoy the same activities.
+            LendMe is an outdoor recreational equipment lending app. Making it easy for anyone who has an interest or an oppurtunity to enjoy the great outdoors without need to invest in expensive equipment while also building a local community with those who enjoy the same activities.
           </p>
         </div>
       </div>
@@ -20,51 +20,51 @@
         </p>
       </div>
     </div> -->
-    <div class="row align-items-center justify-content-center">
-      <div class="col-md-4 col-11 card py-2 my-2 mx-2 hunting-bg-img">
+    <div class="row align-items-center justify-content-around">
+      <div class="col-md-5 col-11 card py-2 my-2  mx-2 hunting-bg-img">
         <router-link :to="{name: 'SearchPage', query: {filter:'Hunting'}}" style="text-decoration: none;">
-          <h3 class="router text-light">
+          <h2 class="router text-light my-3">
             Hunting
-          </h3>
+          </h2>
         </router-link>
       </div>
-      <div class="col-md-4 col-11 card py-2 my-2 mx-2 fishing-bg-img">
+      <div class="col-md-5 col-11 card py-2 my-2  mx-2 fishing-bg-img">
         <router-link :to="{name: 'SearchPage', query: {filter:'Fishing'}}" style="text-decoration: none;">
-          <h3 class="router text-light">
+          <h2 class="router text-light my-3">
             Fishing
-          </h3>
+          </h2>
         </router-link>
       </div>
     </div>
-    <div class="row align-items-center justify-content-center">
-      <div class="col-md-4 col-11 card py-2 my-2 mx-2 boating-bg-img">
+    <div class="row align-items-center justify-content-around">
+      <div class="col-md-5 col-11 card py-2 my-2  mx-2 boating-bg-img">
         <router-link :to="{name: 'SearchPage', query: {filter:'Boating'}}" style="text-decoration: none;">
-          <h3 class="router text-light">
+          <h2 class="router text-light my-3">
             Boating
-          </h3>
+          </h2>
         </router-link>
       </div>
-      <div class="col-md-4 col-11 card py-2 my-2 mx-2 camping-bg-img">
+      <div class="col-md-5 col-11 card py-2 my-2  mx-2 camping-bg-img">
         <router-link :to="{name: 'SearchPage', query: {filter:'Camping'}}" style="text-decoration: none;">
-          <h3 class="router text-light">
+          <h2 class="router text-light my-3">
             Camping
-          </h3>
+          </h2>
         </router-link>
       </div>
     </div>
-    <div class="row align-items-center justify-content-center">
-      <div class="col-md-4 col-11 card py-2 my-2 mx-2 sports-bg-img">
+    <div class="row align-items-center justify-content-around">
+      <div class="col-md-5 col-11 card py-2 my-2 mx-2  sports-bg-img">
         <router-link :to="{name: 'SearchPage', query: {filter:'Recreational Sports'}}" style="text-decoration: none;">
-          <h3 class="router text-light">
+          <h2 class="router text-light my-3">
             Recreational Sports
-          </h3>
+          </h2>
         </router-link>
       </div>
-      <div class="col-md-4 col-11 card py-2 my-2 mx-2 all-bg-img">
+      <div class="col-md-5 col-11 card py-2 my-2 mx-2  all-bg-img">
         <router-link :to="{name: 'SearchPage', query: {filter:'All'}}" style="text-decoration: none;">
-          <h3 class="router text-light">
+          <h2 class="router text-light my-3">
             All
-          </h3>
+          </h2>
         </router-link>
       </div>
     </div>
@@ -134,7 +134,7 @@ export default {
 }
 
 .card{
-  border: 2px solid black;
+  // border: 2px solid black;
   box-shadow: 0px 10px 20px -5px rgba(0,0,0,.8);
 }
 

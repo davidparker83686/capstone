@@ -16,6 +16,17 @@
                 <!-- {{ userRating }}
                 {{ rating }} -->
               </div>
+              <div>
+                <button type="button"
+                        class="btn p-0 btn-none text-primary"
+                        title="edit bio"
+                        aria="edit bio"
+                        data-toggle="modal"
+                        data-target="#editBioModal"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+              </div>
             </h5>
             <div>
               <img class="img-fluid rounded mb-2" :src="state.activeAccount.picture" alt="profile picture">
@@ -35,7 +46,7 @@
                   <span class="pl-2 py-2 text-white">
                     ABOUT ME
                   </span>
-                  <button type="button"
+                  <!-- <button type="button"
                           class="btn btn-none text-primary"
                           title="edit bio"
                           aria="edit bio"
@@ -43,17 +54,17 @@
                           data-target="#editBioModal"
                   >
                     <i class="fas fa-edit"></i>
-                  </button>
+                  </button> -->
                 </div>
                 <div class="pl-2 py-2">
                   Bio
                 </div>
               </div>
 
-              <div class="card shadow mb-2 ">
-                <div class="card-title dark-green-background m-0">
+              <div class="card review-scroll shadow mb-2 ">
+                <div class="card-title dark-green-background m-0 d-flex justify-content-between">
                   <span class="pl-2 py-2 text-white">
-                    REvIEW
+                    MY REVIEWS
                   </span>
                 </div>
                 <div class="row justify-content-center">
@@ -72,8 +83,8 @@
       </div>
       <div class="col-12 d-block d-md-none">
         <div class=" ">
-          <div class="card mb-2">
-            <div class="card-title m-0 dark-green-background ">
+          <div class="card review-scroll mb-2">
+            <div class="card-title m-0 dark-green-background d-flex justify-content-between">
               <span class="pl-2 py-2 text-white">
                 ABOUT ME
               </span>
@@ -83,8 +94,8 @@
             </div>
           </div>
 
-          <div class="card mb-2">
-            <div class="card-title m-0 dark-green-background ">
+          <div class="card review-scroll mb-2">
+            <div class="card-title m-0 dark-green-background d-flex justify-content-between">
               <span class="pl-2 py-2 text-white">
                 REvIEW
               </span>
@@ -167,5 +178,20 @@ export default {
 .background-img{
   background-image: url('../assets/img/Untitled.jpg');
   background-size: cover;
+}
+
+.review-scroll{
+    overflow-y: scroll;
+          overflow-x: hidden;
+    // overflow-:auto;
+    // flex-wrap: nowrap;
+    max-height: 25vw;// display: inline-block;
+}
+@media screen and (max-width:760px){
+  .review-scroll{
+    overflow-y: scroll;
+    max-height: 45vw;// display: inline-block;
+      overflow-x: hidden;
+  }
 }
 </style>

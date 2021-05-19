@@ -1,3 +1,15 @@
 on search page the results component the image is broken, remove or add start 
-finish bio
+
 edit items
+
+
+**Not sure if it is because I am accessing the site through Heroku or what, but on my phone, I am not able to log in.
+
+**You can only access the chat page through the search results component by clicking on the owner’s name, this takes you to their profile, where you can click the chat button. However, you as the lender have no way of accessing the messages page.  I suggest making a link on the dashboard's pending request section when you click on the borrower's name.
+
+
+**Profile should be allowed to be edited, to add to the bio section or change picture or name. 
+
+** Also, when prompted to leave a review, maybe it could specify if you’re leaving a review as the lender or borrower (I think I just left a 3 star review about how mediocre my own item was).
+
+** Also, the potential borrower should be notified somehow that their request has been declined.

@@ -2,8 +2,8 @@
   <!-- Start of accordian menue -->
   <div class="accordion" id="accordionExample">
     <div class="row card shadow mb-2">
-      <div class="card-header bg-secondary " id="headingOne">
-        <h2 class="mb-0">
+      <div class="px-2 px-md-3 bg-secondary " id="headingOne">
+        <div class="mb-0">
           <button class="btn btn-link btn-block text-left px-0"
                   type="button"
                   data-toggle="collapse"
@@ -13,7 +13,14 @@
           >
             <div class="justify-content-between d-flex">
               <div>
-                <h2>{{ item.title }}</h2>
+                <span>
+                  <h2 class="d-inline">{{ item.title.toUpperCase() }} -</h2>
+                  <h4 class="available d-inline" v-if="item.availability == true">
+                    Available
+                  </h4><h4 class="not-available d-inline" v-if="item.availability == false">
+                    Not Available
+                  </h4>
+                </span>
               </div>
               <div class="d-none d-md-block" v-if="state.account.id === item.creatorId">
                 <button type="button" class="btn btn-none btn-outline-danger text-danger" @click.prevent="deleteItem(item.id)">
@@ -34,33 +41,27 @@
               </div>
             </div>
           </button>
-
-          <h4 class="available" v-if="item.availability == true">
-            Available
-          </h4><h4 class="not-available" v-if="item.availability == false">
-            Not Available
-          </h4>
-        </h2>
+        </div>
       </div>
       <div :id="'collapseOne'+item.id" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-        <div class="card-body d-flex justify-content-between">
-          <div class="col-5">
+        <div class=" d-flex justify-content-between">
+          <div class="col-6">
             <img class="img-fluid rounded" :src="item.picture" alt="Item Picture" v-if="item.picture">
           </div>
-          <div class="col-5">
-            <span><b>{{ item.title }}</b> <br> {{ item.description }}</span>
+          <div class="col-6">
+            <span><b>{{ item.title.toUpperCase() }}</b> <br> {{ item.description }}</span>
             <div class="buttons text-right ">
               <!-- Button trigger modal -->
               <button type="button"
                       class="btn btn-primary"
                       data-toggle="modal"
                       data-target="#requestCreationModal"
-                      v-if="item.availability == true && state.account.id !== item.creatorId"
+                      v-if="state.user.isAuthenticated && item.availability == true && state.account.id !== item.creatorId "
                       @click="assignActiveItem(item)"
               >
                 Borrow
               </button>
-              <button type="button" class="btn btn-primary disabled" v-if="item.availability == false && state.account.id !== item.creatorId">
+              <button type="button" class="btn btn-primary disabled" v-if=" state.user.isAuthenticated && item.availability == false && state.account.id !== item.creatorId ">
                 Borrow
               </button>
               <button type="button" class="btn btn-danger" v-if="item.availability == true && state.account.id == item.creatorId" @click="toggleAvailability(item)">

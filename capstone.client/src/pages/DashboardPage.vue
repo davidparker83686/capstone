@@ -3,7 +3,7 @@
     <div class="row justify-content-center  p-3 p-md-5">
       <div class="col-md-12 col-12 p-0 card bg-secondary scroll shadow">
         <h3 class=" dark-green-text pl-4 pt-3 m-0">
-          Open Lends
+          OPEN LENDS
         </h3>
         <div class="card-body">
           <Request v-for="request in state.activeRequests" :key="request.id " :request="request" />
@@ -14,7 +14,7 @@
     <div class="row px-md-5 pb-5 between-to-center">
       <div class="col-md-5 col-11 card bg-secondary m-2 scroll shadow ">
         <div class=" dark-green-text p-3">
-          <h3>Pending Requests</h3>
+          <h3>PENDING REQUESTS</h3>
         </div>
         <div class="card-body">
           <Request v-for="request in state.pendingRequests" :key="request.id " :request="request" />
@@ -23,7 +23,7 @@
       </div>
       <div class="col-md-5 col-11 card  bg-secondary  m-2 scroll  shadow">
         <div class=" dark-green-text p-3">
-          <h3>Lend History</h3>
+          <h3>LEND HISTORY</h3>
         </div>
         <div class="card-body">
           <Request v-for="request in state.pastRequests" :key="request.id " :request="request" />
@@ -111,7 +111,7 @@ h3{
     overflow-y: scroll;
     // overflow-:auto;
     // flex-wrap: nowrap;
-    max-height: 25vw;// display: inline-block;
+    max-height: 19vw;// display: inline-block;
 }
 @media screen and (max-width:760px){
   .scroll{

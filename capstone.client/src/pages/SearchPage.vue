@@ -1,10 +1,10 @@
 <template>
   <div class="component background-img container-fluid">
-    <div class="row pt-3 pt-md-5 justify-content-center">
-      <div class="text-dark">
-        <h3>Search By</h3>
+    <div class="row pt-3 pt-md-3 justify-content-center">
+      <div class="text-dark col-11  ">
+        <h3>SEARCH BY</h3>
       </div>
-      <div class="col-md-11 col-11 card shadow bg-dark text-light justify-content-center pt-3">
+      <div class="col-md-11 col-11 card shadow bg-dark text-light justify-content-center pt-3 ">
         <form @submit.prevent="search">
           <div class="row justify-content-around">
             <div class="col-md-6 col-12 form-group">
@@ -44,7 +44,7 @@
                      placeholder="Search For Items..."
                      v-model="state.searchQuery.query"
               >
-              <button type="submit" class="btn btn-primary btn-sm">
+              <button type="submit" class="btn btn-primary btn-sm ml-3">
                 Submit
               </button>
             </div>
