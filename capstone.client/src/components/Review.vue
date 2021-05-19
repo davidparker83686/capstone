@@ -1,14 +1,23 @@
 <template>
   <div class="row justify-content-center">
-    <div class="col-12 pr-3 pr-md-5">
+    <div class="col-12 pr-3 py-2 pr-md-5">
+      <div class="text-right">
+        <button type="button"
+                class="btn btn-none px-0 text-danger"
+                @click.prevent="deleteReview(review.id)"
+                title="delete review"
+                aria="delete review"
+                v-if="review.creatorId === state.account.id"
+        >
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </div>
       <div class=" d-flex justify-content-between">
         <div>
-          <span><b>{{ review.title }}</b> </span> <i class="fas fa-star star"></i>{{ review.rating }}
+          <span><b>{{ review.title.toUpperCase() }}</b> </span>
         </div>
         <div>
-          <button type="button" class="btn btn-none  text-danger" @click.prevent="deleteReview(review.id)" title="delete review" aria="delete review">
-            <i class="fas fa-trash-alt"></i>
-          </button>
+          <i class="fas fa-star star"></i>{{ review.rating }}
         </div>
       </div>
       <div class="border-bottom">

@@ -1,5 +1,5 @@
 <template>
-  <header class="font">
+  <header class="font ">
     <Navbar />
   </header>
   <main class="font">

@@ -26,9 +26,17 @@ class RequestsService {
   }
 
   async deleteRequest(request) {
-    await api.delete(`api/Requests/${request.id}`)
-    AppState.requests = AppState.requests.filter(i => i.id !== request.id)
-    // this.getRequests(requesid)
+    request.pending = false
+    request.accepted = true
+    request.returned = true
+    request.ownerReviewed = true
+    request.borrowerReviewed = true
+    request.comment = 'declined'
+    const res = await api.put('api/requests/' + request.id, request)
+    this.getRequests(res.data.creatorId)
+
+    // await api.delete(`api/Requests/${request.id}`)
+    // AppState.requests = AppState.requests.filter(i => i.id !== request.id)
   }
 
   async accept(request) {

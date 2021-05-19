@@ -23,33 +23,33 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <router-link :to="{ name: 'Home' }" class="nav-link  text-hov texlit">
+          <router-link :to="{ name: 'Home' }" class="nav-link pt-3  text-hov texlit">
             Home
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link :to="{ name: 'SearchPage'}" class="nav-link text-hov  texlit">
+          <router-link :to="{ name: 'SearchPage'}" class="nav-link pt-3  text-hov  texlit">
             SEARCH
           </router-link>
         </li>
         <li class="nav-item" v-if="user.isAuthenticated">
           <!-- <router-link :to="{ name: 'Profile' }" class="nav-link"> -->
-          <router-link :to="{ name: 'Profile', params: {id: account.id} }" class="nav-link text-hov texlit">
+          <router-link :to="{ name: 'Profile', params: {id: account.id} }" class="nav-link pt-3 text-hov texlit">
             PROFILE
           </router-link>
         </li>
         <li class="nav-item" v-if="user.isAuthenticated">
-          <router-link :to="{ name: 'Dashboard', params: {id: account.id} }" class="text-hov nav-link texlit">
+          <router-link :to="{ name: 'Dashboard', params: {id: account.id} }" class="text-hov pt-3 nav-link texlit">
             DASHBOARD
           </router-link>
         </li>
         <li class="nav-item" v-if="user.isAuthenticated">
-          <button type="button" class="btn nav-link btn-none text-hov  texlit" data-toggle="modal" data-target="#itemCreationModal ">
+          <button type="button" class="btn pt-3 nav-link btn-none text-hov  shadow-none texlit" data-toggle="modal" data-target="#itemCreationModal ">
             CREATE LISTING
           </button>
         </li>
         <li class="nav-item">
-          <router-link :to="{ name: 'About' }" class="nav-link  text-hov texlit">
+          <router-link :to="{ name: 'About' }" class="nav-link pt-3 text-hov texlit">
             ABOUT
           </router-link>
         </li>

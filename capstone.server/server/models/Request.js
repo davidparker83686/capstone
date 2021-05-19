@@ -7,6 +7,7 @@ const Request = new Schema(
     ownerId: { type: String },
     ownerReview: { type: Boolean },
     borrowerId: { type: String },
+    comment: { type: String },
     borrowerReview: { type: Boolean },
     pending: { type: Boolean, required: true, default: true },
     accepted: { type: Boolean, required: true, default: false },

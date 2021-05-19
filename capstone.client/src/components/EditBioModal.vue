@@ -11,7 +11,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">
-              BIO
+              EDIT YOUR PROFILE
             </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -20,7 +20,40 @@
           <div class="modal-body">
             <form @submit.prevent="editBio">
               <div class="form-group">
-                <label for="bio"></label>
+                <label for="name">User Name</label>
+                <input type="text"
+                       class="form-control"
+                       id="name"
+                       placeholder="name..."
+                       minlength="3"
+                       maxlength="50"
+                       v-model="state.editedBio.name"
+                >
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text"
+                       class="form-control"
+                       id="email"
+                       placeholder="email..."
+                       minlength="3"
+                       maxlength="50"
+                       v-model="state.editedBio.email"
+                >
+              </div>
+              <div class="form-group">
+                <label for="picture">Profile Picture </label>
+                <input type="text"
+                       class="form-control"
+                       id="picture"
+                       placeholder="picture..."
+                       minlength="3"
+                       maxlength="50"
+                       v-model="state.editedBio.picture"
+                >
+              </div>
+              <div class="form-group">
+                <label for="bio">Bio</label>
                 <input type="text"
                        class="form-control"
                        id="bio"
@@ -28,16 +61,15 @@
                        minlength="3"
                        maxlength="50"
                        v-model="state.editedBio.bio"
-                       required
                 >
               </div>
 
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                <button type="button" class="btn text-white btn-danger" data-dismiss="modal">
                   Dismiss
                 </button>
                 <button type="submit" class="btn btn-primary">
-                  Create
+                  Save
                 </button>
               </div>
             </form>

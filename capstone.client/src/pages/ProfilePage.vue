@@ -16,6 +16,17 @@
                 <!-- {{ userRating }}
                 {{ rating }} -->
               </div>
+              <div>
+                <button type="button"
+                        class="btn p-0 btn-none text-primary"
+                        title="edit bio"
+                        aria="edit bio"
+                        data-toggle="modal"
+                        data-target="#editBioModal"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+              </div>
             </h5>
             <div>
               <img class="img-fluid rounded mb-2" :src="state.activeAccount.picture" alt="profile picture">
@@ -31,11 +42,11 @@
             </div>
             <div class=" d-none d-md-block">
               <div class="card shadow mb-2">
-                <div class="card-title m-0 dark-green-background d-flex justify-content-between">
-                  <span class="pl-2 py-2 text-white">
+                <div class="card-title m-0 lightgrey d-flex justify-content-between">
+                  <span class="pl-2 py-2">
                     ABOUT ME
                   </span>
-                  <button type="button"
+                  <!-- <button type="button"
                           class="btn btn-none text-primary"
                           title="edit bio"
                           aria="edit bio"
@@ -43,17 +54,17 @@
                           data-target="#editBioModal"
                   >
                     <i class="fas fa-edit"></i>
-                  </button>
+                  </button> -->
                 </div>
-                <div class="pl-2 py-2">
-                  Bio
+                <div class="pl-2 py-2" v-if="state.activeAccount.bio">
+                  {{ state.activeAccount.bio }}
                 </div>
               </div>
 
-              <div class="card shadow mb-2 ">
-                <div class="card-title dark-green-background m-0">
-                  <span class="pl-2 py-2 text-white">
-                    REvIEW
+              <div class="card review-scroll shadow mb-2 ">
+                <div class="card-title lightgrey m-0 d-flex justify-content-between">
+                  <span class="pl-2 py-2 pl-3">
+                    MY REVIEWS
                   </span>
                 </div>
                 <div class="row justify-content-center">
@@ -67,29 +78,29 @@
         </div>
       </div>
       <!-- listings  -->
-      <div class="col-11 col-md-8 mt-2 mt-md-5">
+      <div class="col-12 col-md-9 mt-2 mt-md-5">
         <Item v-for="item in state.items" :key="item.id" :item="item" />
       </div>
       <div class="col-12 d-block d-md-none">
         <div class=" ">
-          <div class="card mb-2">
-            <div class="card-title m-0 dark-green-background ">
-              <span class="pl-2 py-2 text-white">
+          <div class="card review-scroll mb-2">
+            <div class="card-title m-0 lightgrey d-flex justify-content-between">
+              <span class="pl-2 py-2 ">
                 ABOUT ME
               </span>
             </div>
-            <div class="pl-2 py-2">
-              Bio
+            <div class="pl-2 py-2 pr-2" v-if="state.activeAccount.bio">
+              {{ state.activeAccount.bio }}
             </div>
           </div>
 
-          <div class="card mb-2">
-            <div class="card-title m-0 dark-green-background ">
-              <span class="pl-2 py-2 text-white">
+          <div class="card review-scroll mb-2">
+            <div class="card-title m-0 lightgrey d-flex justify-content-between">
+              <span class="pl-2 py-2 ">
                 REvIEW
               </span>
             </div>
-            <div class="pl-2 py-2">
+            <div class="pl-2 py-2 pr-2">
               <span>
                 <Review v-for="review in state.reviews" :key="review.id" :review="review" />
               </span>
@@ -167,5 +178,23 @@ export default {
 .background-img{
   background-image: url('../assets/img/Untitled.jpg');
   background-size: cover;
+}
+
+.review-scroll{
+    overflow-y: scroll;
+          overflow-x: hidden;
+    // overflow-:auto;
+    // flex-wrap: nowrap;
+    max-height: 25vw;// display: inline-block;
+}
+@media screen and (max-width:760px){
+  .review-scroll{
+    overflow-y: scroll;
+    max-height: 45vw;// display: inline-block;
+      overflow-x: hidden;
+  }
+}
+.lightgrey{
+  background-color: rgba(236, 236, 236, 0.315);
 }
 </style>

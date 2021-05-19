@@ -12,19 +12,19 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">
-              Review
+              HOW WAS YOUR EXPERIENCE?
             </h5>
           </div>
           <div class="modal-body">
             <form @submit.prevent="createReview">
               <div class="form-group">
-                <label for="title"></label>
+                <label for="title">Title</label>
                 <input type="text"
                        class="form-control"
                        id="title"
                        placeholder="Tile..."
                        minlength="3"
-                       maxlength="50"
+                       maxlength="40"
                        v-model="state.newReview.title"
                        required
                 >
@@ -43,11 +43,11 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="body"></label>
+                <label for="body">Comments</label>
                 <input type="text"
                        class="form-control"
                        id="body"
-                       placeholder="Body..."
+                       placeholder="Comments..."
                        minlength="3"
                        maxlength="200"
                        v-model="state.newReview.body"
@@ -56,7 +56,7 @@
               </div>
 
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
                   Dismiss
                 </button>
                 <button type="submit" class="btn btn-primary" @click="reviewedRequest()">
@@ -111,7 +111,7 @@ export default {
         try {
           await reviewsService.createReview(state.newReview)
           state.newReview = {}
-          $('#reviewCreationModal').modal('hide')
+          $('#reviewCreationModal' + props.requestProp.id).modal('hide')
           // $('#reviewCreationModal' + request.id).modal('hide')
         } catch (error) {
           logger.error(error)
