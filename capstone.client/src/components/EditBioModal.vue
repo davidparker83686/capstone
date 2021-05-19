@@ -20,7 +20,7 @@
           <div class="modal-body">
             <form @submit.prevent="editBio">
               <div class="form-group">
-                <label for="name"></label>
+                <label for="name">User Name</label>
                 <input type="text"
                        class="form-control"
                        id="name"
@@ -31,7 +31,7 @@
                 >
               </div>
               <div class="form-group">
-                <label for="email"></label>
+                <label for="email">Email</label>
                 <input type="text"
                        class="form-control"
                        id="email"
@@ -42,7 +42,7 @@
                 >
               </div>
               <div class="form-group">
-                <label for="picture"></label>
+                <label for="picture">Profile Picture </label>
                 <input type="text"
                        class="form-control"
                        id="picture"
@@ -53,7 +53,7 @@
                 >
               </div>
               <div class="form-group">
-                <label for="bio"></label>
+                <label for="bio">Bio</label>
                 <input type="text"
                        class="form-control"
                        id="bio"
@@ -65,7 +65,7 @@
               </div>
 
               <div class="modal-footer">
-                <button type="button" class="btn text-white btn-warning" data-dismiss="modal">
+                <button type="button" class="btn text-white btn-danger" data-dismiss="modal">
                   Dismiss
                 </button>
                 <button type="submit" class="btn btn-primary">

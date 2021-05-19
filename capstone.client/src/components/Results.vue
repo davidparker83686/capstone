@@ -1,42 +1,29 @@
 <template>
   <div class="accordion px-0 px-md-5 py-2 py-md-3" id="accordionExample">
     <div class="card shadow p-3 pb-0">
-      <div class="row">
-        <div class=" d-flex p-0">
-          <button style="text-decoration: none; color: inherit;"
-                  class="btn btn-link btn-block text-left p-0"
-                  type="button"
-                  data-toggle="collapse"
-                  :data-target="'#collapseOne'+result.id"
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-          >
-            <div class="col-md-12 col-12">
-              <h3 class="d-inline">
-                {{ result.title.toUpperCase() }} -
+      <button style="text-decoration: none; color: inherit;"
+              class="btn d-flex  shadow-none  row btn-link btn-block text-left col-12 w-100 p-0"
+              type="button"
+              data-toggle="collapse"
+              :data-target="'#collapseOne'+result.id"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+      >
+        <div class="col-md-12 col-12">
+          <h3 class="d-inline">
+            {{ result.title.toUpperCase() }} -
 
-                <span class="available text-success d-inline" style="text-decoration: none; color: inherit;" v-if="result.availability == true">
-                  Available
-                </span>
-                <span class="not-available text-danger d-inline" style="text-decoration: none; color: inherit;" v-if="result.availability == false">
-                  Not Available
-                </span>
-              </h3>
-              <br>
-              <span>{{ result.category.toUpperCase() }}</span>
-            </div>
-          </button>
-          <!--
-          <div class="text-right " v-if="state.account.id === result.creatorId">
-            <button type="button" class="btn btn-primary mr-2" @click="editresult()">
-              Edit
-            </button>
-            <button type="button" class="btn btn-danger" @click="deleteresult()">
-              Delete
-            </button>
-          </div> -->
+            <span class="available text-success d-inline" style="text-decoration: none; color: inherit;" v-if="result.availability == true">
+              Available
+            </span>
+            <span class="not-available text-danger d-inline" style="text-decoration: none; color: inherit;" v-if="result.availability == false">
+              Not Available
+            </span>
+          </h3>
+          <br>
+          <span>{{ result.category.toUpperCase() }}</span>
         </div>
-      </div>
+      </button>
 
       <div :id="'collapseOne'+result.id" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card-body p-0">

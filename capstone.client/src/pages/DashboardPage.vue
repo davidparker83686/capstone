@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard container-fluid background-img ">
     <div class="row justify-content-center  p-3 p-md-5">
-      <div class="col-md-12 col-12 p-0 card bg-secondary scroll shadow">
+      <div class="col-md-12 col-12 p-0 card lightgrey scroll shadow">
         <h3 class=" dark-green-text pl-4 pt-3 m-0">
           OPEN LENDS
         </h3>
@@ -12,7 +12,7 @@
     </div>
 
     <div class="row px-md-5 pb-5 between-to-center">
-      <div class="col-md-5 col-11 card bg-secondary m-2 scroll shadow ">
+      <div class="col-md-5 col-11 card lightgrey m-2 scroll shadow ">
         <div class=" dark-green-text p-3">
           <h3>PENDING REQUESTS</h3>
         </div>
@@ -21,7 +21,7 @@
         </div>
         <!-- <PendingRequest v-for="pendingrequest in state.requests" :key="pendingrequest.id" :pendingrequest="pendingrequest" /> -->
       </div>
-      <div class="col-md-5 col-11 card  bg-secondary  m-2 scroll  shadow">
+      <div class="col-md-5 col-11 card  lightgrey  m-2 scroll  shadow">
         <div class=" dark-green-text p-3">
           <h3>LEND HISTORY</h3>
         </div>
@@ -123,5 +123,7 @@ h3{
   background-image: url('../assets/img/Untitled.jpg');
   background-size: cover;
 }
-
+.lightgrey{
+  background-color: rgba(236, 236, 236, 0.315);
+}
 </style>

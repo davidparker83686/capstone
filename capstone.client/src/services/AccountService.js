@@ -14,27 +14,28 @@ class AccountService {
   }
 
   async editBio(editedBio) {
-    const res = await api.put('api/accounts/' + editedBio.accountId, editedBio)
-    if (res.name == null) {
-      res.name = AppState.account.name
-      AppState.account.name = res.name
-    } else { AppState.account.name = res.name }
+    console.log(editedBio)
+    if (editedBio.name == null) {
+      editedBio.name = AppState.account.name
+      AppState.account.name = editedBio.name
+    } else { AppState.account.name = editedBio.name }
 
-    if (res.email == null) {
-      res.email = AppState.account.email
-      AppState.account.email = res.email
-    } else { AppState.account.email = res.email }
+    if (editedBio.email == null) {
+      editedBio.email = AppState.account.email
+      AppState.account.email = editedBio.email
+    } else { AppState.account.email = editedBio.email }
 
-    if (res.picture == null) {
-      res.picture = AppState.account.picture
-      AppState.account.picture = res.picture
-    } else { AppState.account.picture = res.picture }
+    if (editedBio.picture == null) {
+      editedBio.picture = AppState.account.picture
+      AppState.account.picture = editedBio.picture
+    } else { AppState.account.picture = editedBio.picture }
 
-    if (res.bio == null) {
-      res.bio = AppState.account.bio
-      AppState.account.bio = res.bio
-    } else { AppState.account.bio = res.bio }
+    if (editedBio.bio == null) {
+      editedBio.bio = AppState.account.bio
+      AppState.account.bio = editedBio.bio
+    } else { AppState.account.bio = editedBio.bio }
 
+    const res = await api.put('account', editedBio)
     AppState.account = res.data
   }
 

@@ -44,7 +44,7 @@
           </router-link>
         </li>
         <li class="nav-item" v-if="user.isAuthenticated">
-          <button type="button" class="btn pt-3 nav-link btn-none text-hov  texlit" data-toggle="modal" data-target="#itemCreationModal ">
+          <button type="button" class="btn pt-3 nav-link btn-none text-hov  shadow-none texlit" data-toggle="modal" data-target="#itemCreationModal ">
             CREATE LISTING
           </button>
         </li>

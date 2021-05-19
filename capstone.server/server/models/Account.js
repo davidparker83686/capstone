@@ -7,8 +7,8 @@ const Account = new Schema(
     _id: { type: String, required: true },
     email: { type: String, lowercase: true, unique: true },
     name: { type: String, required: true },
-    picture: { type: String },
-    bio: { type: String },
+    picture: { type: String, default: 'https://prd-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/styles/full_width/public/thumbnails/image/placeholder-profile_1.png' },
+    bio: { type: String, default: 'Tell us about yourself!' },
     location: {
       type: {
         type: String,

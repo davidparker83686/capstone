@@ -11,13 +11,13 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">
-              <b>Request an Item</b>
+              <b>REQUEST AN ITEM</b>
             </h5>
           </div>
           <div class="modal-body">
             <form @submit.prevent="createRequest">
               <div class="form-group">
-                <label for="borrowStartDate"></label>
+                <label for="borrowStartDate">Start Date</label>
                 <input type="text"
                        class="form-control"
                        id="borrowStartDate"
@@ -30,7 +30,7 @@
               </div>
 
               <div class="form-group">
-                <label for="borrowEndDate"></label>
+                <label for="borrowEndDate">End Date</label>
                 <input type="text"
                        class="form-control"
                        id="borrowEndDate"
@@ -43,7 +43,7 @@
               </div>
 
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
                   DISMISS
                 </button>
                 <button type="submit" class="btn btn-primary">

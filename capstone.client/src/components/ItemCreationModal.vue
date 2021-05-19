@@ -11,13 +11,13 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">
-              Create A Listing
+              CREATE A LISTING
             </h5>
           </div>
           <div class="modal-body">
             <form @submit.prevent="createItem">
               <div class="form-group">
-                <label for="title"></label>
+                <label for="title">Name of Item</label>
                 <input type="text"
                        class="form-control"
                        id="title"
@@ -42,7 +42,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="description"></label>
+                <label for="description">Description</label>
                 <input type="text"
                        class="form-control"
                        id="description"
@@ -54,7 +54,7 @@
                 >
               </div>
               <div class="form-group">
-                <label for="picture"></label>
+                <label for="picture">Picture</label>
                 <input type="text"
                        class="form-control"
                        id="picture"
@@ -64,7 +64,7 @@
               </div>
 
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
                   Dismiss
                 </button>
                 <button type="submit" class="btn btn-primary">

@@ -20,86 +20,91 @@
           Lender : {{ request.itemOwner.name.split('@')[0] }}
         </p>
       </div>
-      <div class="row" v-if="request.borrowerName">
-        <p>Borrower : {{ request.borrowerName.split('@')[0] }}</p>
-      </div>
-    </div>
-
-    <div class="col-12 px-0 ">
-      <div class="buttons text-right border-bottom">
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" @click="accept(request)" v-if="request.pending === true && request.returned == false && request.ownerId === state.account.id ">
-          accept
-        </button>
-        <button type="button"
-                class="btn btn-danger mb-2"
-                title="delete"
-                aria="delete"
-                @click="deleteRequest(request)"
-                v-if="request.pending == true && request.returned == false &&request.ownerId === state.account.id"
-        >
-          decline
-        </button>
-        <div v-if="request.pending === true && request.returned == false && request.borrowerId === state.account.id">
-          <span>
-            currently pending
-          </span>
-        </div>
-        <button title="accepted"
-                aria="accepted"
-                @click="accepted(request)"
-                type="button"
-                class="btn btn-danger mb-2"
-                v-if="request.pending== false && request.accepted == false && request.returned== false && request.borrowerId===state.account.id "
-        >
-          accepted
-        </button>
-
-        <div v-if="request.pending== false && request.accepted == true && request.returned== false && request.borrowerId===state.account.id ">
-          <span class="text-info">You are now in possession of this item.</span>
+      <div class="row justify-content-between border-bottom" v-if="request.borrowerName">
+        <div class="col-md-5 p-0">
+          <p class="p-0">
+            Borrower : {{ request.borrowerName.split('@')[0] }}
+          </p>
         </div>
 
-        <!-- <div v-if="request.pending== false && request.accepted == true && request.returned== false && request.ownerId===state.account.id ">
+        <div class="col-md-3 px-0 ">
+          <div class="buttons text-right ">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" @click="accept(request)" v-if="request.pending === true && request.returned == false && request.ownerId === state.account.id ">
+              accept
+            </button>
+            <button type="button"
+                    class="btn btn-danger mb-2"
+                    title="delete"
+                    aria="delete"
+                    @click="deleteRequest(request)"
+                    v-if="request.pending == true && request.returned == false &&request.ownerId === state.account.id"
+            >
+              decline
+            </button>
+            <div v-if="request.pending === true && request.returned == false && request.borrowerId === state.account.id">
+              <span>
+                currently pending
+              </span>
+            </div>
+            <button title="accepted"
+                    aria="accepted"
+                    @click="accepted(request)"
+                    type="button"
+                    class="btn btn-danger mb-2"
+                    v-if="request.pending== false && request.accepted == false && request.returned== false && request.borrowerId===state.account.id "
+            >
+              accepted
+            </button>
+
+            <div v-if="request.pending== false && request.accepted == true && request.returned== false && request.borrowerId===state.account.id ">
+              <span class="text-primary">You are now in possession of this item.</span>
+            </div>
+
+            <!-- <div v-if="request.pending== false && request.accepted == true && request.returned== false && request.ownerId===state.account.id ">
           Now waiting on Item to be returned
         </div> -->
 
-        <button title="returned"
-                aria="returned"
-                @click="returned(request)"
-                type="button"
-                class="btn btn-success mb-2"
-                v-if="request.pending== false && request.accepted == true && request.returned== false && request.ownerId===state.account.id "
-        >
-          returned
-        </button>
+            <button title="returned"
+                    aria="returned"
+                    @click="returned(request)"
+                    type="button"
+                    class="btn btn-success mb-2"
+                    v-if="request.pending== false && request.accepted == true && request.returned== false && request.ownerId===state.account.id "
+            >
+              returned
+            </button>
 
-        <button title="leaveReview"
-                aria="leaveReview"
-                data-toggle="modal"
-                :data-target="'#reviewCreationModal' + request.id"
-                type="button"
-                class="btn btn-success mb-2"
-                v-if="request.pending == false && request.accepted == true && request.returned == true && request.ownerReviewed == false && request.ownerId === state.account.id"
-                @click="assignActiveRequest(request)"
-        >
-          <!-- :data-target="'#exampleModal'+request.id" -->
-          Leave a Review
-        </button>
+            <button title="leaveReview"
+                    aria="leaveReview"
+                    data-toggle="modal"
+                    :data-target="'#reviewCreationModal' + request.id"
+                    type="button"
+                    class="btn btn-success mb-2"
+                    v-if="request.pending == false && request.accepted == true && request.returned == true && request.ownerReviewed == false && request.ownerId === state.account.id"
+                    @click="assignActiveRequest(request)"
+            >
+              <!-- :data-target="'#exampleModal'+request.id" -->
+              Leave a Review
+            </button>
 
-        <button title="leaveReview"
-                aria="leaveReview"
-                data-toggle="modal"
-                :data-target="'#reviewCreationModal' + request.id"
-                type="button"
-                class="btn btn-success mb-2"
-                v-if="request.pending == false && request.accepted == true && request.returned == true && request.borrowerReviewed == false && request.borrowerId === state.account.id"
-                @click="assignActiveRequest(request)"
-        >
-          <!-- :data-target="'#exampleModal'+request.id" -->
-          Leave a Review
-        </button>
+            <button title="leaveReview"
+                    aria="leaveReview"
+                    data-toggle="modal"
+                    :data-target="'#reviewCreationModal' + request.id"
+                    type="button"
+                    class="btn btn-success mb-2"
+                    v-if="request.pending == false && request.accepted == true && request.returned == true && request.borrowerReviewed == false && request.borrowerId === state.account.id"
+                    @click="assignActiveRequest(request)"
+            >
+              <!-- :data-target="'#exampleModal'+request.id" -->
+              Leave a Review
+            </button>
+          </div>
+        </div>
       </div>
     </div>
+
     <review-creation-modal :request-prop="request" />
   </div>
 </template>
