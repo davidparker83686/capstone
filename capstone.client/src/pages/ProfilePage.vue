@@ -10,15 +10,14 @@
                 <!-- {{ (state.account.name.split('@')[0]).charAt(0).toUpperCase()+ (state.account.name.split('@')[0]).substring(1) }} -->
                 {{ state.activeAccount.name }}
               </div>
+
               <div class="d-inline">
                 <i class="fas fa-star star"></i>
                 {{ getUserRating() }}
                 <!-- {{ userRating }}
                 {{ rating }} -->
-              </div>
-              <div>
                 <button type="button"
-                        class="btn p-0 btn-none text-primary"
+                        class="btn p-0 ml-3 btn-none text-primary"
                         title="edit bio"
                         aria="edit bio"
                         data-toggle="modal"
