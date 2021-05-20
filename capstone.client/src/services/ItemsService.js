@@ -51,6 +51,27 @@ class ItemsService {
     AppState.items[oldItem] = item
   }
 
+  async editItem(editedItem) {
+    console.log(editedItem)
+    if (editedItem.title == null) {
+      editedItem.title = AppState.activeItem.title
+      AppState.activeItem.title = editedItem.title
+    } else { AppState.activeItem.title = editedItem.title }
+
+    if (editedItem.description == null) {
+      editedItem.description = AppState.activeItem.description
+      AppState.activeItem.description = editedItem.description
+    } else { AppState.activeItem.description = editedItem.description }
+
+    if (editedItem.picture == null) {
+      editedItem.picture = AppState.activeItem.picture
+      AppState.activeItem.picture = editedItem.picture
+    } else { AppState.activeItem.picture = editedItem.picture }
+
+    const res = await api.put('api/items/' + AppState.activeItem.id, editedItem)
+    AppState.activeItem = res.data
+  }
+
   assignActiveItem(item) {
     AppState.activeItem = item
   }

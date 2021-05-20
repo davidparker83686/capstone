@@ -6,7 +6,7 @@
           Messages Page
         </h4>
         <button class="btn btn-success" @click="refresh">
-          Refresh
+          Check for New Messages
         </button>
       </div>
       <div class="col-10 card shadow transparent-bg">
@@ -19,7 +19,7 @@
       <form class=" col-md-10 col-12 d-flex flex-row mt-5 align-items-center" @submit.prevent="send">
         <label for="message">Message</label>
         <input type="text" class="form-control ml-1" id="exampleFormControlInput1" v-model="state.newMessage.body">
-        <button type="submit" class="btn btn-info ml-2">
+        <button type="submit" class="btn btn-primary ml-2">
           Send
         </button>
       </form>

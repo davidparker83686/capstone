@@ -62,6 +62,7 @@
                     class="mx-1 btn btn-primary "
                     data-toggle="modal"
                     :data-target="'#itemEditModal' + item.id"
+                    @click="assignActiveItem(item)"
             >
               <!-- :data-target="'#itemEditModal' + item.id" -->
               Edit
@@ -125,14 +126,6 @@ export default {
           logger.error(error)
         }
       },
-      // async editItem(id) {
-      //   try {
-      //     await itemsService.editItem(id)
-      //     Notification.toast('Successfully Edited Item', 'success')
-      //   } catch (error) {
-      //     logger.error(error)
-      //   }
-      // },
       async toggleAvailability(item) {
         try {
           await itemsService.toggleAvailability(item)

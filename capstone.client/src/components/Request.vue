@@ -30,8 +30,22 @@
         <div class="col-md-3 px-0 ">
           <div class="buttons text-right ">
             <!-- Button trigger modal -->
+
+            <router-link :to="{name: 'Profile', params: {id: request.creatorId}}">
+              <button type="button" class="btn p-1 mb-1 mr-2 btn-success" v-if="request.returned == false &&request.ownerId === state.account.id">
+                Message
+              </button>
+            </router-link>
+
+            <!-- idk how to make this one so that it will make the profile the item creator -->
+            <router-link :to="{name: 'Profile', params: {id: request.ownerId}}">
+              <button type="button" class="btn p-1 mb-1 mr-2 btn-success" v-if="request.returned == false &&request.ownerId !== state.account.id">
+                Message
+              </button>
+            </router-link>
+
             <button type="button" class="btn btn-primary" @click="accept(request)" v-if="request.pending === true && request.returned == false && request.ownerId === state.account.id ">
-              accept
+              Accept
             </button>
             <button type="button"
                     class="btn btn-danger mb-2"
@@ -40,7 +54,7 @@
                     @click="deleteRequest(request)"
                     v-if="request.pending == true && request.returned == false &&request.ownerId === state.account.id"
             >
-              decline
+              Decline
             </button>
             <div v-if="request.pending === true && request.returned == false && request.borrowerId === state.account.id">
               <span>
@@ -54,16 +68,12 @@
                     class="btn btn-danger mb-2"
                     v-if="request.pending== false && request.accepted == false && request.returned== false && request.borrowerId===state.account.id "
             >
-              accepted
+              Accepted
             </button>
 
             <div v-if="request.pending== false && request.accepted == true && request.returned== false && request.borrowerId===state.account.id ">
               <span class="text-primary">You are now in possession of this item.</span>
             </div>
-
-            <!-- <div v-if="request.pending== false && request.accepted == true && request.returned== false && request.ownerId===state.account.id ">
-          Now waiting on Item to be returned
-        </div> -->
 
             <button title="returned"
                     aria="returned"
@@ -72,7 +82,7 @@
                     class="btn btn-success mb-2"
                     v-if="request.pending== false && request.accepted == true && request.returned== false && request.ownerId===state.account.id "
             >
-              returned
+              Returned
             </button>
 
             <button title="leaveReview"
