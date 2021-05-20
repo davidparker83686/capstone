@@ -61,6 +61,7 @@
                        placeholder="Picture..."
                        v-model="state.newItem.picture"
                 >
+                <!-- at the end of the at click add the vmodel so there isnt any conflict -->
               </div>
 
               <div class="modal-footer">

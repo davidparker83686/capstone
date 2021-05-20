@@ -28,7 +28,6 @@
                        minlength="3"
                        maxlength="40"
                        v-model="state.editedItem.title"
-                       required
                 >
               </div>
               <div class="form-group">
@@ -40,7 +39,6 @@
                        minlength="3"
                        maxlength="500"
                        v-model="state.editedItem.description"
-                       required
                 >
               </div>
               <div class="form-group">
@@ -52,7 +50,6 @@
                        minlength="3"
                        maxlength="500"
                        v-model="state.editedItem.picture"
-                       required
                 >
               </div>
 
@@ -61,7 +58,7 @@
                   Dismiss
                 </button>
                 <button type="submit" class="btn btn-primary" @click="editItem()">
-                  Create
+                  Save
                 </button>
                 <!-- <button type="submit" class="btn btn-primary">
                   Create
@@ -85,7 +82,7 @@ import $ from 'jquery'
 export default {
   name: 'ItemEditModal',
   props: {
-    itemEditModal: {
+    itemProp: {
       type: Object,
       required: true
     }
@@ -98,7 +95,7 @@ export default {
       state,
       async editItem() {
         try {
-          await itemsService.editItem(props.itemProp)
+          await itemsService.editItem(state.editedItem)
           state.editedItem = {}
           $('#itemEditModal' + props.itemProp.id).modal('hide')
           Notification.toast('Successfully Edited Item', 'success')

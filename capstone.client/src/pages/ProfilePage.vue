@@ -35,7 +35,7 @@
                 <button
                   class="btn btn-success my-1"
                 >
-                  Chat
+                  Message
                 </button>
               </router-link>
             </div>
