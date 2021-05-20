@@ -57,7 +57,13 @@
             <button v-if="state.account.id === item.creatorId" type="button" class="btn btn-danger" @click.prevent="deleteItem(item.id)">
               Delete
             </button>
-            <button v-if="state.account.id === item.creatorId" type="button" class="mx-1 btn btn-primary " @click="editItem()">
+            <button v-if="state.account.id === item.creatorId"
+                    type="button"
+                    class="mx-1 btn btn-primary "
+                    data-toggle="modal"
+                    :data-target="'#itemEditModal' + item.id"
+            >
+              <!-- :data-target="'#itemEditModal' + item.id" -->
               Edit
             </button>
 
@@ -84,6 +90,7 @@
         </div>
       </div>
     </div>
+    <item-edit-modal :item-prop="item" />
   </div>
 </template>
 
@@ -118,14 +125,14 @@ export default {
           logger.error(error)
         }
       },
-      async editItem(id) {
-        try {
-          await itemsService.editItem(id)
-          Notification.toast('Successfully Edited Item', 'success')
-        } catch (error) {
-          logger.error(error)
-        }
-      },
+      // async editItem(id) {
+      //   try {
+      //     await itemsService.editItem(id)
+      //     Notification.toast('Successfully Edited Item', 'success')
+      //   } catch (error) {
+      //     logger.error(error)
+      //   }
+      // },
       async toggleAvailability(item) {
         try {
           await itemsService.toggleAvailability(item)
