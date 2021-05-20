@@ -32,7 +32,14 @@
             <!-- Button trigger modal -->
 
             <router-link :to="{name: 'Profile', params: {id: request.creatorId}}">
-              <button type="button" class="btn p-1 mb-1 mr-2 btn-primary" v-if="request.returned == false">
+              <button type="button" class="btn p-1 mb-1 mr-2 btn-success" v-if="request.returned == false &&request.ownerId === state.account.id">
+                Message
+              </button>
+            </router-link>
+
+            <!-- idk how to make this one so that it will make the profile the item creator -->
+            <router-link :to="{name: 'Profile', params: {id: request.ownerId}}">
+              <button type="button" class="btn p-1 mb-1 mr-2 btn-success" v-if="request.returned == false &&request.ownerId !== state.account.id">
                 Message
               </button>
             </router-link>
