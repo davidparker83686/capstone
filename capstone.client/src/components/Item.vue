@@ -47,19 +47,22 @@
       </div>
       <div :id="'collapseOne'+item.id" class="collapse col-12 show" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class=" row justify-content-between">
-          <div class="col-6 mt-2">
+          <div class="col-12 col-md-3 mt-2">
             <img class="img-fluid rounded" :src="item.picture" alt="Item Picture" v-if="item.picture">
           </div>
-          <div class="col-6 mt-2">
-            <span><b>{{ item.title.toUpperCase() }}</b> <br> {{ item.description }}</span>
+          <div class="col-12 col-md-9 mt-2">
+            <h5><b>{{ item.title.toUpperCase() }}</b></h5>
+            <span class=" col-12 col-md-9">
+              {{ item.description }}
+            </span>
           </div>
           <div class="buttons col-12 mb-2 text-right pt-3 pt-md-0 userbuttons">
-            <button v-if="state.account.id === item.creatorId" type="button" class="btn btn-danger" @click.prevent="deleteItem(item.id)">
+            <button v-if="state.account.id === item.creatorId" type="button" class="btn btn-outline-danger" @click.prevent="deleteItem(item.id)">
               Delete
             </button>
             <button v-if="state.account.id === item.creatorId"
                     type="button"
-                    class="mx-1 btn btn-primary "
+                    class="mx-1 btn btn-outline-primary "
                     data-toggle="modal"
                     :data-target="'#itemEditModal' + item.id"
                     @click="assignActiveItem(item)"
