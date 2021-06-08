@@ -14,7 +14,6 @@ class AccountService {
   }
 
   async editBio(editedBio) {
-    console.log(editedBio)
     if (editedBio.name == null) {
       editedBio.name = AppState.account.name
       AppState.account.name = editedBio.name
@@ -37,6 +36,7 @@ class AccountService {
 
     const res = await api.put('account', editedBio)
     AppState.account = res.data
+    AppState.activeAccount = res.data
   }
 
   async getLocation() {
@@ -52,10 +52,14 @@ class AccountService {
     AppState.location = await location()
     const request = {
       name: AppState.account.name,
+      bio: AppState.account.bio,
+      picture: AppState.account.picture,
+      email: AppState.account.email,
       location: {
         coordinates: [AppState.location.coords.longitude, AppState.location.coords.latitude]
       }
     }
+
     const res = await api.put('account', request)
     AppState.account = res.data
   }

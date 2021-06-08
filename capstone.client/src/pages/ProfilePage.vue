@@ -7,7 +7,6 @@
           <div class="card-body">
             <h5 class="card-title d-flex justify-content-between">
               <div class="d-inline">
-                <!-- {{ (state.account.name.split('@')[0]).charAt(0).toUpperCase()+ (state.account.name.split('@')[0]).substring(1) }} -->
                 {{ state.activeAccount.name }}
               </div>
 
@@ -22,6 +21,7 @@
                         aria="edit bio"
                         data-toggle="modal"
                         data-target="#editBioModal"
+                        v-if="route.params.id==state.account.id"
                 >
                   <i class="fas fa-edit"></i>
                 </button>
@@ -55,7 +55,7 @@
                     <i class="fas fa-edit"></i>
                   </button> -->
                 </div>
-                <div class="pl-2 py-2" v-if="state.activeAccount.bio">
+                <div class="pl-2 py-2">
                   {{ state.activeAccount.bio }}
                 </div>
               </div>

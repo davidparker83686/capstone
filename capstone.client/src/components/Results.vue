@@ -34,18 +34,21 @@
             <div class="col-12 col-md-9 mt-3">
               <router-link style="color: inherit;" :to="{name: 'Profile', params: {id: result.creatorId}}">
                 <div class="hover route d-flex">
-                  <h5>
-                    <span v-if="result.creator">Owner : {{ result.creator.name.split('@')[0] }} </span>
-                  </h5>
                   <div v-if="result.creator.picture">
-                    <img class="rounded-circle img-size" :src="result.creator.picture" alt="profile picture">
+                    <img class="rounded-circle img-size profilepic" :src="result.creator.picture" alt="profile picture">
                   </div>
+                  <h5 class="mb-0 ml-2"
+                      style="
+    align-self: flex-end;"
+                  >
+                    <span v-if="result.creator">Owner : {{ result.creator.name }} </span>
+                  </h5>
                 </div>
               </router-link>
               <div v-if="result.description">
                 {{ result.description }}
               </div>
-              <div class="buttons text-right  mb-2">
+              <div class="buttons text-right mb-2 bottom">
                 <button type="button"
                         class="btn btn-primary"
                         data-toggle="modal"
@@ -128,11 +131,23 @@ export default {
 }
 
 .img-size{
-  width: 100%;
+  // width: 100%;
+  max-width: 30px;
 }
 
 .collapse.in, .collapse{
   // overflow: auto;
   overflow-x: hidden;
+}
+.bottom{
+
+}
+@media screen and (min-width:760px){
+.bottom{
+  position: absolute;
+  bottom: 0;
+  right: 20px
+  ;
+}
 }
 </style>
