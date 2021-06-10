@@ -52,7 +52,6 @@ class ItemsService {
   }
 
   async editItem(editedItem) {
-    console.log(editedItem)
     if (editedItem.title == null) {
       editedItem.title = AppState.activeItem.title
       AppState.activeItem.title = editedItem.title

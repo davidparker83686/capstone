@@ -34,37 +34,40 @@
             <div class="col-12 col-md-9 mt-3">
               <router-link style="color: inherit;" :to="{name: 'Profile', params: {id: result.creatorId}}">
                 <div class="hover route d-flex">
-                  <h5>
-                    <span v-if="result.creator">Owner : {{ result.creator.name.split('@')[0] }} </span>
-                  </h5>
                   <div v-if="result.creator.picture">
-                    <img class="rounded-circle img-size" :src="result.creator.picture" alt="profile picture">
+                    <img class="rounded-circle img-size profilepic" :src="result.creator.picture" alt="profile picture">
                   </div>
+                  <h5 class="mb-0 ml-2"
+                      style="align-self: flex-end;"
+                  >
+                    <span v-if="result.creator">Owner : {{ result.creator.name }} </span>
+                  </h5>
                 </div>
               </router-link>
-              <div v-if="result.description">
+              <div v-if="result.description" class="mb-md-5 ">
                 {{ result.description }}
               </div>
-              <div class="buttons text-right  mb-2">
-                <button type="button"
-                        class="btn btn-primary"
-                        data-toggle="modal"
-                        data-target="#requestCreationModal"
-                        v-if="state.user.isAuthenticated && result.availability == true && state.account.id !== result.creatorId"
-                        @click="assignActiveItem(result)"
-                >
-                  Borrow
-                </button>
-                <button type="button" class="btn btn-primary disabled" v-if="state.user.isAuthenticated &&result.availability == false && state.account.id !== result.creatorId">
-                  Borrow
-                </button>
-                <button type="button" class="btn btn-primary mr-2" @click="editresult()" v-if="state.account.id === result.creatorId">
-                  Edit
-                </button>
-                <button type="button" class="btn btn-danger" @click="deleteresult()" v-if="state.account.id === result.creatorId">
-                  Delete
-                </button>
-              </div>
+            </div>
+
+            <div class="buttons col-12 text-right mb-2 bottom">
+              <button type="button"
+                      class="btn btn-primary"
+                      data-toggle="modal"
+                      data-target="#requestCreationModal"
+                      v-if="state.user.isAuthenticated && result.availability == true && state.account.id !== result.creatorId"
+                      @click="assignActiveItem(result)"
+              >
+                Borrow
+              </button>
+              <button type="button" class="btn btn-primary disabled" v-if="state.user.isAuthenticated &&result.availability == false && state.account.id !== result.creatorId">
+                Borrow
+              </button>
+              <button type="button" class="btn btn-outline-primary mr-2" @click="editresult()" v-if="state.account.id === result.creatorId">
+                Edit
+              </button>
+              <button type="button" class="btn btn-outline-danger" @click="deleteresult()" v-if="state.account.id === result.creatorId">
+                Delete
+              </button>
             </div>
           </div>
         </div>
@@ -128,11 +131,23 @@ export default {
 }
 
 .img-size{
-  width: 100%;
+  // width: 100%;
+  max-width: 30px;
 }
 
 .collapse.in, .collapse{
   // overflow: auto;
   overflow-x: hidden;
+}
+.bottom{
+
+}
+@media screen and (min-width:760px){
+.bottom{
+  position: absolute;
+  bottom: 0;
+  right: 20px
+  ;
+}
 }
 </style>

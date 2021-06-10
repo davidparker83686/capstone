@@ -32,15 +32,28 @@
               </div>
               <div class="form-group">
                 <label for="description">Description</label>
+                <textarea type="text"
+                          class="form-control inputheight"
+                          id="description"
+                          placeholder="Description..."
+                          minlength="3"
+                          maxlength="2000"
+                          v-model="state.editedItem.description"
+                >
+                </textarea>
+              </div>
+
+              <!-- <div class="form-group">
+                <label for="description">Description</label>
                 <input type="text"
-                       class="form-control"
+                       class="form-control inputheight"
                        id="description"
                        placeholder="Description..."
                        minlength="3"
-                       maxlength="500"
+                       maxlength="2000"
                        v-model="state.editedItem.description"
                 >
-              </div>
+              </div> -->
               <div class="form-group">
                 <label for="picture">Picture</label>
                 <input type="text"
@@ -110,5 +123,8 @@ export default {
 </script>
 
 <style scoped>
+.inputheight{
+  height: 200px;
+  }
 
 </style>
