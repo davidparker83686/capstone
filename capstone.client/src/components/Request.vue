@@ -32,23 +32,23 @@
             <!-- Button trigger modal -->
 
             <router-link :to="{name: 'Profile', params: {id: request.creatorId}}">
-              <button type="button" class="btn p-1 mb-1 mr-2 btn-success" v-if="request.returned == false &&request.ownerId === state.account.id">
+              <button type="button" class="btn p-1 mb-1 mr-2 btn-success d-inline" v-if="request.returned == false &&request.ownerId === state.account.id">
                 Message
               </button>
             </router-link>
 
             <!-- idk how to make this one so that it will make the profile the item creator -->
             <router-link :to="{name: 'Profile', params: {id: request.ownerId}}">
-              <button type="button" class="btn p-1 mb-1 mr-2 btn-success" v-if="request.returned == false &&request.ownerId !== state.account.id">
+              <button type="button" class="btn p-1 mb-1 mr-2 btn-success d-inline" v-if="request.returned == false &&request.ownerId !== state.account.id">
                 Message
               </button>
             </router-link>
 
-            <button type="button" class="btn btn-primary" @click="accept(request)" v-if="request.pending === true && request.returned == false && request.ownerId === state.account.id ">
+            <button type="button" class="btn btn-primary d-inline" @click="accept(request)" v-if="request.pending === true && request.returned == false && request.ownerId === state.account.id ">
               Accept
             </button>
             <button type="button"
-                    class="btn btn-danger mb-2"
+                    class="btn btn-danger mb-2 d-inline"
                     title="delete"
                     aria="delete"
                     @click="deleteRequest(request)"
@@ -57,7 +57,7 @@
               Decline
             </button>
             <div v-if="request.pending === true && request.returned == false && request.borrowerId === state.account.id">
-              <span>
+              <span class="d-inline">
                 currently pending
               </span>
             </div>
@@ -65,7 +65,7 @@
                     aria="accepted"
                     @click="accepted(request)"
                     type="button"
-                    class="btn btn-danger mb-2"
+                    class="btn btn-info mb-2"
                     v-if="request.pending== false && request.accepted == false && request.returned== false && request.borrowerId===state.account.id "
             >
               Accepted
@@ -79,7 +79,7 @@
                     aria="returned"
                     @click="returned(request)"
                     type="button"
-                    class="btn btn-success mb-2"
+                    class="btn btn-primary mb-2"
                     v-if="request.pending== false && request.accepted == true && request.returned== false && request.ownerId===state.account.id "
             >
               Returned

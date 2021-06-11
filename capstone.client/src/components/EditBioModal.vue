@@ -13,9 +13,9 @@
             <h5 class="modal-title" id="exampleModalLabel">
               EDIT YOUR PROFILE
             </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
-            </button>
+            </button> -->
           </div>
           <div class="modal-body">
             <form @submit.prevent="editBio">
@@ -48,7 +48,7 @@
                        id="picture"
                        placeholder="picture..."
                        minlength="3"
-                       maxlength="50"
+                       maxlength="1000"
                        v-model="state.editedBio.picture"
                 >
               </div>
@@ -64,7 +64,7 @@
                 >
               </div>
 
-              <div class="modal-footer">
+              <div class="modal-footer d-flex justify-content-between">
                 <button type="button" class="btn text-white btn-danger" data-dismiss="modal">
                   Dismiss
                 </button>

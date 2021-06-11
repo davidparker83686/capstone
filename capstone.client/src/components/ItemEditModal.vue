@@ -66,7 +66,7 @@
                 >
               </div>
 
-              <div class="modal-footer">
+              <div class="modal-footer d-flex justify-content-between">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">
                   Dismiss
                 </button>
